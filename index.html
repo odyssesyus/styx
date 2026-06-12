@@ -1,267 +1,734 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday</title>
-    <!-- Fixed font links for Playfair Display & Plus Jakarta Sans -->
-    <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap)" rel="stylesheet">
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #f7a361, #f16c89, #cb6be5, #609bf1, #59cd90);
-            background-size: 200% 200%;
-            animation: gradientShift 10s ease infinite;
-            display: flex; justify-content: center; align-items: center; overflow: hidden;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Happy Birthday, Ariadne 🎂 | Shih Tzu Surprise</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fef7ef;
+      overflow-x: hidden;
+    }
 
-        /* Modern Glassmorphism Card */
-        .login-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 32px; 
-            padding: 48px 40px; 
-            text-align: center;
-            max-width: 420px; 
-            width: 90%;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.4);
-            transition: transform 0.3s ease;
-        }
+    /* ========= LOCK SCREEN MODERN ========= */
+    #lock-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 30% 10%, #ffb77c, #ff8a9f, #b77eff, #5da9e9);
+      background-size: 200% 200%;
+      animation: auroraFlow 12s ease infinite;
+      backdrop-filter: blur(2px);
+      transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
 
-        .avatar-container {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 24px;
-            border-radius: 50%;
-            padding: 4px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255, 255, 255, 0.1));
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
+    @keyframes auroraFlow {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 0%; }
+    }
 
-        .dog-avatar { 
-            width: 100%; 
-            height: 100%; 
-            border-radius: 50%; 
-            object-fit: cover; 
-        }
+    .glass-card {
+      background: rgba(255, 245, 235, 0.22);
+      backdrop-filter: blur(24px);
+      border-radius: 56px;
+      padding: 2rem 2rem 2.5rem;
+      max-width: 520px;
+      width: 92%;
+      border: 1px solid rgba(255,255,240,0.5);
+      box-shadow: 0 35px 68px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,215,170,0.3);
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
 
-        .login-card h2 { 
-            font-family: 'Playfair Display', serif; 
-            color: white; 
-            font-size: 28px;
-            margin-bottom: 8px; 
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+    /* realistic shih tzu container */
+    .dog-master {
+      position: relative;
+      width: 100%;
+      margin: 0 auto 0.5rem;
+      display: flex;
+      justify-content: center;
+      filter: drop-shadow(0 18px 24px rgba(0,0,0,0.2));
+    }
 
-        .subtitle { 
-            color: rgba(255, 255, 255, 0.9); 
-            font-size: 15px;
-            margin-bottom: 32px; 
-        }
+    .shih-tzu-art {
+      width: 360px;
+      height: auto;
+      max-width: 100%;
+      transition: all 0.2s;
+    }
 
-        /* Floating Label & Input Styling */
-        .input-group { 
-            position: relative; 
-            margin-bottom: 24px; 
-        }
+    .lock-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: white;
+      margin-top: 0.5rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      letter-spacing: -0.2px;
+    }
 
-        .password-input {
-            width: 100%; 
-            padding: 16px 20px; 
-            border-radius: 16px; 
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.1); 
-            color: #fff;
-            font-size: 16px;
-            font-family: inherit;
-            outline: none;
-            transition: all 0.3s ease;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
-        }
-        
-        /* Transparent placeholder uncovers floating label logic */
-        .password-input::placeholder {
-            color: transparent;
-        }
+    .lock-sub {
+      color: rgba(255,255,240,0.85);
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
 
-        .password-input:focus {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
-        }
+    .password-field-group {
+      position: relative;
+      margin: 1rem 0 0.8rem;
+    }
 
-        .floating-label {
-            position: absolute;
-            left: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.7);
-            pointer-events: none;
-            transition: all 0.3s ease;
-            font-size: 16px;
-        }
+    #pw-input {
+      width: 100%;
+      background: rgba(255,255,250,0.2);
+      border: 1.5px solid rgba(255,240,210,0.7);
+      border-radius: 60px;
+      padding: 14px 20px;
+      font-size: 1rem;
+      font-family: monospace;
+      letter-spacing: 1px;
+      color: white;
+      font-weight: 500;
+      backdrop-filter: blur(6px);
+      outline: none;
+      transition: all 0.2s;
+    }
 
-        /* Shift label upward on focus or when input has text */
-        .password-input:focus ~ .floating-label,
-        .password-input:not(:placeholder-shown) ~ .floating-label {
-            top: -10px;
-            left: 16px;
-            font-size: 12px;
-            background: linear-gradient(90deg, #ff4e7e, #cb6be5);
-            padding: 2px 8px;
-            border-radius: 10px;
-            color: white;
-            font-weight: 600;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
+    #pw-input::placeholder {
+      color: rgba(255,245,220,0.7);
+      font-family: 'Inter', sans-serif;
+      letter-spacing: normal;
+    }
 
-        /* Modern Button Interaction */
-        .unlock-btn {
-            width: 100%; 
-            padding: 16px; 
-            border: none; 
-            border-radius: 16px;
-            background: linear-gradient(135deg, #ff4e7e, #ff9040);
-            color: white; 
-            cursor: pointer; 
-            font-weight: 700;
-            font-size: 16px;
-            font-family: inherit;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(255, 78, 126, 0.3);
-        }
+    #pw-input:focus {
+      border-color: #ffdd99;
+      background: rgba(255,255,245,0.3);
+    }
 
-        .unlock-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 24px rgba(255, 78, 126, 0.4);
-        }
+    #pw-btn {
+      width: 100%;
+      background: linear-gradient(95deg, #ff8a5c, #ff4d6d);
+      border: none;
+      border-radius: 60px;
+      padding: 14px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      transition: all 0.25s;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.2);
+    }
 
-        .unlock-btn:active {
-            transform: translateY(1px);
-        }
+    #pw-btn:hover {
+      transform: scale(0.98);
+      opacity: 0.9;
+    }
 
-        .arrow-icon {
-            width: 20px;
-            height: 20px;
-            transition: transform 0.3s ease;
-        }
+    #pw-error {
+      min-height: 2rem;
+      margin-top: 0.7rem;
+      font-size: 0.8rem;
+      color: #ffec9f;
+      font-weight: 500;
+    }
 
-        .unlock-btn:hover .arrow-icon {
-            transform: translateX(4px);
-        }
+    /* ----- main site sections (hidden until unlock) ----- */
+    #hero, #photos-section, #videos-section, #wish-section, footer, .pw-hint-section {
+      display: none;
+    }
+    body.unlocked #hero,
+    body.unlocked #photos-section,
+    body.unlocked #videos-section,
+    body.unlocked #wish-section,
+    body.unlocked footer,
+    body.unlocked .pw-hint-section {
+      display: block;
+    }
+    body.unlocked #hero { display: flex; }
 
-        /* Animations for password errors */
-        .error-text {
-            display: none; 
-            color: #fff; 
-            background: rgba(255, 78, 126, 0.8);
-            border-radius: 8px;
-            padding: 8px;
-            margin-top: 16px;
-            font-size: 14px;
-            font-weight: 500;
-            animation: fadeIn 0.3s ease;
-        }
+    /* main page running realistic dog */
+    .running-dog-container {
+      position: fixed;
+      bottom: 20px;
+      left: -260px;
+      width: 230px;
+      height: 210px;
+      z-index: 500;
+      pointer-events: none;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
+    }
+    .running-dog-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    /* running animation from left to right */
+    @keyframes runAcrossScreen {
+      0% { left: -260px; transform: scaleX(1); }
+      45% { left: calc(100vw + 30px); transform: scaleX(1); }
+      46% { left: calc(100vw + 30px); transform: scaleX(-1); }
+      91% { left: -260px; transform: scaleX(-1); }
+      92% { left: -260px; transform: scaleX(1); }
+      100% { left: -260px; transform: scaleX(1); }
+    }
+    .running-dog-container {
+      animation: runAcrossScreen 10s linear infinite;
+    }
 
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-8px); }
-            75% { transform: translateX(8px); }
-        }
-
-        .shake {
-            animation: shake 0.4s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        #main-content { 
-            display: none; 
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(20px);
-            border-radius: 32px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            text-align: center;
-            color: white;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-        
-        #main-content h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-        }
-    </style>
+    /* existing page styles (preserve original look) */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      background: radial-gradient(ellipse at 70% 30%, #fef2e4, #fdf3e9);
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #bc8f6e;
+    }
+    #hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 500;
+      font-family: 'Playfair Display', serif;
+      color: #482e1e;
+    }
+    #hero h1 em { color: #d9865b; font-style: italic; }
+    .hero-sub {
+      color: #7a5a44;
+      max-width: 500px;
+    }
+    section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: #c09a7a;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      color: #3e2a1f;
+    }
+    #photos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .photo-slot {
+      aspect-ratio: 4/5;
+      background: #f2e4d8;
+      border: 2px dashed #d6bca2;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+      transition: 0.2s;
+    }
+    .photo-slot img { width: 100%; height: 100%; object-fit: cover; display: none; }
+    .photo-slot img.loaded { display: block; }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .video-slot {
+      aspect-ratio: 16/9;
+      background: #e9dbcf;
+      border: 2px dashed #c9ae92;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .video-slot video { width: 100%; display: none; }
+    .video-slot video.loaded { display: block; }
+    .add-photo-btn, .add-video-btn {
+      margin-top: 1.5rem;
+      background: transparent;
+      border: 1px solid #c09a7a;
+      border-radius: 60px;
+      padding: 8px 22px;
+      font-weight: 500;
+    }
+    .wish-card {
+      background: white;
+      border-radius: 32px;
+      padding: 2.5rem;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.04);
+    }
+    .edit-wish-btn {
+      background: none;
+      border: none;
+      color: #bc8f6e;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #c1a084;
+    }
+    .pw-hint {
+      background: #f6ede5;
+      padding: 1rem;
+      border-radius: 18px;
+      max-width: 500px;
+      margin: 2rem auto;
+    }
+  </style>
 </head>
 <body>
-    <div id="password-screen">
-        <div class="login-card" id="login-card">
-            <div class="avatar-container">
-                <!-- Drop the direct link to the dog photo in the src below -->
-                <img src="[ibb.co](https://ibb.co/replace-with-dog-image.jpg)" alt="Shih Tzu" class="dog-avatar">
-            </div>
-            <h2>Enter Password</h2>
-            <p class="subtitle">Something special awaits...</p>
-            <div class="input-group">
-                <!-- Using a space in the placeholder activates the floating label logic -->
-                <input type="password" id="password-field" class="password-input" placeholder=" ">
-                <label for="password-field" class="floating-label">Password</label>
-            </div>
-            <button class="unlock-btn" onclick="checkPassword()">
-                <span>Unlock</span>
-                <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </button>
-            <p id="error-message" class="error-text">Incorrect password. Try again!</p>
-        </div>
-    </div>
-    <div id="main-content">
-        <h1>Happy Birthday! 🎈</h1>
-    </div>
-    
-    <script>
-        function checkPassword() {
-            const card = document.getElementById("login-card");
-            const errorMsg = document.getElementById("error-message");
-            const passValue = document.getElementById("password-field").value;
 
-            if (passValue === "1234") {
-                document.getElementById("password-screen").style.display = "none";
-                document.getElementById("main-content").style.display = "block";
-            } else {
-                errorMsg.style.display = "block";
-                document.getElementById("password-field").value = ""; // Clear out the wrong text
-                // Triggers a quick shake animation 
-                card.classList.remove("shake");
-                void card.offsetWidth; // Force CSS reflow to restart animation
-                card.classList.add("shake");
-            }
-        }
-        
-        // Listen for the "Enter" key on the keyboard
-        document.getElementById("password-field").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-                checkPassword();
-            }
-        });
-    </script>
+<!-- ========= LOCK SCREEN (MODERN + REALISTIC SHIH TZU) ========= -->
+<div id="lock-screen">
+  <div class="glass-card">
+    <div class="dog-master">
+      <!-- Realistic Shih Tzu SVG with sign board, animations via classes -->
+      <svg class="shih-tzu-art" id="realDogLock" viewBox="0 0 520 500" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="furMain" cx="45%" cy="35%" r="70%">
+            <stop offset="0%" stop-color="#fffaf2"/>
+            <stop offset="60%" stop-color="#f7ecdb"/>
+            <stop offset="100%" stop-color="#e2cfb0"/>
+          </radialGradient>
+          <radialGradient id="furDarkEar" cx="30%" cy="40%" r="80%">
+            <stop offset="0%" stop-color="#6a4c2c"/>
+            <stop offset="80%" stop-color="#3e2a1a"/>
+            <stop offset="100%" stop-color="#1f140c"/>
+          </radialGradient>
+          <filter id="furTexture" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+          <filter id="softShadow" x="-5%" y="-5%" width="110%" height="110%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+            <feOffset dx="2" dy="3"/>
+            <feComponentTransfer><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+            <feMerge>
+              <feMergeNode/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+
+        <!-- TAIL (wagging) -->
+        <g id="dogTail" class="tail-default">
+          <path d="M100 300 C55 270, 30 230, 45 185 C68 210, 88 245, 100 295Z" fill="url(#furMain)" stroke="#cbaf88" stroke-width="1.5"/>
+          <path d="M52 218 C62 242, 78 265, 94 283" stroke="#e5cfab" fill="none" stroke-width="2.5" opacity="0.6"/>
+        </g>
+
+        <!-- BODY (fluffy) -->
+        <g id="dogBody" filter="url(#furTexture)">
+          <ellipse cx="255" cy="300" rx="115" ry="85" fill="url(#furMain)"/>
+          <ellipse cx="240" cy="330" rx="70" ry="42" fill="#fffcf5" opacity="0.6"/>
+          <!-- fur strands body texture -->
+          <g stroke="#eddbba" stroke-width="2" fill="none" opacity="0.7">
+            <path d="M175 280 Q168 310 180 345"/>
+            <path d="M200 265 Q192 295 208 345"/>
+            <path d="M320 280 Q328 308 315 345"/>
+            <path d="M295 268 Q302 298 285 345"/>
+          </g>
+          <!-- hind legs -->
+          <ellipse cx="185" cy="370" rx="28" ry="38" fill="url(#furMain)"/>
+          <ellipse cx="185" cy="395" rx="22" ry="13" fill="#f3e7d4"/>
+          <ellipse cx="310" cy="370" rx="28" ry="38" fill="url(#furMain)"/>
+          <ellipse cx="310" cy="395" rx="22" ry="13" fill="#f3e7d4"/>
+        </g>
+
+        <!-- EARS (dark, with animation hooks) -->
+        <g id="leftEar" class="ear-neutral">
+          <path d="M178 115 C118 105, 85 165, 112 215 C138 195, 163 150, 185 120Z" fill="url(#furDarkEar)" filter="url(#furTexture)"/>
+          <path d="M152 155 C130 175, 130 195, 142 205" stroke="#281a0e" stroke-width="2" fill="none" opacity="0.5"/>
+        </g>
+        <g id="rightEar" class="ear-neutral">
+          <path d="M342 115 C402 105, 435 165, 408 215 C382 195, 357 150, 335 120Z" fill="url(#furDarkEar)" filter="url(#furTexture)"/>
+          <path d="M368 155 C390 175, 390 195, 378 205" stroke="#281a0e" stroke-width="2" fill="none" opacity="0.5"/>
+        </g>
+
+        <!-- HEAD GROUP (fluffy round face) -->
+        <g id="dogHead" filter="url(#furTexture)">
+          <!-- base head -->
+          <ellipse cx="260" cy="175" rx="105" ry="95" fill="url(#furMain)"/>
+          <!-- top fringe -->
+          <g fill="url(#furMain)">
+            <ellipse cx="195" cy="98" rx="32" ry="28" transform="rotate(-15 195 98)"/>
+            <ellipse cx="260" cy="84" rx="36" ry="32"/>
+            <ellipse cx="328" cy="98" rx="32" ry="28" transform="rotate(15 328 98)"/>
+          </g>
+          <!-- muzzle -->
+          <ellipse cx="260" cy="215" rx="55" ry="38" fill="#fffcf3"/>
+          <!-- fur on face -->
+          <g stroke="#eedfc8" stroke-width="2" fill="none" opacity="0.5">
+            <path d="M190 160 Q175 185 190 210"/>
+            <path d="M330 160 Q345 185 330 210"/>
+          </g>
+          <!-- NOSE -->
+          <ellipse cx="260" cy="190" rx="18" ry="12" fill="#22140c"/>
+          <ellipse cx="254" cy="186" rx="5" ry="3" fill="rgba(255,255,240,0.6)"/>
+          <ellipse cx="265" cy="186" rx="5" ry="3" fill="rgba(255,255,240,0.4)"/>
+          <!-- nostrils -->
+          <ellipse cx="253" cy="194" rx="2.5" ry="2" fill="#000"/>
+          <ellipse cx="267" cy="194" rx="2.5" ry="2" fill="#000"/>
+
+          <!-- Eyes (large dark) -->
+          <g id="eyesGroup">
+            <ellipse cx="225" cy="170" rx="12" ry="13" fill="#322212"/>
+            <ellipse cx="222" cy="156" rx="5" ry="5" fill="white" opacity="0.85"/>
+            <ellipse cx="230" cy="167" rx="2.5" ry="2" fill="white" opacity="0.5"/>
+            <ellipse cx="295" cy="170" rx="12" ry="13" fill="#322212"/>
+            <ellipse cx="292" cy="156" rx="5" ry="5" fill="white" opacity="0.85"/>
+            <ellipse cx="300" cy="167" rx="2.5" ry="2" fill="white" opacity="0.5"/>
+          </g>
+          <!-- eyelids for blinking -->
+          <ellipse id="leftLid" cx="225" cy="160" rx="15" ry="0" fill="#f7ecdb" transform="rotate(0)"/>
+          <ellipse id="rightLid" cx="295" cy="160" rx="15" ry="0" fill="#f7ecdb" transform="rotate(0)"/>
+
+          <!-- eyebrows (flexible) -->
+          <g id="eyebrows" stroke="#e2cfaa" stroke-width="4" fill="none" stroke-linecap="round">
+            <path id="browLeft" d="M208 142 Q220 132 235 140"/>
+            <path id="browRight" d="M285 140 Q300 132 312 142"/>
+          </g>
+
+          <!-- mouth -->
+          <path id="dogMouth" d="M242 232 Q260 244 278 232" stroke="#7f6142" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- tongue -->
+          <g id="dogTongue" opacity="0">
+            <path d="M250 238 Q260 268 270 238 Q264 256 260 258 Q256 256 250 238Z" fill="#ff869e"/>
+            <path d="M260 242 L260 254" stroke="#e55979" stroke-width="1.5"/>
+          </g>
+        </g>
+
+        <!-- FRONT PAWS HOLDING SIGN BOARD -->
+        <g id="frontLegs">
+          <path d="M185 310 C155 345, 150 385, 155 410" stroke="url(#furMain)" stroke-width="30" stroke-linecap="round" fill="none"/>
+          <ellipse cx="153" cy="415" rx="20" ry="13" fill="#f7ead6"/>
+          <path d="M335 310 C365 345, 370 385, 365 410" stroke="url(#furMain)" stroke-width="30" stroke-linecap="round" fill="none"/>
+          <ellipse cx="367" cy="415" rx="20" ry="13" fill="#f7ead6"/>
+        </g>
+
+        <!-- WOODEN SIGN BOARD -->
+        <g id="signBoard">
+          <rect x="65" y="385" width="390" height="70" rx="12" fill="#d9aa70" stroke="#9b6b3c" stroke-width="3"/>
+          <rect x="78" y="395" width="364" height="50" rx="6" fill="#fff7e8" stroke="#c29563" stroke-width="1.5"/>
+          <text x="260" y="414" text-anchor="middle" font-family="'Inter', monospace" font-size="11" fill="#ba8a57" font-weight="bold" letter-spacing="1">🔐 PASSWORD</text>
+          <text id="boardPasswordText" x="260" y="435" text-anchor="middle" font-family="'Courier New', monospace" font-size="22" fill="#31261d" font-weight="bold" letter-spacing="2"></text>
+        </g>
+      </svg>
+    </div>
+    <h2 class="lock-title">✨ A secret garden ✨</h2>
+    <p class="lock-sub">Type the password — my wooden sign will show it 🪵🐾</p>
+    <div class="password-field-group">
+      <input type="text" id="pw-input" placeholder="✦  type password  ✦" autocomplete="off" />
+    </div>
+    <button id="pw-btn">Unlock →</button>
+    <div id="pw-error"></div>
+    <div style="font-size: 0.7rem; margin-top: 1.2rem; color: rgba(255,240,210,0.7);">hint: four letters, fluffy secret ✨</div>
+  </div>
+</div>
+
+<!-- ========= MAIN PAGE RUNNING SHIH TZU (realistic) ========= -->
+<div class="running-dog-container" id="runningDogMain">
+  <svg class="running-dog-svg" viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="runFur" cx="45%" cy="40%" r="70%">
+        <stop offset="0%" stop-color="#fff8ef"/>
+        <stop offset="60%" stop-color="#f4e6d2"/>
+        <stop offset="100%" stop-color="#e1c9a8"/>
+      </radialGradient>
+      <radialGradient id="runEarDark" cx="30%" cy="40%" r="70%">
+        <stop offset="0%" stop-color="#634b2e"/>
+        <stop offset="100%" stop-color="#2f2012"/>
+      </radialGradient>
+    </defs>
+    <!-- running tail -->
+    <g class="run-tail"><path d="M230 80 C260 55 265 30 245 20 C240 45 225 75 220 98Z" fill="url(#runFur)"/></g>
+    <!-- back legs -->
+    <g class="run-backleg"><ellipse cx="180" cy="155" rx="18" ry="28" fill="url(#runFur)"/><ellipse cx="180" cy="178" rx="14" ry="9" fill="#efe0ca"/></g>
+    <g class="run-backleg2"><ellipse cx="205" cy="155" rx="18" ry="28" fill="url(#runFur)"/><ellipse cx="205" cy="178" rx="14" ry="9" fill="#efe0ca"/></g>
+    <!-- body -->
+    <ellipse cx="150" cy="112" rx="85" ry="58" fill="url(#runFur)"/>
+    <!-- front legs run -->
+    <g class="run-frontleg"><ellipse cx="90" cy="150" rx="16" ry="30" fill="url(#runFur)"/><ellipse cx="90" cy="178" rx="13" ry="9" fill="#efe0ca"/></g>
+    <g class="run-frontleg2"><ellipse cx="115" cy="150" rx="16" ry="30" fill="url(#runFur)"/><ellipse cx="115" cy="178" rx="13" ry="9" fill="#efe0ca"/></g>
+    <!-- head -->
+    <g>
+      <path d="M75 55 C40 55, 28 95, 45 125 C65 115, 78 88, 85 62Z" fill="url(#runEarDark)"/>
+      <path d="M135 55 C170 55, 182 95, 165 125 C145 115, 132 88, 125 62Z" fill="url(#runEarDark)"/>
+      <ellipse cx="105" cy="85" rx="52" ry="48" fill="url(#runFur)"/>
+      <ellipse cx="105" cy="108" rx="28" ry="20" fill="#fffaf0"/>
+      <ellipse cx="105" cy="95" rx="9" ry="7" fill="#24170e"/>
+      <!-- squint happy eyes -->
+      <path d="M78 73 Q88 63 95 73" stroke="#372412" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M112 73 Q122 63 129 73" stroke="#372412" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M95 115 Q105 128 115 115" stroke="#896b47" stroke-width="2.5" fill="none"/>
+      <path d="M98 118 Q105 140 112 118" fill="#ff96ae" opacity="0.9"/>
+    </g>
+    <style>
+      .run-tail { animation: tailFast 0.2s infinite; transform-origin: bottom right; }
+      .run-backleg, .run-frontleg { animation: legRun 0.22s infinite; }
+      .run-backleg2, .run-frontleg2 { animation: legRun2 0.22s infinite; }
+      @keyframes legRun { 0%,100% { transform: rotate(-18deg); } 50% { transform: rotate(18deg); } }
+      @keyframes legRun2 { 0%,100% { transform: rotate(18deg); } 50% { transform: rotate(-18deg); } }
+      @keyframes tailFast { 0%,100% { transform: rotate(-25deg); } 50% { transform: rotate(25deg); } }
+    </style>
+  </svg>
+</div>
+
+<!-- MAIN SITE CONTENT (preserved) -->
+<div id="hero">
+  <div class="hero-eyebrow">A little something for you</div>
+  <h1>Happy<br><em>Birthday,</em><br>Ariadne 🎂</h1>
+  <p class="hero-sub">You only turn this age once — here's to celebrating you, your story, and everything that makes you wonderful.</p>
+  <div class="scroll-hint">↓ scroll to explore ↓</div>
+</div>
+
+<section id="photos-section">
+  <div class="section-label">Memories</div>
+  <h2>Photos of us</h2>
+  <p style="color:#7a6455; margin-bottom:1rem">Click any slot to add a photo. Changes last while open.</p>
+  <div id="photos-grid"></div>
+  <input type="file" id="photo-file-input" accept="image/*" multiple />
+  <button class="add-photo-btn" id="addPhotoSlotBtn">+ Add more slots</button>
+</section>
+
+<div id="videos-section">
+  <div class="section-label">Moving Memories</div>
+  <h2>Videos</h2>
+  <div class="video-grid" id="videos-grid"></div>
+  <input type="file" id="video-file-input" accept="video/*" multiple />
+  <button class="add-video-btn" id="addVideoSlotBtn">+ Add video slot</button>
+</div>
+
+<section id="wish-section">
+  <div class="section-label">From the heart</div>
+  <h2>A birthday wish</h2>
+  <div class="wish-card">
+    <p class="wish-text" id="wish-text">Here's to you — for your laughter, kindness, and light. May this year bring you every joy.</p>
+    <div class="wish-from" id="wish-from">— With love, [Your Name]</div>
+    <button class="edit-wish-btn" onclick="openWishModal()">✏ Edit this message</button>
+  </div>
+</section>
+
+<div class="pw-hint-section" style="text-align:center; max-width:700px; margin:0 auto;">
+  <div class="pw-hint">💡 <strong>To change password:</strong> edit <code>const CORRECT_PASSWORD</code> in the script (default "bella").</div>
+</div>
+<footer>Made with love 🐾 · Birthday magic</footer>
+
+<div id="wish-modal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); align-items:center; justify-content:center; z-index:9999;">
+  <div style="background:white; padding:2rem; border-radius:32px; width:90%; max-width:480px;">
+    <h3>Edit birthday wish</h3>
+    <textarea id="wish-editor" rows="4" style="width:100%; margin:1rem 0;"></textarea>
+    <input type="text" id="from-editor" placeholder="From ..." style="width:100%; margin-bottom:1rem;"/>
+    <div style="display:flex; gap:12px; justify-content:end;">
+      <button onclick="closeWishModal()" style="background:#eee; border:none; padding:8px 18px; border-radius:40px;">Cancel</button>
+      <button onclick="saveWish()" style="background:#3e2a1f; color:white; border:none; padding:8px 18px; border-radius:40px;">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ========= PASSWORD & REALISTIC DOG ANIMATIONS =========
+  const CORRECT_PASSWORD = "bella";
+  const pwInput = document.getElementById('pw-input');
+  const boardTextSpan = document.getElementById('boardPasswordText');
+  const lockScreenDiv = document.getElementById('lock-screen');
+  const dogTail = document.getElementById('dogTail');
+  const leftEar = document.getElementById('leftEar');
+  const rightEar = document.getElementById('rightEar');
+  const dogHeadEl = document.getElementById('dogHead');
+  const leftLid = document.getElementById('leftLid');
+  const rightLid = document.getElementById('rightLid');
+  const browLeft = document.getElementById('browLeft');
+  const browRight = document.getElementById('browRight');
+  const dogMouth = document.getElementById('dogMouth');
+  const dogTongue = document.getElementById('dogTongue');
+  const eyesGroup = document.getElementById('eyesGroup');
+
+  // helper: reset all animation classes
+  function resetDogStates() {
+    dogTail.classList.remove('tail-fast', 'tail-still');
+    dogTail.classList.add('tail-slow');
+    leftEar.classList.remove('ears-up', 'ears-droop');
+    rightEar.classList.remove('ears-up', 'ears-droop');
+    dogHeadEl.classList.remove('head-tilt-anim', 'dog-bounce-small', 'dog-jump-big', 'shake-head');
+    dogTongue.style.opacity = '0';
+    leftLid.setAttribute('ry', '0');
+    rightLid.setAttribute('ry', '0');
+    if (dogMouth) dogMouth.setAttribute('d', "M242 232 Q260 244 278 232");
+    browLeft.setAttribute('d', "M208 142 Q220 132 235 140");
+    browRight.setAttribute('d', "M285 140 Q300 132 312 142");
+    leftEar.classList.remove('ears-droop');
+    rightEar.classList.remove('ears-droop');
+    leftEar.classList.add('ear-neutral');
+    rightEar.classList.add('ear-neutral');
+  }
+
+  // apply state
+  function setDogExpression(state) {
+    resetDogStates();
+    switch(state) {
+      case 'empty':
+        dogTail.classList.add('tail-slow');
+        // gentle blink auto via CSS keyframe in style
+        break;
+      case 'typing':
+        dogHeadEl.classList.add('head-tilt-anim');
+        dogTail.classList.add('tail-slow');
+        browLeft.setAttribute('d', "M205 140 Q218 128 238 140");
+        browRight.setAttribute('d', "M282 140 Q300 128 315 140");
+        break;
+      case 'partial':
+        dogTail.classList.add('tail-fast');
+        leftEar.classList.add('ears-up'); rightEar.classList.add('ears-up');
+        dogMouth.setAttribute('d', "M240 228 Q260 238 280 228");
+        browLeft.setAttribute('d', "M207 135 Q222 125 237 135");
+        browRight.setAttribute('d', "M285 135 Q300 125 313 135");
+        break;
+      case 'close':
+        dogHeadEl.classList.add('dog-bounce-small');
+        dogTail.classList.add('tail-fast');
+        leftEar.classList.add('ears-up'); rightEar.classList.add('ears-up');
+        dogMouth.setAttribute('d', "M238 224 Q260 242 282 224");
+        browLeft.setAttribute('d', "M205 130 Q225 118 240 130");
+        browRight.setAttribute('d', "M280 130 Q298 118 315 130");
+        break;
+      case 'correct':
+        dogHeadEl.classList.add('dog-jump-big');
+        dogTail.classList.add('tail-fast');
+        leftEar.classList.add('ears-up'); rightEar.classList.add('ears-up');
+        dogMouth.setAttribute('d', "M236 222 Q260 248 284 222");
+        dogTongue.style.opacity = '1';
+        browLeft.setAttribute('d', "M204 126 Q225 114 242 128");
+        browRight.setAttribute('d', "M278 128 Q298 114 316 126");
+        burstConfettiFx();
+        break;
+      case 'wrong':
+        dogHeadEl.classList.add('shake-head');
+        leftEar.classList.add('ears-droop'); rightEar.classList.add('ears-droop');
+        dogTail.classList.remove('tail-fast','tail-slow');
+        dogTail.classList.add('tail-still');
+        dogMouth.setAttribute('d', "M242 242 Q258 234 278 242");
+        browLeft.setAttribute('d', "M210 150 Q222 148 235 154");
+        browRight.setAttribute('d', "M285 154 Q298 148 310 150");
+        setTimeout(() => { if (pwInput.value.length === 0) setDogExpression('empty'); }, 1000);
+        break;
+    }
+  }
+
+  function burstConfettiFx() {
+    for (let i=0;i<80;i++) {
+      const conf = document.createElement('div');
+      conf.style.position = 'fixed';
+      conf.style.width = (6+Math.random()*12)+'px';
+      conf.style.height = conf.style.width;
+      conf.style.background = `hsl(${Math.random()*360}, 80%, 65%)`;
+      conf.style.borderRadius = '50%';
+      conf.style.left = (window.innerWidth/2 + (Math.random()-0.5)*180)+'px';
+      conf.style.top = (window.innerHeight/2 + (Math.random()-0.5)*120)+'px';
+      conf.style.pointerEvents = 'none';
+      conf.style.zIndex = '10000';
+      conf.style.transform = `rotate(${Math.random()*360}deg)`;
+      conf.style.animation = 'burstFly 1s ease-out forwards';
+      document.body.appendChild(conf);
+      setTimeout(()=>conf.remove(),1000);
+    }
+  }
+  const styleSheet = document.createElement("style");
+  styleSheet.textContent = `
+    @keyframes burstFly { 0% { transform: translateY(0) scale(1); opacity:1; } 100% { transform: translateY(-250px) scale(0.2); opacity:0; } }
+    .tail-slow { animation: tailWagSlow 1.2s infinite; transform-origin: 65px 180px; }
+    .tail-fast { animation: tailWagFast 0.2s infinite; transform-origin: 65px 180px; }
+    .tail-still { animation: none; }
+    @keyframes tailWagSlow { 0%,100% { transform: rotate(-12deg); } 50% { transform: rotate(12deg); } }
+    @keyframes tailWagFast { 0%,100% { transform: rotate(-22deg); } 50% { transform: rotate(22deg); } }
+    .ears-up { animation: earRaise 0.25s infinite alternate; transform-origin: 50% 100%; }
+    .ears-droop { transform: rotate(16deg) translateY(6px); transition: 0.3s; }
+    @keyframes earRaise { from { transform: rotate(0deg); } to { transform: rotate(-8deg); } }
+    .head-tilt-anim { animation: headTiltAnim 0.8s infinite; transform-origin: 260px 180px; }
+    @keyframes headTiltAnim { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-3deg); } }
+    .dog-bounce-small { animation: bounceSm 0.35s infinite; }
+    @keyframes bounceSm { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-6px); } }
+    .dog-jump-big { animation: jumpBig 0.45s infinite; }
+    @keyframes jumpBig { 0%,100%{ transform: translateY(0); } 30%{ transform: translateY(-22px); } 70%{ transform: translateY(-8px); } }
+    .shake-head { animation: shakeAnim 0.4s ease-in-out 2; }
+    @keyframes shakeAnim { 0%,100%{ transform: translateX(0); } 25%{ transform: translateX(-6px); } 75%{ transform: translateX(6px); } }
+    .ear-neutral { transform: none; }
+  `;
+  document.head.appendChild(styleSheet);
+  
+  pwInput.addEventListener('input', (e) => {
+    boardTextSpan.textContent = e.target.value;
+    const val = e.target.value;
+    if (!val) { setDogExpression('empty'); return; }
+    const correct = CORRECT_PASSWORD;
+    let match = 0;
+    for(let i=0;i<Math.min(val.length,correct.length);i++) if(val[i]===correct[i]) match++;
+    const ratio = match / correct.length;
+    if(val === correct) setDogExpression('correct');
+    else if(ratio >= 0.7) setDogExpression('close');
+    else if(ratio >= 0.35) setDogExpression('partial');
+    else setDogExpression('typing');
+  });
+  function tryUnlock(){
+    if(pwInput.value === CORRECT_PASSWORD){
+      setDogExpression('correct');
+      setTimeout(()=>{
+        lockScreenDiv.style.opacity = '0';
+        setTimeout(()=>{ lockScreenDiv.style.display='none'; document.body.classList.add('unlocked'); }, 500);
+      }, 900);
+    } else {
+      setDogExpression('wrong');
+      document.getElementById('pw-error').innerText = '❌ Not the right key... try again';
+      pwInput.value = ''; boardTextSpan.textContent = '';
+      setTimeout(()=>{ setDogExpression('empty'); document.getElementById('pw-error').innerText=''; }, 1500);
+    }
+  }
+  document.getElementById('pw-btn').addEventListener('click', tryUnlock);
+  pwInput.addEventListener('keypress', e=>{ if(e.key==='Enter') tryUnlock(); });
+  setDogExpression('empty');
+
+  // Photo & video persistence (preserve original logic)
+  let photoSlotCount=0, currentPhotoSlot=null, videoSlotCount=0, currentVideoSlot=null;
+  function createPhotoSlot(){ const slot=document.createElement('div'); slot.className='photo-slot'; slot.innerHTML=`<div class="slot-icon">📷</div><div class="slot-label">Click to add</div><img src=""/><div class="photo-caption"></div>`; slot.addEventListener('click',()=>{ currentPhotoSlot=slot; document.getElementById('photo-file-input').click(); }); return slot; }
+  function addPhotoSlot(){ document.getElementById('photos-grid').appendChild(createPhotoSlot()); }
+  for(let i=0;i<5;i++) addPhotoSlot();
+  document.getElementById('photo-file-input').addEventListener('change',function(filesEv){ const files=Array.from(this.files); if(!files.length)return; const slots=document.querySelectorAll('#photos-grid .photo-slot'); let idx=currentPhotoSlot?Array.from(slots).indexOf(currentPhotoSlot):0; files.forEach((f,i)=>{ let target=slots[idx+i]; if(!target){ target=createPhotoSlot(); document.getElementById('photos-grid').appendChild(target); } const url=URL.createObjectURL(f); const img=target.querySelector('img'); img.src=url; img.classList.add('loaded'); target.querySelector('.slot-icon').style.display='none'; target.querySelector('.slot-label').style.display='none'; }); this.value=''; currentPhotoSlot=null; });
+  function createVideoSlot(){ const slot=document.createElement('div'); slot.className='video-slot'; slot.innerHTML=`<div class="slot-icon">🎬</div><div class="slot-label">Click to add video</div><video controls></video>`; slot.addEventListener('click',e=>{ if(e.target.tagName!=='VIDEO'){ currentVideoSlot=slot; document.getElementById('video-file-input').click(); } }); return slot; }
+  function addVideoSlot(){ document.getElementById('videos-grid').appendChild(createVideoSlot()); }
+  for(let i=0;i<2;i++) addVideoSlot();
+  document.getElementById('video-file-input').addEventListener('change',function(){ const files=Array.from(this.files); if(!files.length)return; const slots=document.querySelectorAll('#videos-grid .video-slot'); let idx=currentVideoSlot?Array.from(slots).indexOf(currentVideoSlot):0; files.forEach((f,i)=>{ let target=slots[idx+i]; if(!target){ target=createVideoSlot(); document.getElementById('videos-grid').appendChild(target); } const url=URL.createObjectURL(f); const vid=target.querySelector('video'); vid.src=url; vid.classList.add('loaded'); target.querySelector('.slot-icon').style.display='none'; target.querySelector('.slot-label').style.display='none'; }); this.value=''; currentVideoSlot=null; });
+  document.getElementById('addPhotoSlotBtn').onclick=addPhotoSlot;
+  document.getElementById('addVideoSlotBtn').onclick=addVideoSlot;
+  function openWishModal(){ document.getElementById('wish-editor').value=document.getElementById('wish-text').innerText; document.getElementById('from-editor').value=document.getElementById('wish-from').innerText; document.getElementById('wish-modal').style.display='flex'; }
+  function closeWishModal(){ document.getElementById('wish-modal').style.display='none'; }
+  function saveWish(){ document.getElementById('wish-text').innerText=document.getElementById('wish-editor').value; document.getElementById('wish-from').innerText=document.getElementById('from-editor').value; closeWishModal(); }
+  window.openWishModal=openWishModal; window.closeWishModal=closeWishModal; window.saveWish=saveWish;
+</script>
 </body>
 </html>
