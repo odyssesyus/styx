@@ -1,4 +1,3 @@
-cat > /mnt/user-data/outputs/birthday_shihtzu.html << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,557 +5,897 @@ cat > /mnt/user-data/outputs/birthday_shihtzu.html << 'HTMLEOF'
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday 🎂</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-#lock-screen {
-  position: fixed; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  z-index: 9999;
-  font-family: 'Georgia', serif;
-  background: #1a0533;
-  overflow: hidden;
-}
-#lock-bg {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, #ff6b9d, #ff9a5c, #ffd93d, #6bcb77, #4d96ff, #c77dff);
-  background-size: 400% 400%;
-  animation: gradientShift 8s ease infinite;
-  opacity: 0.85;
-}
-@keyframes gradientShift {
-  0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}
-}
-.confetti-piece {
-  position: absolute; border-radius: 50%; opacity: 0.5;
-  animation: floatUp linear infinite; pointer-events: none;
-}
-@keyframes floatUp {
-  0%{transform:translateY(110vh) rotate(0deg);opacity:.6}
-  100%{transform:translateY(-20vh) rotate(720deg);opacity:0}
-}
-#lock-box {
-  position: relative; z-index: 2;
-  background: rgba(255,255,255,0.18);
-  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-  border: 1.5px solid rgba(255,255,255,0.45);
-  border-radius: 24px;
-  padding: 1.5rem 2.2rem 2.2rem;
-  text-align: center;
-  max-width: 420px; width: 90%;
-  box-shadow: 0 8px 48px rgba(0,0,0,0.25);
-}
-#lock-dog-wrap {
-  width: 220px; height: 230px;
-  margin: 0 auto 0.4rem;
-  position: relative;
-}
-#lock-dog-wrap svg { width: 100%; height: 100%; }
-#lock-box h2 {
-  font-size: 1.15rem; color: #fff; margin-bottom: 0.2rem;
-  font-weight: normal; letter-spacing: 0.03em;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.2);
-}
-#lock-box p {
-  font-size: 0.8rem; color: rgba(255,255,255,0.82);
-  margin-bottom: 1.2rem; font-family: sans-serif;
-}
-#pw-input {
-  width: 100%; padding: 0.75rem 1rem;
-  border: 1.5px solid rgba(255,255,255,0.5);
-  border-radius: 12px;
-  font-size: 1rem; font-family: sans-serif;
-  outline: none; margin-bottom: 0.65rem;
-  color: #fff;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(4px);
-  transition: border 0.2s, background 0.2s;
-  letter-spacing: 0.08em;
-}
-#pw-input::placeholder { color: rgba(255,255,255,0.55); }
-#pw-input:focus { border-color: #ffd93d; background: rgba(255,255,255,0.22); }
-#pw-btn {
-  width: 100%; padding: 0.75rem;
-  background: linear-gradient(90deg, #ff6b9d, #ff9a5c);
-  color: #fff; border: none; border-radius: 12px;
-  font-size: 0.95rem; font-family: sans-serif;
-  cursor: pointer; letter-spacing: 0.08em; font-weight: 600;
-  transition: opacity 0.2s, transform 0.15s;
-  box-shadow: 0 4px 18px rgba(255,107,157,0.45);
-}
-#pw-btn:hover { opacity: 0.9; transform: translateY(-1px); }
-#pw-error {
-  color: #ffd93d; font-size: 0.82rem;
-  margin-top: 0.6rem; font-family: sans-serif;
-  min-height: 1.1em; text-shadow: 0 1px 4px rgba(0,0,0,0.3);
-}
-.lock-tagline {
-  margin-top: 1rem; font-family: sans-serif; font-size: 0.72rem;
-  color: rgba(255,255,255,0.55); letter-spacing: 0.1em;
-}
+  #lock-screen {
+    position: fixed; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9999;
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+    background: #1a0533;
+  }
 
-/* Main page */
-body { font-family: 'Georgia', serif; background: #fdf8f4; color: #3a2e27; overflow-x: hidden; }
-#hero, #photos-section, #videos-section, #wish-section, footer, section:not(#photos-section):not(#wish-section) { display: none; }
-body.unlocked #hero, body.unlocked #photos-section, body.unlocked #videos-section,
-body.unlocked #wish-section, body.unlocked footer, body.unlocked section { display: block; }
-body.unlocked #hero { display: flex; }
+  #lock-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #ff6b9d, #ff9a5c, #ffd93d, #6bcb77, #4d96ff, #c77dff);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    opacity: 0.85;
+  }
+  @keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
-#main-dog {
-  position: fixed; bottom: 20px; left: -200px;
-  width: 160px; height: 130px; z-index: 500; pointer-events: none;
-  animation: runAcross 9s linear infinite;
-}
-#main-dog svg { width: 100%; height: 100%; }
-@keyframes runAcross {
-  0%{left:-200px;transform:scaleX(1)}
-  44%{left:calc(100vw + 30px);transform:scaleX(1)}
-  45%{left:calc(100vw + 30px);transform:scaleX(-1)}
-  90%{left:-200px;transform:scaleX(-1)}
-  91%{left:-200px;transform:scaleX(1)}
-  100%{left:-200px;transform:scaleX(1)}
-}
+  .confetti-piece {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: floatUp linear infinite;
+    pointer-events: none;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(110vh) rotate(0deg); opacity: 0.6; }
+    100% { transform: translateY(-20vh) rotate(720deg); opacity: 0; }
+  }
 
-#hero {
-  min-height: 100vh; display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center; padding: 4rem 2rem; position: relative; overflow: hidden;
-}
-#hero::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 60% 40%, #f5e8d8 0%, #fdf8f4 70%); z-index: 0;
-}
-#hero > * { position: relative; z-index: 1; }
-.hero-eyebrow { font-family: sans-serif; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: #b08060; margin-bottom: 1.5rem; }
-#hero h1 { font-size: clamp(2.8rem, 8vw, 6rem); font-weight: normal; color: #2e211a; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
-#hero h1 em { font-style: italic; color: #b08060; }
-.hero-sub { font-size: 1.1rem; color: #7a6455; max-width: 460px; line-height: 1.8; margin-bottom: 2.5rem; }
-.scroll-hint { font-family: sans-serif; font-size: 0.75rem; letter-spacing: 0.12em; color: #b08060; text-transform: uppercase; animation: bob 2s ease-in-out infinite; }
-@keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+  /* Burst confetti for success */
+  .burst-piece {
+    position: fixed;
+    width: 10px; height: 10px;
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 10000;
+    animation: burstFly 1.2s ease-out forwards;
+  }
+  @keyframes burstFly {
+    0% { transform: translate(0,0) rotate(0deg) scale(1); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) rotate(var(--tr)) scale(0.4); opacity: 0; }
+  }
 
-section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
-.section-label { font-family: sans-serif; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: #b08060; margin-bottom: 1.2rem; }
-h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: normal; color: #2e211a; margin-bottom: 1.5rem; letter-spacing: -0.01em; }
+  #lock-box {
+    position: relative; z-index: 2;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1.5px solid rgba(255,255,255,0.45);
+    border-radius: 24px;
+    padding: 2rem 2.5rem 2.5rem;
+    text-align: center;
+    max-width: 480px;
+    width: 92%;
+    box-shadow: 0 8px 48px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1);
+  }
 
-#photos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
-.photo-slot {
-  aspect-ratio: 4/5; background: #f0e8df; border-radius: 10px; border: 2px dashed #d5c4b4;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; cursor: pointer; overflow: hidden; transition: border-color 0.2s; position: relative;
-}
-.photo-slot:hover { border-color: #b08060; }
-.photo-slot img { width: 100%; height: 100%; object-fit: cover; display: none; border-radius: 8px; }
-.photo-slot img.loaded { display: block; }
-.photo-slot .slot-label { font-family: sans-serif; font-size: 0.78rem; color: #b08060; letter-spacing: 0.06em; margin-top: 0.5rem; }
-.photo-slot .slot-icon { font-size: 1.6rem; margin-bottom: 0.3rem; }
-.add-photo-btn, .add-video-btn {
-  margin-top: 1.5rem; padding: 0.65rem 1.5rem; background: transparent;
-  border: 1px solid #b08060; border-radius: 8px; color: #b08060;
-  font-family: sans-serif; font-size: 0.85rem; letter-spacing: 0.06em;
-  cursor: pointer; transition: all 0.2s;
-}
-.add-photo-btn:hover, .add-video-btn:hover { background: #b08060; color: #fff; }
-#photo-file-input, #video-file-input { display: none; }
-.photo-caption {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  background: rgba(46,33,26,0.7); color: #fff; font-family: sans-serif; font-size: 0.75rem;
-  padding: 0.4rem 0.6rem; text-align: center; opacity: 0; transition: opacity 0.2s; border-radius: 0 0 8px 8px;
-}
-.photo-slot:hover .photo-caption { opacity: 1; }
+  /* Shih Tzu on lock screen - 45% larger than original 200px -> ~290px */
+  #lock-dog-wrap {
+    width: 290px;
+    height: 290px;
+    margin: 0 auto 0.25rem;
+    position: relative;
+  }
+  #lock-dog-wrap svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
 
-#videos-section { background: #f7f0e8; border-radius: 16px; padding: 3rem 2rem; max-width: 900px; margin: 0 auto 3rem; }
-.video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
-.video-slot {
-  aspect-ratio: 16/9; background: #ede3d8; border-radius: 10px; border: 2px dashed #d5c4b4;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  cursor: pointer; overflow: hidden; transition: border-color 0.2s; position: relative;
-}
-.video-slot:hover { border-color: #b08060; }
-.video-slot video { width: 100%; height: 100%; object-fit: cover; display: none; border-radius: 8px; }
-.video-slot video.loaded { display: block; }
-.video-slot .slot-label { font-family: sans-serif; font-size: 0.78rem; color: #b08060; margin-top: 0.4rem; }
-.video-slot .slot-icon { font-size: 1.6rem; }
+  #lock-box h2 {
+    font-size: 1.2rem; color: #fff;
+    margin-bottom: 0.25rem; font-weight: normal;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  }
+  #lock-box p {
+    font-size: 0.82rem; color: rgba(255,255,255,0.82);
+    margin-bottom: 1.4rem; font-family: sans-serif;
+  }
 
-#wish-section { text-align: center; padding: 5rem 2rem; max-width: 680px; margin: 0 auto; }
-.wish-card {
-  background: #fff; border: 1px solid #e8ddd4; border-radius: 16px;
-  padding: 3rem 2.5rem; box-shadow: 0 2px 20px rgba(0,0,0,0.04); position: relative;
-}
-.wish-card::before {
-  content: '\201C'; font-size: 8rem; line-height: 1; color: #f0e8df;
-  position: absolute; top: -1rem; left: 1.5rem; font-family: Georgia, serif; pointer-events: none;
-}
-.wish-text { font-size: 1.15rem; line-height: 1.9; color: #4a3a2e; font-style: italic; margin-bottom: 1.5rem; position: relative; z-index: 1; }
-.wish-from { font-family: sans-serif; font-size: 0.82rem; letter-spacing: 0.14em; text-transform: uppercase; color: #b08060; }
-.edit-wish-btn {
-  margin: 1.2rem auto 0; padding: 0.5rem 1.2rem; background: transparent;
-  border: 1px solid #ddd; border-radius: 8px; color: #9a8a7e;
-  font-family: sans-serif; font-size: 0.78rem; cursor: pointer; transition: all 0.2s; display: block;
-}
-.edit-wish-btn:hover { border-color: #b08060; color: #b08060; }
+  #pw-input {
+    width: 100%; padding: 0.8rem 1rem;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    border-radius: 12px;
+    font-size: 1rem; font-family: sans-serif;
+    outline: none; margin-bottom: 0.75rem;
+    color: #fff;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(4px);
+    transition: border 0.2s, background 0.2s;
+    letter-spacing: 0.08em;
+  }
+  #pw-input::placeholder { color: rgba(255,255,255,0.55); }
+  #pw-input:focus {
+    border-color: #ffd93d;
+    background: rgba(255,255,255,0.22);
+  }
 
-#wish-modal {
-  position: fixed; inset: 0; background: rgba(46,33,26,0.5);
-  display: none; align-items: center; justify-content: center; z-index: 888; padding: 1rem;
-}
-#wish-modal.open { display: flex; }
-#wish-modal-box { background: #fff; border-radius: 14px; padding: 2rem; width: 100%; max-width: 500px; }
-#wish-modal h3 { font-weight: normal; font-size: 1.1rem; margin-bottom: 1rem; color: #2e211a; }
-#wish-modal textarea {
-  width: 100%; height: 160px; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px;
-  font-size: 0.95rem; font-family: Georgia, serif; resize: vertical; color: #3a2e27;
-  line-height: 1.7; margin-bottom: 0.75rem;
-}
-#wish-modal input[type=text] {
-  width: 100%; padding: 0.6rem 0.75rem; border: 1px solid #ddd; border-radius: 8px;
-  font-size: 0.85rem; font-family: sans-serif; color: #3a2e27; margin-bottom: 1rem;
-}
-.modal-btns { display: flex; gap: 0.75rem; justify-content: flex-end; }
-.modal-btns button { padding: 0.6rem 1.2rem; border-radius: 8px; font-family: sans-serif; font-size: 0.85rem; cursor: pointer; }
-.btn-cancel { background: transparent; border: 1px solid #ddd; color: #7a6455; }
-.btn-save { background: #3a2e27; border: none; color: #fff; }
-.btn-save:hover { background: #5a4a3a; }
+  #pw-btn {
+    width: 100%; padding: 0.8rem;
+    background: linear-gradient(90deg, #ff6b9d, #ff9a5c);
+    color: #fff;
+    border: none; border-radius: 12px;
+    font-size: 0.95rem; font-family: sans-serif;
+    cursor: pointer; letter-spacing: 0.08em;
+    font-weight: 600;
+    transition: opacity 0.2s, transform 0.15s;
+    box-shadow: 0 4px 18px rgba(255,107,157,0.45);
+  }
+  #pw-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  #pw-btn:active { transform: translateY(0); }
 
-footer { text-align: center; padding: 2.5rem; font-family: sans-serif; font-size: 0.75rem; color: #c4b4a4; letter-spacing: 0.08em; }
-.pw-hint { background: #fdf0e8; border: 1px solid #e8d4c0; border-radius: 10px; padding: 1rem 1.2rem; font-family: sans-serif; font-size: 0.8rem; color: #7a5a40; margin-top: 3rem; display: inline-block; }
-.pw-hint code { background: #efe0d0; padding: 2px 6px; border-radius: 4px; font-size: 0.78rem; }
+  #pw-error {
+    color: #ffd93d; font-size: 0.82rem;
+    margin-top: 0.7rem; font-family: sans-serif;
+    min-height: 1.1em;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
 
-/* Dog animations */
-@keyframes dogIdle { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
-@keyframes dogHappy { 0%,100%{transform:translateY(0) rotate(0)} 25%{transform:translateY(-10px) rotate(-4deg)} 75%{transform:translateY(-10px) rotate(4deg)} }
-@keyframes dogShake { 0%,100%{transform:translateX(0)} 20%{transform:translateX(-6px)} 40%{transform:translateX(6px)} 60%{transform:translateX(-6px)} 80%{transform:translateX(6px)} }
-@keyframes tailWag { 0%,100%{transform:rotate(-25deg);transform-origin:bottom left} 50%{transform:rotate(25deg);transform-origin:bottom left} }
-@keyframes tailWagSlow { 0%,100%{transform:rotate(-12deg);transform-origin:bottom left} 50%{transform:rotate(12deg);transform-origin:bottom left} }
-@keyframes earFlop { 0%,100%{transform:rotate(-6deg)} 50%{transform:rotate(6deg)} }
-@keyframes legFront { 0%,100%{transform:rotate(-22deg);transform-origin:top center} 50%{transform:rotate(22deg);transform-origin:top center} }
-@keyframes legBack { 0%,100%{transform:rotate(22deg);transform-origin:top center} 50%{transform:rotate(-22deg);transform-origin:top center} }
-@keyframes bodyBob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-3px)} }
-@keyframes tongueWag { 0%,100%{transform:scaleY(1) rotate(-5deg)} 50%{transform:scaleY(0.8) rotate(5deg)} }
-@keyframes breathe { 0%,100%{transform:scaleX(1) scaleY(1)} 50%{transform:scaleX(1.03) scaleY(1.02)} }
+  .lock-tagline {
+    margin-top: 1.2rem;
+    font-family: sans-serif; font-size: 0.75rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── Main Site ── */
+  body {
+    font-family: 'Georgia', serif;
+    background: #fdf8f4;
+    color: #3a2e27;
+    overflow-x: hidden;
+  }
+  #hero, #photos-section, #videos-section, #wish-section, footer,
+  section:not(#photos-section):not(#wish-section) {
+    display: none;
+  }
+  body.unlocked #hero,
+  body.unlocked #photos-section,
+  body.unlocked #videos-section,
+  body.unlocked #wish-section,
+  body.unlocked footer,
+  body.unlocked section {
+    display: block;
+  }
+  body.unlocked #hero { display: flex; }
+
+  /* Running dog on main page - increased size by 50%+ : 120x100 -> 190x158 */
+  #main-dog {
+    position: fixed;
+    bottom: 16px;
+    left: -220px;
+    width: 190px;
+    height: 158px;
+    z-index: 500;
+    pointer-events: none;
+  }
+  #main-dog svg { width: 100%; height: 100%; display: block; }
+
+  /* Hero */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 60% 40%, #f5e8d8 0%, #fdf8f4 70%);
+    z-index: 0;
+  }
+  #hero > * { position: relative; z-index: 1; }
+  .hero-eyebrow {
+    font-family: sans-serif; font-size: 0.78rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #b08060; margin-bottom: 1.5rem;
+  }
+  #hero h1 {
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    font-weight: normal;
+    color: #2e211a;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+  #hero h1 em { font-style: italic; color: #b08060; }
+  .hero-sub {
+    font-size: 1.1rem; color: #7a6455;
+    max-width: 460px; line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .scroll-hint {
+    font-family: sans-serif; font-size: 0.75rem;
+    letter-spacing: 0.12em; color: #b08060;
+    text-transform: uppercase;
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+
+  section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+  .section-label {
+    font-family: sans-serif; font-size: 0.72rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: #b08060; margin-bottom: 1.2rem;
+  }
+  h2 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: normal; color: #2e211a;
+    margin-bottom: 1.5rem; letter-spacing: -0.01em;
+  }
+
+  #photos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  .photo-slot {
+    aspect-ratio: 4/5;
+    background: #f0e8df;
+    border-radius: 10px;
+    border: 2px dashed #d5c4b4;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+  .photo-slot:hover { border-color: #b08060; }
+  .photo-slot img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: none; border-radius: 8px;
+  }
+  .photo-slot img.loaded { display: block; }
+  .photo-slot .slot-label {
+    font-family: sans-serif; font-size: 0.78rem;
+    color: #b08060; letter-spacing: 0.06em;
+    margin-top: 0.5rem;
+  }
+  .photo-slot .slot-icon { font-size: 1.6rem; margin-bottom: 0.3rem; }
+  .add-photo-btn {
+    margin-top: 1.5rem;
+    padding: 0.65rem 1.5rem;
+    background: transparent;
+    border: 1px solid #b08060;
+    border-radius: 8px;
+    color: #b08060; font-family: sans-serif;
+    font-size: 0.85rem; letter-spacing: 0.06em;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .add-photo-btn:hover { background: #b08060; color: #fff; }
+  #photo-file-input { display: none; }
+
+  .photo-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(46,33,26,0.7);
+    color: #fff; font-family: sans-serif; font-size: 0.75rem;
+    padding: 0.4rem 0.6rem; text-align: center;
+    opacity: 0; transition: opacity 0.2s;
+    border-radius: 0 0 8px 8px;
+  }
+  .photo-slot:hover .photo-caption { opacity: 1; }
+
+  #videos-section { background: #f7f0e8; border-radius: 16px; padding: 3rem 2rem; max-width: 900px; margin: 0 auto 3rem; }
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem; margin-top: 1.5rem;
+  }
+  .video-slot {
+    aspect-ratio: 16/9;
+    background: #ede3d8;
+    border-radius: 10px;
+    border: 2px dashed #d5c4b4;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    cursor: pointer; overflow: hidden;
+    transition: border-color 0.2s; position: relative;
+  }
+  .video-slot:hover { border-color: #b08060; }
+  .video-slot video {
+    width: 100%; height: 100%;
+    object-fit: cover; display: none;
+    border-radius: 8px;
+  }
+  .video-slot video.loaded { display: block; }
+  .video-slot .slot-label { font-family: sans-serif; font-size: 0.78rem; color: #b08060; margin-top: 0.4rem; }
+  .video-slot .slot-icon { font-size: 1.6rem; }
+  #video-file-input { display: none; }
+  .add-video-btn {
+    margin-top: 1.5rem;
+    padding: 0.65rem 1.5rem;
+    background: transparent;
+    border: 1px solid #b08060;
+    border-radius: 8px;
+    color: #b08060; font-family: sans-serif;
+    font-size: 0.85rem; letter-spacing: 0.06em;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .add-video-btn:hover { background: #b08060; color: #fff; }
+
+  #wish-section { text-align: center; padding: 5rem 2rem; max-width: 680px; margin: 0 auto; }
+  .wish-card {
+    background: #fff;
+    border: 1px solid #e8ddd4;
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    position: relative;
+  }
+  .wish-card::before {
+    content: '\201C';
+    font-size: 8rem; line-height: 1;
+    color: #f0e8df; position: absolute;
+    top: -1rem; left: 1.5rem;
+    font-family: Georgia, serif;
+    pointer-events: none;
+  }
+  .wish-text {
+    font-size: 1.15rem; line-height: 1.9;
+    color: #4a3a2e;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+    position: relative; z-index: 1;
+  }
+  .wish-from {
+    font-family: sans-serif; font-size: 0.82rem;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: #b08060;
+  }
+  .edit-wish-btn {
+    margin-top: 1.2rem;
+    padding: 0.5rem 1.2rem;
+    background: transparent; border: 1px solid #ddd;
+    border-radius: 8px; color: #9a8a7e;
+    font-family: sans-serif; font-size: 0.78rem;
+    cursor: pointer; transition: all 0.2s; display: block; margin: 1.2rem auto 0;
+  }
+  .edit-wish-btn:hover { border-color: #b08060; color: #b08060; }
+
+  #wish-modal {
+    position: fixed; inset: 0;
+    background: rgba(46,33,26,0.5);
+    display: none; align-items: center; justify-content: center;
+    z-index: 888; padding: 1rem;
+  }
+  #wish-modal.open { display: flex; }
+  #wish-modal-box {
+    background: #fff; border-radius: 14px;
+    padding: 2rem; width: 100%; max-width: 500px;
+  }
+  #wish-modal h3 { font-weight: normal; font-size: 1.1rem; margin-bottom: 1rem; color: #2e211a; }
+  #wish-modal textarea {
+    width: 100%; height: 160px; padding: 0.75rem;
+    border: 1px solid #ddd; border-radius: 8px;
+    font-size: 0.95rem; font-family: Georgia, serif;
+    resize: vertical; color: #3a2e27;
+    line-height: 1.7; margin-bottom: 0.75rem;
+  }
+  #wish-modal input[type=text] {
+    width: 100%; padding: 0.6rem 0.75rem;
+    border: 1px solid #ddd; border-radius: 8px;
+    font-size: 0.85rem; font-family: sans-serif;
+    color: #3a2e27; margin-bottom: 1rem;
+  }
+  .modal-btns { display: flex; gap: 0.75rem; justify-content: flex-end; }
+  .modal-btns button {
+    padding: 0.6rem 1.2rem; border-radius: 8px;
+    font-family: sans-serif; font-size: 0.85rem; cursor: pointer;
+  }
+  .btn-cancel { background: transparent; border: 1px solid #ddd; color: #7a6455; }
+  .btn-save { background: #3a2e27; border: none; color: #fff; }
+  .btn-save:hover { background: #5a4a3a; }
+
+  footer {
+    text-align: center; padding: 2.5rem;
+    font-family: sans-serif; font-size: 0.75rem;
+    color: #c4b4a4; letter-spacing: 0.08em;
+  }
+
+  .pw-hint {
+    background: #fdf0e8; border: 1px solid #e8d4c0;
+    border-radius: 10px; padding: 1rem 1.2rem;
+    font-family: sans-serif; font-size: 0.8rem;
+    color: #7a5a40; margin-top: 3rem;
+    display: inline-block;
+  }
+  .pw-hint code { background: #efe0d0; padding: 2px 6px; border-radius: 4px; font-size: 0.78rem; }
+
+  /* ───────────── Dog animations ───────────── */
+
+  /* Idle: gentle body sway */
+  @keyframes dogIdleSway {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-3px) rotate(0.5deg); }
+  }
+  .dog-idle-anim { animation: dogIdleSway 3s ease-in-out infinite; }
+
+  /* Curious head tilt */
+  @keyframes headTilt {
+    0%,100% { transform: rotate(0deg); }
+    50% { transform: rotate(-4deg); }
+  }
+  .head-tilt { animation: headTilt 1.6s ease-in-out infinite; transform-origin: 145px 150px; }
+
+  /* Excited bounce */
+  @keyframes excitedBounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .excited-bounce { animation: excitedBounce 0.35s ease-in-out infinite; }
+
+  /* Happy small bounce */
+  @keyframes happyBounce {
+    0%,100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-6px) scale(1.02); }
+  }
+  .happy-bounce { animation: happyBounce 0.5s ease-in-out infinite; }
+
+  /* Big jump for success */
+  @keyframes bigJump {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    30% { transform: translateY(-28px) rotate(-3deg); }
+    50% { transform: translateY(-32px) rotate(3deg); }
+    70% { transform: translateY(-28px) rotate(-2deg); }
+  }
+  .big-jump { animation: bigJump 0.6s ease-in-out infinite; }
+
+  /* Sad head shake */
+  @keyframes sadShake {
+    0%,100% { transform: translateX(0) rotate(0deg); }
+    20% { transform: translateX(-6px) rotate(-3deg); }
+    40% { transform: translateX(6px) rotate(3deg); }
+    60% { transform: translateX(-5px) rotate(-2deg); }
+    80% { transform: translateX(5px) rotate(2deg); }
+  }
+  .sad-shake { animation: sadShake 0.5s ease-in-out 2; }
+
+  /* Tail wag - slow */
+  @keyframes tailWagSlow {
+    0%,100% { transform: rotate(-8deg); }
+    50% { transform: rotate(8deg); }
+  }
+  .tail-slow { animation: tailWagSlow 1.4s ease-in-out infinite; transform-origin: 60px 175px; }
+
+  /* Tail wag - fast (excited) */
+  @keyframes tailWagFast {
+    0%,100% { transform: rotate(-22deg); }
+    50% { transform: rotate(22deg); }
+  }
+  .tail-fast { animation: tailWagFast 0.22s ease-in-out infinite; transform-origin: 60px 175px; }
+
+  /* Tail still */
+  .tail-still { transform: rotate(0deg); }
+
+  /* Ears raised (excited) */
+  @keyframes earsRaise {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-4px) rotate(-4deg); }
+  }
+  .ears-raise-left { animation: earsRaise 0.3s ease-in-out infinite; transform-origin: 120px 95px; }
+  .ears-raise-right { animation: earsRaise 0.3s ease-in-out infinite reverse; transform-origin: 195px 95px; }
+
+  /* Ears droop (sad) */
+  .ears-droop-left { transform: rotate(12deg) translateY(8px); transform-origin: 120px 95px; transition: transform 0.4s; }
+  .ears-droop-right { transform: rotate(-12deg) translateY(8px); transform-origin: 195px 95px; transition: transform 0.4s; }
+
+  /* Gentle blink */
+  @keyframes blink {
+    0%, 92%, 100% { transform: scaleY(1); }
+    96% { transform: scaleY(0.1); }
+  }
+  .blink-eyes { animation: blink 4s ease-in-out infinite; transform-origin: center; }
+
+  /* Eye tracking shimmer (typing) */
+  @keyframes eyeShift {
+    0%,100% { transform: translateX(0); }
+    50% { transform: translateX(2px); }
+  }
+  .eye-track { animation: eyeShift 0.8s ease-in-out infinite; }
+
+  /* Tongue pant for success */
+  @keyframes tonguePant {
+    0%,100% { transform: scaleY(1) translateY(0); }
+    50% { transform: scaleY(1.15) translateY(2px); }
+  }
+  .tongue-pant-anim { animation: tonguePant 0.35s ease-in-out infinite; }
+
+  /* Running dog leg animation */
+  @keyframes legSwingFront {
+    0%,100% { transform: rotate(-22deg); }
+    50% { transform: rotate(22deg); }
+  }
+  @keyframes legSwingBack {
+    0%,100% { transform: rotate(22deg); }
+    50% { transform: rotate(-22deg); }
+  }
+  .run-leg-front { animation: legSwingFront 0.28s ease-in-out infinite; }
+  .run-leg-back { animation: legSwingBack 0.28s ease-in-out infinite; }
+  .run-leg-front-2 { animation: legSwingFront 0.28s ease-in-out infinite; animation-delay: 0.14s; }
+  .run-leg-back-2 { animation: legSwingBack 0.28s ease-in-out infinite; animation-delay: 0.14s; }
+
+  @keyframes runBob {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  .run-bob { animation: runBob 0.28s ease-in-out infinite; }
+
+  @keyframes runEarFlap {
+    0%,100% { transform: rotate(-6deg); }
+    50% { transform: rotate(10deg); }
+  }
+  .run-ear-flap { animation: runEarFlap 0.3s ease-in-out infinite; transform-origin: top center; }
+
+  @keyframes runTailWag {
+    0%,100% { transform: rotate(-15deg); }
+    50% { transform: rotate(15deg); }
+  }
+  .run-tail-wag { animation: runTailWag 0.25s ease-in-out infinite; transform-origin: bottom right; }
+
+  @keyframes runAcross {
+    0%   { left: -220px; transform: scaleX(1); }
+    45%  { left: calc(100vw + 30px); transform: scaleX(1); }
+    46%  { left: calc(100vw + 30px); transform: scaleX(-1); }
+    91%  { left: -220px; transform: scaleX(-1); }
+    92%  { left: -220px; transform: scaleX(1); }
+    100% { left: -220px; transform: scaleX(1); }
+  }
+  #main-dog { animation: runAcross 9s linear infinite; }
 </style>
 </head>
 <body>
 
-<!-- LOCK SCREEN -->
+<!-- ═══════════════ LOCK SCREEN ═══════════════ -->
 <div id="lock-screen">
   <div id="lock-bg"></div>
   <div id="lock-box">
+
+    <!-- Realistic Shih Tzu holding password board -->
     <div id="lock-dog-wrap">
-      <!-- Realistic Shih Tzu SVG holding a sign board -->
-      <svg viewBox="0 0 220 230" xmlns="http://www.w3.org/2000/svg" id="lock-dog-svg">
+      <svg viewBox="0 0 330 330" xmlns="http://www.w3.org/2000/svg">
+
         <defs>
-          <radialGradient id="eyeGrad" cx="35%" cy="30%" r="65%">
-            <stop offset="0%" stop-color="#6b3a1f"/>
-            <stop offset="40%" stop-color="#3d1f0a"/>
-            <stop offset="100%" stop-color="#1a0a02"/>
+          <radialGradient id="furBody" cx="50%" cy="35%" r="75%">
+            <stop offset="0%" stop-color="#fffdf8"/>
+            <stop offset="55%" stop-color="#f7eedd"/>
+            <stop offset="100%" stop-color="#e8d8bd"/>
           </radialGradient>
-          <radialGradient id="noseGrad" cx="30%" cy="25%" r="70%">
-            <stop offset="0%" stop-color="#5a3a2a"/>
-            <stop offset="100%" stop-color="#1a0a05"/>
+          <radialGradient id="furHead" cx="50%" cy="35%" r="70%">
+            <stop offset="0%" stop-color="#fffefb"/>
+            <stop offset="60%" stop-color="#f9f1e4"/>
+            <stop offset="100%" stop-color="#e9dac0"/>
           </radialGradient>
-          <radialGradient id="bodyGrad" cx="40%" cy="30%" r="70%">
-            <stop offset="0%" stop-color="#e8c89a"/>
-            <stop offset="100%" stop-color="#c49060"/>
-          </radialGradient>
-          <radialGradient id="chestGrad" cx="50%" cy="40%" r="60%">
-            <stop offset="0%" stop-color="#f5ece0"/>
-            <stop offset="100%" stop-color="#e8d8c0"/>
-          </radialGradient>
-          <radialGradient id="darkPatchGrad" cx="50%" cy="40%" r="60%">
-            <stop offset="0%" stop-color="#7a4a20"/>
-            <stop offset="100%" stop-color="#4a2a0a"/>
+          <linearGradient id="earGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#6b5238"/>
+            <stop offset="100%" stop-color="#3f2e1d"/>
+          </linearGradient>
+          <linearGradient id="boardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#caa06a"/>
+            <stop offset="100%" stop-color="#a87c4d"/>
+          </linearGradient>
+          <radialGradient id="eyeGrad" cx="40%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#5a4534"/>
+            <stop offset="55%" stop-color="#2a1c10"/>
+            <stop offset="100%" stop-color="#0f0a06"/>
           </radialGradient>
         </defs>
 
-        <!-- TAIL (behind body) -->
-        <g id="lock-tail" style="transform-origin:158px 115px; animation: tailWagSlow 1.2s ease-in-out infinite;">
-          <path d="M158 115 Q178 95 185 80 Q188 70 182 65 Q176 62 172 70 Q168 80 160 95 Z" fill="url(#bodyGrad)" stroke="#b07840" stroke-width="0.5"/>
-          <path d="M172 70 Q175 65 178 68 Q180 72 174 78" fill="#e8c89a" stroke="none"/>
+        <!-- ===== TAIL ===== -->
+        <g id="dog-tail" class="tail-slow">
+          <path d="M70 165 C40 145, 25 110, 45 80 C60 95, 75 120, 78 160 Z" fill="url(#furBody)" stroke="#e2cfae" stroke-width="1.5"/>
+          <path d="M48 90 C40 110, 45 135, 65 158" stroke="#d8c4a4" stroke-width="2.5" fill="none" opacity="0.6" stroke-linecap="round"/>
+          <path d="M58 95 C50 115, 53 138, 70 160" stroke="#d8c4a4" stroke-width="2" fill="none" opacity="0.5" stroke-linecap="round"/>
+          <path d="M68 100 C62 120, 64 142, 76 162" stroke="#efe3cc" stroke-width="2" fill="none" opacity="0.7" stroke-linecap="round"/>
         </g>
 
-        <!-- BODY -->
-        <g id="lock-body" style="animation: breathe 3s ease-in-out infinite;">
-          <!-- Main body shape — white/cream chest area -->
-          <ellipse cx="110" cy="148" rx="52" ry="42" fill="url(#bodyGrad)" stroke="#b07840" stroke-width="0.5"/>
-          <!-- Dark brown saddle on back -->
-          <ellipse cx="118" cy="136" rx="40" ry="22" fill="url(#darkPatchGrad)"/>
-          <!-- White/cream chest & belly -->
-          <ellipse cx="104" cy="155" rx="34" ry="28" fill="url(#chestGrad)"/>
-          <!-- Fur texture lines on body -->
-          <path d="M85 148 Q90 142 95 148" fill="none" stroke="#d4b888" stroke-width="0.8" opacity="0.6"/>
-          <path d="M118 138 Q123 132 128 138" fill="none" stroke="#8a5820" stroke-width="0.8" opacity="0.5"/>
-          <path d="M105 158 Q110 152 115 158" fill="none" stroke="#d0c0a0" stroke-width="0.7" opacity="0.5"/>
-          <path d="M92 162 Q97 156 102 162" fill="none" stroke="#d0c0a0" stroke-width="0.7" opacity="0.5"/>
+        <!-- ===== BODY ===== -->
+        <g id="dog-body">
+          <ellipse cx="170" cy="220" rx="105" ry="78" fill="url(#furBody)"/>
+          <!-- belly shading -->
+          <ellipse cx="165" cy="245" rx="68" ry="42" fill="#fffdf6" opacity="0.7"/>
+          <!-- fur strands on body for texture -->
+          <g stroke="#e6d6b8" stroke-width="2" fill="none" opacity="0.55" stroke-linecap="round">
+            <path d="M95 200 C90 215, 92 232, 100 248"/>
+            <path d="M110 188 C103 208, 106 228, 116 248"/>
+            <path d="M130 180 C122 202, 126 226, 136 250"/>
+            <path d="M220 188 C228 208, 226 228, 218 248"/>
+            <path d="M240 200 C248 218, 246 235, 238 252"/>
+            <path d="M255 215 C262 230, 260 245, 252 258"/>
+          </g>
+
+          <!-- Back legs -->
+          <g id="back-leg-left">
+            <ellipse cx="118" cy="288" rx="22" ry="34" fill="url(#furBody)"/>
+            <ellipse cx="118" cy="312" rx="18" ry="11" fill="#f5ead4"/>
+            <g stroke="#e3d2b1" stroke-width="1.5" fill="none" opacity="0.6">
+              <path d="M108 270 C104 285, 106 300, 112 314"/>
+              <path d="M128 270 C132 285, 130 300, 124 314"/>
+            </g>
+          </g>
+          <g id="back-leg-right">
+            <ellipse cx="225" cy="288" rx="22" ry="34" fill="url(#furBody)"/>
+            <ellipse cx="225" cy="312" rx="18" ry="11" fill="#f5ead4"/>
+            <g stroke="#e3d2b1" stroke-width="1.5" fill="none" opacity="0.6">
+              <path d="M215 270 C211 285, 213 300, 219 314"/>
+              <path d="M235 270 C239 285, 237 300, 231 314"/>
+            </g>
+          </g>
         </g>
 
-        <!-- BACK LEGS (behind body) -->
-        <g style="transform-origin:132px 173px;">
-          <path d="M128 170 Q132 178 130 192 Q132 196 136 196 Q140 196 140 192 L138 172 Z" fill="#c49060" stroke="#b07840" stroke-width="0.5"/>
-          <!-- Paw -->
-          <ellipse cx="134" cy="197" rx="8" ry="5" fill="#9a6030"/>
-          <path d="M127 196 Q134 200 141 196" fill="none" stroke="#7a4820" stroke-width="0.8"/>
+        <!-- ===== HEAD GROUP ===== -->
+        <g id="dog-head">
+
+          <!-- Ears (behind head, dark) -->
+          <g id="ear-left" class="ear-left-default">
+            <path d="M108 100 C70 110, 55 165, 78 210 C100 195, 118 150, 122 105 Z" fill="url(#earGrad)"/>
+            <path d="M98 120 C80 140, 75 175, 90 200" stroke="#2c1f12" stroke-width="2" fill="none" opacity="0.6" stroke-linecap="round"/>
+          </g>
+          <g id="ear-right" class="ear-right-default">
+            <path d="M222 100 C260 110, 275 165, 252 210 C230 195, 212 150, 208 105 Z" fill="url(#earGrad)"/>
+            <path d="M232 120 C250 140, 255 175, 240 200" stroke="#2c1f12" stroke-width="2" fill="none" opacity="0.6" stroke-linecap="round"/>
+          </g>
+
+          <!-- Head base -->
+          <ellipse cx="165" cy="135" rx="92" ry="82" fill="url(#furHead)"/>
+
+          <!-- Fluffy fringe top of head -->
+          <g fill="url(#furHead)">
+            <ellipse cx="120" cy="78" rx="26" ry="22" transform="rotate(-15 120 78)"/>
+            <ellipse cx="150" cy="65" rx="28" ry="24" transform="rotate(-5 150 65)"/>
+            <ellipse cx="182" cy="65" rx="28" ry="24" transform="rotate(5 182 65)"/>
+            <ellipse cx="212" cy="78" rx="26" ry="22" transform="rotate(15 212 78)"/>
+          </g>
+
+          <!-- fur texture strokes on head -->
+          <g stroke="#ecdfc8" stroke-width="2" fill="none" opacity="0.55" stroke-linecap="round">
+            <path d="M100 110 C90 130, 92 150, 102 168"/>
+            <path d="M230 110 C240 130, 238 150, 228 168"/>
+            <path d="M130 70 C125 85, 128 98, 136 108"/>
+            <path d="M200 70 C205 85, 202 98, 194 108"/>
+          </g>
+
+          <!-- Muzzle / snout area -->
+          <ellipse cx="165" cy="172" rx="46" ry="34" fill="#ffffff"/>
+          <!-- muzzle fur strands -->
+          <g stroke="#f1e7d4" stroke-width="1.8" fill="none" opacity="0.7" stroke-linecap="round">
+            <path d="M135 165 C128 178, 130 192, 138 202"/>
+            <path d="M150 172 C145 184, 147 196, 153 206"/>
+            <path d="M180 172 C185 184, 183 196, 177 206"/>
+            <path d="M195 165 C202 178, 200 192, 192 202"/>
+          </g>
+
+          <!-- Nose -->
+          <ellipse cx="165" cy="155" rx="15" ry="11" fill="#1a1410"/>
+          <ellipse cx="159" cy="151" rx="4" ry="2.5" fill="rgba(255,255,255,0.55)"/>
+          <!-- nostrils -->
+          <ellipse cx="159" cy="158" rx="2" ry="1.5" fill="#000"/>
+          <ellipse cx="171" cy="158" rx="2" ry="1.5" fill="#000"/>
+
+          <!-- Eyes -->
+          <g id="dog-eyes-group">
+            <!-- left eye -->
+            <g id="eye-left">
+              <ellipse cx="135" cy="125" rx="13" ry="14" fill="url(#eyeGrad)"/>
+              <ellipse cx="131" cy="119" rx="4" ry="4.5" fill="rgba(255,255,255,0.85)"/>
+              <ellipse cx="139" cy="129" rx="2" ry="2" fill="rgba(255,255,255,0.4)"/>
+            </g>
+            <!-- right eye -->
+            <g id="eye-right">
+              <ellipse cx="195" cy="125" rx="13" ry="14" fill="url(#eyeGrad)"/>
+              <ellipse cx="191" cy="119" rx="4" ry="4.5" fill="rgba(255,255,255,0.85)"/>
+              <ellipse cx="199" cy="129" rx="2" ry="2" fill="rgba(255,255,255,0.4)"/>
+            </g>
+            <!-- brows / lids overlay (for blink + expressions), default hidden lids -->
+            <ellipse id="lid-left" cx="135" cy="125" rx="13" ry="0" fill="#f9f1e4"/>
+            <ellipse id="lid-right" cx="195" cy="125" rx="13" ry="0" fill="#f9f1e4"/>
+          </g>
+
+          <!-- Eyebrow tufts -->
+          <g id="brows" stroke="#e9dcc6" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8">
+            <path id="brow-left" d="M120 108 C128 102, 142 102, 150 108"/>
+            <path id="brow-right" d="M180 108 C188 102, 202 102, 210 108"/>
+          </g>
+
+          <!-- Mouth / smile -->
+          <g id="dog-mouth">
+            <path id="mouth-path" d="M148 188 Q165 196 182 188" stroke="#7a5d3f" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          </g>
+
+          <!-- Tongue (hidden by default) -->
+          <g id="dog-tongue" opacity="0" class="tongue-pant-anim">
+            <path d="M155 195 Q165 225 175 195 Q170 212 165 213 Q160 212 155 195 Z" fill="#f08aa0"/>
+            <path d="M165 198 L165 210" stroke="#e06d88" stroke-width="1.5" opacity="0.6"/>
+          </g>
+
         </g>
 
-        <!-- FRONT LEGS / ARMS holding board -->
-        <path d="M86 158 Q60 165 42 178" stroke="#c49060" stroke-width="14" stroke-linecap="round" fill="none"/>
-        <path d="M134 158 Q158 165 178 178" stroke="#c49060" stroke-width="14" stroke-linecap="round" fill="none"/>
-        <!-- Fur on arms -->
-        <path d="M80 162 Q60 167 44 178" stroke="#e8d0a8" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
-        <path d="M140 162 Q158 167 174 178" stroke="#e8d0a8" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6"/>
-        <!-- Paws -->
-        <ellipse cx="40" cy="180" rx="10" ry="7" fill="#9a6030" stroke="#7a4820" stroke-width="0.5"/>
-        <ellipse cx="180" cy="180" rx="10" ry="7" fill="#9a6030" stroke="#7a4820" stroke-width="0.5"/>
-        <path d="M33 179 Q40 184 47 179" fill="none" stroke="#7a4820" stroke-width="0.8"/>
-        <path d="M173 179 Q180 184 187 179" fill="none" stroke="#7a4820" stroke-width="0.8"/>
-
-        <!-- SIGN BOARD -->
-        <rect x="25" y="182" width="170" height="46" rx="7" fill="#fffdf5" stroke="#c9a060" stroke-width="2"/>
-        <rect x="27" y="184" width="166" height="42" rx="6" fill="none" stroke="#e8d0a0" stroke-width="0.5"/>
-        <!-- Board text -->
-        <text id="board-label" x="110" y="199" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#b08060" font-weight="bold" letter-spacing="1">ENTER PASSWORD</text>
-        <line x1="38" y1="210" x2="182" y2="210" stroke="#d5c4a0" stroke-width="1"/>
-        <text id="board-typed" x="110" y="222" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#6b4020" font-weight="500" letter-spacing="2"></text>
-
-        <!-- HEAD GROUP -->
-        <g id="lock-head-group">
-
-          <!-- LEFT EAR (long silky) -->
-          <g id="lock-ear-left" style="transform-origin:72px 82px; animation: earFlop 1.8s ease-in-out infinite;">
-            <path d="M72 82 Q48 90 42 118 Q45 130 52 128 Q62 124 68 105 Q74 88 76 82 Z" fill="#8b5820" stroke="#6a4018" stroke-width="0.5"/>
-            <!-- Ear fur highlights -->
-            <path d="M62 95 Q57 108 56 120" fill="none" stroke="#c49060" stroke-width="1.5" opacity="0.5"/>
-            <path d="M68 90 Q65 105 63 118" fill="none" stroke="#c49060" stroke-width="1" opacity="0.4"/>
+        <!-- ===== ARMS / PAWS HOLDING BOARD ===== -->
+        <g id="dog-arms">
+          <path d="M105 230 C70 245, 50 270, 45 295" stroke="url(#furBody)" stroke-width="26" stroke-linecap="round" fill="none"/>
+          <path d="M225 230 C260 245, 280 270, 285 295" stroke="url(#furBody)" stroke-width="26" stroke-linecap="round" fill="none"/>
+          <ellipse cx="45" cy="300" rx="18" ry="13" fill="#f7efdd"/>
+          <ellipse cx="285" cy="300" rx="18" ry="13" fill="#f7efdd"/>
+          <!-- paw toe lines -->
+          <g stroke="#e3d2b1" stroke-width="1.5" opacity="0.7">
+            <path d="M36 296 L36 306"/>
+            <path d="M45 297 L45 308"/>
+            <path d="M54 296 L54 306"/>
+            <path d="M276 296 L276 306"/>
+            <path d="M285 297 L285 308"/>
+            <path d="M294 296 L294 306"/>
           </g>
+        </g>
 
-          <!-- RIGHT EAR -->
-          <g id="lock-ear-right" style="transform-origin:148px 82px; animation: earFlop 1.8s ease-in-out infinite; animation-delay:0.3s;">
-            <path d="M148 82 Q172 90 178 118 Q175 130 168 128 Q158 124 152 105 Q146 88 144 82 Z" fill="#8b5820" stroke="#6a4018" stroke-width="0.5"/>
-            <path d="M158 95 Q163 108 164 120" fill="none" stroke="#c49060" stroke-width="1.5" opacity="0.5"/>
-            <path d="M152 90 Q155 105 157 118" fill="none" stroke="#c49060" stroke-width="1" opacity="0.4"/>
+        <!-- ===== WOODEN SIGN BOARD ===== -->
+        <g id="sign-board">
+          <rect x="30" y="270" width="270" height="58" rx="8" fill="url(#boardGrad)" stroke="#8a6238" stroke-width="2.5"/>
+          <!-- wood grain lines -->
+          <g stroke="#946b41" stroke-width="1.5" opacity="0.5" fill="none">
+            <path d="M35 285 H295"/>
+            <path d="M35 300 H295"/>
+            <path d="M35 315 H295"/>
           </g>
+          <!-- inner paper area for password text -->
+          <rect x="42" y="280" width="246" height="36" rx="5" fill="#fffaf0" stroke="#d9c2a0" stroke-width="1.5"/>
+          <text id="board-label" x="165" y="294" text-anchor="middle" font-family="sans-serif" font-size="9" letter-spacing="2" fill="#b08060" font-weight="bold">ENTER PASSWORD</text>
+          <text id="board-text" x="165" y="310" text-anchor="middle" font-family="'Courier New', monospace" font-size="17" letter-spacing="3" fill="#3a2e27" font-weight="bold"></text>
+        </g>
 
-          <!-- HEAD base (round shih tzu face) -->
-          <circle cx="110" cy="88" r="46" fill="url(#bodyGrad)" stroke="#b07840" stroke-width="0.5"/>
-
-          <!-- Dark brown forehead/top saddle patch -->
-          <path d="M72 70 Q90 55 110 53 Q130 55 148 70 Q138 72 110 70 Q82 72 72 70 Z" fill="url(#darkPatchGrad)"/>
-          <!-- Transition band -->
-          <path d="M72 70 Q90 65 110 64 Q130 65 148 70 Q138 74 110 73 Q82 74 72 70 Z" fill="#a06030" opacity="0.6"/>
-
-          <!-- Top of head fluffy fur patch -->
-          <ellipse cx="110" cy="52" rx="26" ry="16" fill="#c49060"/>
-          <!-- Forehead fur tuft details -->
-          <path d="M96 48 Q108 40 122 48 Q115 44 110 43 Q105 44 96 48 Z" fill="#e8c890" opacity="0.7"/>
-
-          <!-- Forehead dark patch flowing down -->
-          <path d="M82 72 Q96 66 110 65 Q124 66 138 72 Q128 78 110 78 Q92 78 82 72 Z" fill="#9a6030" opacity="0.5"/>
-
-          <!-- White/cream face muzzle area (very characteristic of shih tzu) -->
-          <ellipse cx="110" cy="100" rx="30" ry="24" fill="#f0e8d8"/>
-          <!-- Muzzle cream center highlight -->
-          <ellipse cx="110" cy="104" rx="20" ry="16" fill="#f8f0e4"/>
-
-          <!-- Fur texture on face -->
-          <path d="M88 85 Q94 80 100 85" fill="none" stroke="#d4a870" stroke-width="0.8" opacity="0.5"/>
-          <path d="M120 85 Q126 80 132 85" fill="none" stroke="#d4a870" stroke-width="0.8" opacity="0.5"/>
-          <path d="M95 95 Q105 90 115 95" fill="none" stroke="#e0d0b8" stroke-width="0.7" opacity="0.5"/>
-
-          <!-- EYES -->
-          <g id="lock-eyes">
-            <!-- Left eye socket -->
-            <circle cx="94" cy="85" r="11" fill="#2a1a0a"/>
-            <!-- Right eye socket -->
-            <circle cx="126" cy="85" r="11" fill="#2a1a0a"/>
-            <!-- Left iris -->
-            <circle cx="94" cy="85" r="9" fill="url(#eyeGrad)"/>
-            <!-- Right iris -->
-            <circle cx="126" cy="85" r="9" fill="url(#eyeGrad)"/>
-            <!-- Pupils -->
-            <circle cx="94" cy="85" r="5" fill="#0d0602"/>
-            <circle cx="126" cy="85" r="5" fill="#0d0602"/>
-            <!-- Eye shine left -->
-            <circle cx="90" cy="81" r="3" fill="white" opacity="0.85"/>
-            <circle cx="97" cy="88" r="1.2" fill="white" opacity="0.4"/>
-            <!-- Eye shine right -->
-            <circle cx="122" cy="81" r="3" fill="white" opacity="0.85"/>
-            <circle cx="129" cy="88" r="1.2" fill="white" opacity="0.4"/>
-          </g>
-
-          <!-- NOSE (flat pushed-in shih tzu nose) -->
-          <g id="lock-nose">
-            <ellipse cx="110" cy="97" rx="12" ry="8" fill="url(#noseGrad)"/>
-            <ellipse cx="110" cy="94" rx="10" ry="5" fill="#2a1205" opacity="0.8"/>
-            <!-- Nose sheen -->
-            <ellipse cx="106" cy="92" rx="3" ry="2" fill="rgba(255,255,255,0.35)"/>
-            <!-- Nostrils -->
-            <ellipse cx="105" cy="98" rx="3.5" ry="2.5" fill="#0d0602"/>
-            <ellipse cx="115" cy="98" rx="3.5" ry="2.5" fill="#0d0602"/>
-          </g>
-
-          <!-- MOUTH -->
-          <g id="lock-mouth">
-            <path d="M103 107 Q110 113 117 107" stroke="#5a2a10" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-          </g>
-
-          <!-- Whisker dots -->
-          <circle cx="88" cy="103" r="1.2" fill="#8a6040" opacity="0.5"/>
-          <circle cx="83" cy="106" r="1" fill="#8a6040" opacity="0.4"/>
-          <circle cx="132" cy="103" r="1.2" fill="#8a6040" opacity="0.5"/>
-          <circle cx="137" cy="106" r="1" fill="#8a6040" opacity="0.4"/>
-
-          <!-- Fluffy chin/underjaw fur -->
-          <path d="M92 112 Q110 122 128 112 Q118 120 110 120 Q102 120 92 112 Z" fill="#f0e8d8" opacity="0.8"/>
-
-          <!-- Little party hat! -->
-          <polygon points="110,28 92,56 128,56" fill="#ff6b9d"/>
-          <polygon points="110,28 102,44 118,44" fill="#ffd93d" opacity="0.8"/>
-          <rect x="91" y="54" width="38" height="5" rx="2.5" fill="#ff9a5c"/>
-          <circle cx="110" cy="28" r="4" fill="#ffd93d"/>
-          <circle cx="102" cy="40" r="2" fill="white" opacity="0.8"/>
-          <circle cx="118" cy="42" r="2" fill="white" opacity="0.8"/>
-          <circle cx="110" cy="36" r="2" fill="white" opacity="0.8"/>
-
-        </g><!-- end head group -->
+        <!-- ===== PARTY HAT (subtle birthday touch) ===== -->
+        <g id="party-hat" opacity="0.95">
+          <polygon points="165,28 138,75 192,75" fill="#ff6b9d"/>
+          <polygon points="165,28 152,52 178,52" fill="#ffd93d" opacity="0.7"/>
+          <circle cx="165" cy="28" r="6" fill="#ffd93d"/>
+          <circle cx="152" cy="62" r="3" fill="#fff" opacity="0.8"/>
+          <circle cx="178" cy="62" r="3" fill="#fff" opacity="0.8"/>
+          <circle cx="165" cy="50" r="3" fill="#fff" opacity="0.8"/>
+        </g>
 
       </svg>
     </div>
 
-    <h2 id="lock-title">Something special awaits…</h2>
-    <p id="lock-subtitle">Enter the password to unwrap your birthday surprise 🎁</p>
-    <input type="password" id="pw-input" placeholder="✦  password  ✦" autocomplete="off"/>
+    <h2 id="lock-title">Hi there!</h2>
+    <p id="lock-subtitle">Type the password — I'll show it on my sign 🐾</p>
+    <input type="text" id="pw-input" placeholder="✦  type here  ✦" autocomplete="off" />
     <button id="pw-btn">Open →</button>
     <div id="pw-error"></div>
     <div class="lock-tagline">made with love 🎈</div>
   </div>
 </div>
 
-<!-- RUNNING DOG (main page) -->
+<!-- ═══════════════ RUNNING DOG (Main Page) ═══════════════ -->
 <div id="main-dog">
-  <svg viewBox="0 0 200 140" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg">
+
     <defs>
-      <radialGradient id="rBodyGrad" cx="40%" cy="30%" r="70%">
-        <stop offset="0%" stop-color="#e8c890"/>
-        <stop offset="100%" stop-color="#c49060"/>
+      <radialGradient id="rFurBody" cx="50%" cy="35%" r="75%">
+        <stop offset="0%" stop-color="#fffdf8"/>
+        <stop offset="55%" stop-color="#f7eedd"/>
+        <stop offset="100%" stop-color="#e8d8bd"/>
       </radialGradient>
-      <radialGradient id="rDarkGrad" cx="50%" cy="40%" r="60%">
-        <stop offset="0%" stop-color="#7a4a20"/>
-        <stop offset="100%" stop-color="#4a2a0a"/>
+      <linearGradient id="rEarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#6b5238"/>
+        <stop offset="100%" stop-color="#3f2e1d"/>
+      </linearGradient>
+      <radialGradient id="rEyeGrad" cx="40%" cy="35%" r="65%">
+        <stop offset="0%" stop-color="#5a4534"/>
+        <stop offset="55%" stop-color="#2a1c10"/>
+        <stop offset="100%" stop-color="#0f0a06"/>
       </radialGradient>
     </defs>
 
     <!-- Tail -->
-    <g class="r-tail" style="transform-origin:165px 62px; animation: tailWag 0.4s ease-in-out infinite;">
-      <path d="M165 62 Q180 45 185 33 Q187 26 181 24 Q175 23 172 32 Q168 44 160 58 Z" fill="url(#rBodyGrad)" stroke="#b07840" stroke-width="0.5"/>
+    <g class="run-tail-wag">
+      <path d="M210 110 C245 90, 250 55, 225 35 C215 60, 205 90, 200 120 Z" fill="url(#rFurBody)" stroke="#e2cfae" stroke-width="1.5"/>
     </g>
 
-    <!-- BODY -->
-    <ellipse cx="112" cy="80" rx="52" ry="30" fill="url(#rBodyGrad)" stroke="#b07840" stroke-width="0.5"/>
-    <!-- Dark saddle -->
-    <ellipse cx="122" cy="68" rx="40" ry="18" fill="url(#rDarkGrad)"/>
-    <!-- Chest/belly white -->
-    <ellipse cx="105" cy="86" rx="36" ry="20" fill="#f0e8d8"/>
-    <!-- Fur lines -->
-    <path d="M90 78 Q96 72 102 78" fill="none" stroke="#d4b888" stroke-width="0.7" opacity="0.5"/>
-    <path d="M118 70 Q124 64 130 70" fill="none" stroke="#8a5820" stroke-width="0.7" opacity="0.4"/>
-
-    <!-- Back legs running -->
-    <g style="animation: legBack 0.28s ease-in-out infinite; transform-origin:142px 95px;">
-      <path d="M138 93 Q140 105 138 118 Q140 122 145 121 Q149 120 148 115 L146 94 Z" fill="#c49060" stroke="#b07840" stroke-width="0.5"/>
-      <ellipse cx="143" cy="122" rx="8" ry="4" fill="#9a6030"/>
+    <!-- Back legs -->
+    <g class="run-leg-back">
+      <ellipse cx="160" cy="165" rx="16" ry="28" fill="url(#rFurBody)"/>
+      <ellipse cx="160" cy="190" rx="13" ry="8" fill="#f5ead4"/>
     </g>
-    <g style="animation: legBack 0.28s ease-in-out infinite; animation-delay:0.14s; transform-origin:128px 95px; opacity:0.8;">
-      <path d="M124 93 Q126 105 124 116 Q126 120 130 120 Q134 119 133 114 L132 94 Z" fill="#b07838" stroke="#9a6020" stroke-width="0.5"/>
-      <ellipse cx="128" cy="121" rx="7" ry="4" fill="#8a5020"/>
+    <g class="run-leg-back-2">
+      <ellipse cx="190" cy="165" rx="16" ry="28" fill="url(#rFurBody)"/>
+      <ellipse cx="190" cy="190" rx="13" ry="8" fill="#f5ead4"/>
     </g>
 
-    <!-- Front legs running -->
-    <g style="animation: legFront 0.28s ease-in-out infinite; transform-origin:80px 95px;">
-      <path d="M76 93 Q78 105 76 118 Q78 122 83 121 Q87 120 86 115 L84 94 Z" fill="#c49060" stroke="#b07840" stroke-width="0.5"/>
-      <ellipse cx="81" cy="122" rx="8" ry="4" fill="#9a6030"/>
+    <!-- Body -->
+    <g class="run-bob">
+      <ellipse cx="150" cy="125" rx="78" ry="58" fill="url(#rFurBody)"/>
+      <ellipse cx="145" cy="148" rx="50" ry="32" fill="#fffdf6" opacity="0.7"/>
+
+      <!-- Front legs -->
+      <g class="run-leg-front">
+        <ellipse cx="95" cy="160" rx="16" ry="28" fill="url(#rFurBody)"/>
+        <ellipse cx="95" cy="185" rx="13" ry="8" fill="#f5ead4"/>
+      </g>
+      <g class="run-leg-front-2">
+        <ellipse cx="120" cy="160" rx="16" ry="28" fill="url(#rFurBody)"/>
+        <ellipse cx="120" cy="185" rx="13" ry="8" fill="#f5ead4"/>
+      </g>
+
+      <!-- Head -->
+      <g>
+        <!-- Ears -->
+        <g class="run-ear-flap">
+          <path d="M68 65 C45 70, 35 105, 50 135 C65 125, 78 95, 80 68 Z" fill="url(#rEarGrad)"/>
+        </g>
+        <g class="run-ear-flap" style="animation-delay:0.15s; transform-origin: top center;">
+          <path d="M138 65 C161 70, 171 105, 156 135 C141 125, 128 95, 126 68 Z" fill="url(#rEarGrad)"/>
+        </g>
+
+        <!-- Head base -->
+        <ellipse cx="103" cy="88" rx="58" ry="52" fill="url(#rFurBody)"/>
+
+        <!-- Fringe -->
+        <g fill="url(#rFurBody)">
+          <ellipse cx="75" cy="50" rx="18" ry="15" transform="rotate(-15 75 50)"/>
+          <ellipse cx="95" cy="42" rx="19" ry="16" transform="rotate(-5 95 42)"/>
+          <ellipse cx="115" cy="42" rx="19" ry="16" transform="rotate(5 115 42)"/>
+          <ellipse cx="135" cy="50" rx="18" ry="15" transform="rotate(15 135 50)"/>
+        </g>
+
+        <!-- Muzzle -->
+        <ellipse cx="103" cy="108" rx="30" ry="22" fill="#ffffff"/>
+
+        <!-- Nose -->
+        <ellipse cx="103" cy="98" rx="10" ry="7" fill="#1a1410"/>
+        <ellipse cx="99" cy="95" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.55)"/>
+
+        <!-- Eyes (happy/squint while running) -->
+        <path d="M75 75 Q83 65 91 75" stroke="#2a1c10" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M115 75 Q123 65 131 75" stroke="#2a1c10" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+        <!-- Tongue panting -->
+        <g class="tongue-pant-anim">
+          <path d="M93 118 Q103 145 113 118 Q108 133 103 134 Q98 133 93 118 Z" fill="#f08aa0"/>
+        </g>
+
+        <!-- Party hat -->
+        <polygon points="103,15 85,48 121,48" fill="#ff6b9d"/>
+        <polygon points="103,15 94,32 112,32" fill="#ffd93d" opacity="0.7"/>
+        <circle cx="103" cy="15" r="4" fill="#ffd93d"/>
+      </g>
     </g>
-    <g style="animation: legFront 0.28s ease-in-out infinite; animation-delay:0.14s; transform-origin:66px 95px; opacity:0.8;">
-      <path d="M62 93 Q64 105 62 116 Q64 120 68 120 Q72 119 71 114 L70 94 Z" fill="#b07838" stroke="#9a6020" stroke-width="0.5"/>
-      <ellipse cx="66" cy="121" rx="7" ry="4" fill="#8a5020"/>
-    </g>
-
-    <!-- Left ear -->
-    <g style="transform-origin:38px 46px; animation: earFlop 0.35s ease-in-out infinite;">
-      <path d="M38 46 Q20 56 18 78 Q22 86 30 83 Q38 78 40 62 Q42 50 42 46 Z" fill="#8b5820" stroke="#6a4018" stroke-width="0.5"/>
-    </g>
-    <!-- Right ear -->
-    <g style="transform-origin:62px 46px; animation: earFlop 0.35s ease-in-out infinite; animation-delay:0.17s;">
-      <path d="M62 46 Q78 56 80 78 Q76 86 68 83 Q60 78 58 62 Q56 50 56 46 Z" fill="#8b5820" stroke="#6a4018" stroke-width="0.5"/>
-    </g>
-
-    <!-- HEAD -->
-    <circle cx="50" cy="50" r="34" fill="url(#rBodyGrad)" stroke="#b07840" stroke-width="0.5"/>
-    <!-- Dark forehead -->
-    <path d="M22 42 Q36 28 50 27 Q64 28 78 42 Q64 44 50 43 Q36 44 22 42 Z" fill="url(#rDarkGrad)"/>
-    <!-- Muzzle -->
-    <ellipse cx="50" cy="60" rx="22" ry="17" fill="#f0e8d8"/>
-    <!-- Face fur texture -->
-    <path d="M32 50 Q40 44 48 50" fill="none" stroke="#d4a870" stroke-width="0.7" opacity="0.4"/>
-    <path d="M52 50 Q60 44 68 50" fill="none" stroke="#d4a870" stroke-width="0.7" opacity="0.4"/>
-
-    <!-- Eyes squinting happy while running -->
-    <path d="M35 44 Q40 39 45 44" stroke="#1a0a02" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-    <path d="M55 44 Q60 39 65 44" stroke="#1a0a02" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-    <!-- Eye glistens -->
-    <circle cx="37" cy="43" r="1.5" fill="white" opacity="0.7"/>
-    <circle cx="57" cy="43" r="1.5" fill="white" opacity="0.7"/>
-
-    <!-- Nose -->
-    <ellipse cx="50" cy="56" rx="9" ry="6" fill="#1a0a05"/>
-    <ellipse cx="47" cy="53" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.35)"/>
-    <ellipse cx="45" cy="58" rx="3" ry="2" fill="#0d0602"/>
-    <ellipse cx="55" cy="58" rx="3" ry="2" fill="#0d0602"/>
-
-    <!-- Tongue lolling out while running -->
-    <g style="animation: tongueWag 0.22s ease-in-out infinite; transform-origin:50px 68px;">
-      <ellipse cx="50" cy="68" rx="6" ry="9" fill="#e05070"/>
-      <ellipse cx="50" cy="73" rx="6" ry="5" fill="#f07090"/>
-      <path d="M44 68 Q50 66 56 68" fill="none" stroke="#c03050" stroke-width="0.8"/>
-    </g>
-
-    <!-- Whisker dots -->
-    <circle cx="34" cy="61" r="1" fill="#8a6040" opacity="0.5"/>
-    <circle cx="30" cy="64" r="0.8" fill="#8a6040" opacity="0.4"/>
-    <circle cx="66" cy="61" r="1" fill="#8a6040" opacity="0.5"/>
-    <circle cx="70" cy="64" r="0.8" fill="#8a6040" opacity="0.4"/>
-
-    <!-- Party hat -->
-    <polygon points="50,8 34,32 66,32" fill="#ff6b9d"/>
-    <polygon points="50,8 43,22 57,22" fill="#ffd93d" opacity="0.8"/>
-    <rect x="33" y="30" width="34" height="5" rx="2.5" fill="#ff9a5c"/>
-    <circle cx="50" cy="8" r="3.5" fill="#ffd93d"/>
-    <circle cx="44" cy="20" r="1.8" fill="white" opacity="0.8"/>
-    <circle cx="56" cy="22" r="1.8" fill="white" opacity="0.8"/>
-    <circle cx="50" cy="15" r="1.8" fill="white" opacity="0.8"/>
   </svg>
 </div>
 
-<!-- MAIN SITE -->
+<!-- ═══════════════ MAIN SITE ═══════════════ -->
 <div id="hero">
   <div class="hero-eyebrow">A little something for you</div>
   <h1>Happy<br><em>Birthday,</em><br>Ariadne 🎂</h1>
-  <p class="hero-sub">You only turn this age once — here's to celebrating you, your story, and everything that makes you wonderful.</p>
+  <p class="hero-sub">
+    You only turn this age once — here's to celebrating you, your story, and everything that makes you wonderful.
+  </p>
   <div class="scroll-hint">↓ scroll to explore ↓</div>
 </div>
 
 <section id="photos-section">
   <div class="section-label">Memories</div>
   <h2>Photos of us</h2>
-  <p style="color:#7a6455;font-family:sans-serif;font-size:0.9rem;line-height:1.7;">Click any slot to add a photo.</p>
+  <p style="color:#7a6455; font-family:sans-serif; font-size:0.9rem; line-height:1.7;">
+    Click any slot to add a photo. Changes are saved in your browser while the page is open.
+  </p>
   <div id="photos-grid"></div>
-  <input type="file" id="photo-file-input" accept="image/*" multiple/>
+  <input type="file" id="photo-file-input" accept="image/*" multiple />
   <button class="add-photo-btn" onclick="addPhotoSlot()">+ Add more slots</button>
 </section>
 
-<div id="videos-section" style="padding:3rem 2rem;">
+<div id="videos-section" style="padding: 3rem 2rem;">
   <div class="section-label">Moving Memories</div>
   <h2>Videos</h2>
-  <p style="color:#7a6455;font-family:sans-serif;font-size:0.9rem;line-height:1.7;">Click a slot to add a video clip.</p>
+  <p style="color:#7a6455; font-family:sans-serif; font-size:0.9rem; line-height:1.7;">
+    Click a slot to add a video clip. Best kept under 50 MB each.
+  </p>
   <div class="video-grid" id="videos-grid"></div>
-  <input type="file" id="video-file-input" accept="video/*" multiple/>
+  <input type="file" id="video-file-input" accept="video/*" multiple />
   <button class="add-video-btn" onclick="addVideoSlot()">+ Add more slots</button>
 </div>
 
@@ -564,7 +903,9 @@ footer { text-align: center; padding: 2.5rem; font-family: sans-serif; font-size
   <div class="section-label">From the heart</div>
   <h2>A birthday wish</h2>
   <div class="wish-card">
-    <p class="wish-text" id="wish-text">Here's to you — for your laughter, your kindness, and the irreplaceable way you light up every room you walk into. May this year bring you everything you deserve: adventures, joy, and all the good things you've been quietly hoping for. You are so loved.</p>
+    <p class="wish-text" id="wish-text">
+      Here's to you — for your laughter, your kindness, and the irreplaceable way you light up every room you walk into. May this year bring you everything you deserve: adventures, joy, and all the good things you've been quietly hoping for. You are so loved.
+    </p>
     <div class="wish-from" id="wish-from">— From [Your Name]</div>
     <button class="edit-wish-btn" onclick="openWishModal()">✏ Edit this message</button>
   </div>
@@ -574,7 +915,7 @@ footer { text-align: center; padding: 2.5rem; font-family: sans-serif; font-size
   <div id="wish-modal-box">
     <h3>Edit birthday wish</h3>
     <textarea id="wish-editor"></textarea>
-    <input type="text" id="from-editor" placeholder="From (e.g. — From Sarah)"/>
+    <input type="text" id="from-editor" placeholder="From (e.g. — From Sarah)" />
     <div class="modal-btns">
       <button class="btn-cancel" onclick="closeWishModal()">Cancel</button>
       <button class="btn-save" onclick="saveWish()">Save</button>
@@ -582,207 +923,361 @@ footer { text-align: center; padding: 2.5rem; font-family: sans-serif; font-size
   </div>
 </div>
 
-<section style="text-align:center;padding:2rem 2rem 4rem;">
-  <div class="pw-hint">💡 <strong>To change the password:</strong> open this HTML file and find <code>const CORRECT_PASSWORD</code> in the &lt;script&gt; — change it and save.</div>
+<section style="text-align:center; padding: 2rem 2rem 4rem;">
+  <div class="pw-hint">
+    💡 <strong>To change the password:</strong> open this HTML file in a text editor and find <code>const CORRECT_PASSWORD</code> near the top of the &lt;script&gt; — change it to whatever you like, then save.
+  </div>
 </section>
+
 <footer>Made with love &nbsp;·&nbsp; © 2025</footer>
 
 <script>
-const CORRECT_PASSWORD = "bella";
+  /* ── CHANGE THE PASSWORD HERE ↓ ── */
+  const CORRECT_PASSWORD = "bella";
 
-/* Confetti */
-const colors=['#ff6b9d','#ff9a5c','#ffd93d','#6bcb77','#4d96ff','#c77dff','#fff'];
-const ls=document.getElementById('lock-screen');
-for(let i=0;i<22;i++){
-  const d=document.createElement('div'); d.className='confetti-piece';
-  const sz=8+Math.random()*18;
-  d.style.cssText=`width:${sz}px;height:${sz}px;background:${colors[Math.floor(Math.random()*colors.length)]};left:${Math.random()*100}%;animation-duration:${4+Math.random()*6}s;animation-delay:${Math.random()*5}s;`;
-  ls.appendChild(d);
-}
-
-/* Dog emotion system */
-const boardTyped=document.getElementById('board-typed');
-const boardLabel=document.getElementById('board-label');
-const lockTitle=document.getElementById('lock-title');
-const lockSub=document.getElementById('lock-subtitle');
-const lockDogWrap=document.getElementById('lock-dog-wrap');
-const lockEyes=document.getElementById('lock-eyes');
-const lockMouth=document.getElementById('lock-mouth');
-const lockTail=document.getElementById('lock-tail');
-const pwInput=document.getElementById('pw-input');
-const pwError=document.getElementById('pw-error');
-
-const EYES={
-  idle:`<circle cx="94" cy="85" r="11" fill="#2a1a0a"/><circle cx="126" cy="85" r="11" fill="#2a1a0a"/>
-        <circle cx="94" cy="85" r="9" fill="#6b3a1f"/><circle cx="126" cy="85" r="9" fill="#6b3a1f"/>
-        <circle cx="94" cy="85" r="5" fill="#1a0a02"/><circle cx="126" cy="85" r="5" fill="#1a0a02"/>
-        <circle cx="90" cy="81" r="3" fill="white" opacity="0.85"/><circle cx="122" cy="81" r="3" fill="white" opacity="0.85"/>`,
-  happy:`<path d="M83 88 Q94 76 105 88" stroke="#1a0a02" stroke-width="3" fill="none" stroke-linecap="round"/>
-         <path d="M115 88 Q126 76 137 88" stroke="#1a0a02" stroke-width="3" fill="none" stroke-linecap="round"/>
-         <circle cx="88" cy="82" r="2" fill="white" opacity="0.7"/><circle cx="120" cy="82" r="2" fill="white" opacity="0.7"/>`,
-  wrong:`<path d="M83 80 L105 92" stroke="#1a0a02" stroke-width="3" stroke-linecap="round"/>
-         <path d="M105 80 L83 92" stroke="#1a0a02" stroke-width="3" stroke-linecap="round"/>
-         <path d="M115 80 L137 92" stroke="#1a0a02" stroke-width="3" stroke-linecap="round"/>
-         <path d="M137 80 L115 92" stroke="#1a0a02" stroke-width="3" stroke-linecap="round"/>`,
-  thinking:`<circle cx="94" cy="85" r="11" fill="#2a1a0a"/><circle cx="126" cy="85" r="11" fill="#2a1a0a"/>
-            <circle cx="94" cy="85" r="9" fill="#6b3a1f"/><circle cx="126" cy="85" r="9" fill="#6b3a1f"/>
-            <circle cx="94" cy="85" r="5" fill="#1a0a02"/><circle cx="126" cy="85" r="5" fill="#1a0a02"/>
-            <circle cx="92" cy="83" r="3" fill="white" opacity="0.85"/><circle cx="124" cy="83" r="3" fill="white" opacity="0.85"/>
-            <path d="M84 78 Q94 74 104 78" stroke="#c49060" stroke-width="1.8" fill="none"/>
-            <path d="M116 78 Q126 74 136 78" stroke="#c49060" stroke-width="1.8" fill="none"/>`,
-  close:`<circle cx="94" cy="85" r="11" fill="#2a1a0a"/><circle cx="126" cy="85" r="11" fill="#2a1a0a"/>
-         <circle cx="94" cy="85" r="9" fill="#8b5a2a"/><circle cx="126" cy="85" r="9" fill="#8b5a2a"/>
-         <circle cx="96" cy="85" r="5" fill="#1a0a02"/><circle cx="128" cy="85" r="5" fill="#1a0a02"/>
-         <circle cx="90" cy="80" r="3.5" fill="white" opacity="0.9"/><circle cx="122" cy="80" r="3.5" fill="white" opacity="0.9"/>
-         <circle cx="97" cy="88" r="1.5" fill="white" opacity="0.5"/><circle cx="129" cy="88" r="1.5" fill="white" opacity="0.5"/>`
-};
-const MOUTHS={
-  idle:`<path d="M100 108 Q110 115 120 108" stroke="#5a2a10" stroke-width="2" fill="none" stroke-linecap="round"/>`,
-  happy:`<path d="M96 107 Q110 120 124 107" stroke="#5a2a10" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-         <ellipse cx="110" cy="113" rx="7" ry="9" fill="#e05070"/>
-         <ellipse cx="110" cy="117" rx="7" ry="5" fill="#f07090"/>`,
-  wrong:`<path d="M100 115 Q110 107 120 115" stroke="#5a2a10" stroke-width="2" fill="none" stroke-linecap="round"/>`,
-  thinking:`<path d="M103 109 Q110 113 117 109" stroke="#5a2a10" stroke-width="1.8" fill="none" stroke-linecap="round"/>`,
-  close:`<path d="M98 108 Q110 116 122 108" stroke="#5a2a10" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-         <ellipse cx="110" cy="112" rx="5" ry="6" fill="#e05070" opacity="0.8"/>`
-};
-
-function setEmotion(name, title, sub, tailFast) {
-  lockEyes.innerHTML = EYES[name] || EYES.idle;
-  lockMouth.innerHTML = MOUTHS[name] || MOUTHS.idle;
-  lockTitle.textContent = title;
-  lockSub.textContent = sub;
-  lockTail.style.animation = tailFast
-    ? 'tailWag 0.35s ease-in-out infinite'
-    : 'tailWagSlow 1.2s ease-in-out infinite';
-}
-
-function applyDogClass(cls) {
-  lockDogWrap.style.animation = '';
-  void lockDogWrap.offsetWidth;
-  lockDogWrap.style.animation = cls;
-}
-
-setEmotion('idle','Something special awaits…','Enter the password to unwrap your birthday surprise 🎁', false);
-
-/* Live typing: show dots on board & react emotionally */
-pwInput.addEventListener('input', function() {
-  const val = this.value;
-  const correct = CORRECT_PASSWORD;
-
-  /* Show dots on board */
-  boardTyped.textContent = val ? '• '.repeat(val.length).trim() : '';
-
-  if(!val){ setEmotion('idle','Something special awaits…','Enter the password to unwrap your birthday surprise 🎁',false); applyDogClass('animation: dogIdle 2s ease-in-out infinite'); return; }
-
-  /* measure prefix match */
-  let match=0;
-  for(let i=0;i<Math.min(val.length,correct.length);i++){
-    if(val[i]===correct[i]) match++; else break;
+  // Spawn floating confetti dots
+  const colors = ['#ff6b9d','#ff9a5c','#ffd93d','#6bcb77','#4d96ff','#c77dff','#fff'];
+  const lockScreen = document.getElementById('lock-screen');
+  for (let i = 0; i < 22; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'confetti-piece';
+    const size = 8 + Math.random() * 18;
+    dot.style.cssText = `
+      width:${size}px; height:${size}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      left:${Math.random()*100}%;
+      animation-duration:${4 + Math.random()*6}s;
+      animation-delay:${Math.random()*5}s;
+    `;
+    lockScreen.appendChild(dot);
   }
-  const ratio = match/correct.length;
 
-  if(val===correct){
-    setEmotion('happy','YAAAY! Correct! 🎊','The doggo is SO excited for you!',true);
-    applyDogClass('animation: dogHappy 0.4s ease-in-out infinite');
-  } else if(ratio>=0.7){
-    setEmotion('close','Oooh so close!','The dog can almost smell the birthday cake 🎂',true);
-    applyDogClass('animation: dogIdle 1.2s ease-in-out infinite');
-  } else {
-    setEmotion('thinking','Hmm, thinking…','The dog is carefully reading your password 👀',false);
-    applyDogClass('animation: dogIdle 2s ease-in-out infinite');
+  function burstConfetti() {
+    const box = document.getElementById('lock-box');
+    const rect = box.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 3;
+    for (let i = 0; i < 60; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'burst-piece';
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 150 + Math.random() * 250;
+      const tx = Math.cos(angle) * dist;
+      const ty = Math.sin(angle) * dist - 100;
+      piece.style.left = cx + 'px';
+      piece.style.top = cy + 'px';
+      piece.style.background = colors[Math.floor(Math.random()*colors.length)];
+      piece.style.setProperty('--tx', tx + 'px');
+      piece.style.setProperty('--ty', ty + 'px');
+      piece.style.setProperty('--tr', (Math.random()*720-360) + 'deg');
+      piece.style.animationDelay = (Math.random()*0.2) + 's';
+      document.body.appendChild(piece);
+      setTimeout(() => piece.remove(), 1600);
+    }
   }
-});
 
-function tryUnlock(){
-  if(pwInput.value===CORRECT_PASSWORD){
-    setEmotion('happy','YAAAY! Correct! 🎊','The doggo is SO excited for you!',true);
-    applyDogClass('animation: dogHappy 0.4s ease-in-out infinite');
-    setTimeout(()=>{
-      ls.style.opacity='0'; ls.style.transition='opacity 0.7s';
-      setTimeout(()=>{ ls.style.display='none'; document.body.classList.add('unlocked'); },700);
-    },700);
-  } else {
-    setEmotion('wrong','Woof! Wrong password!','The dog shakes its head… try again 🐶',false);
-    applyDogClass('animation: dogShake 0.4s ease-in-out');
-    boardTyped.textContent='❌';
-    pwError.textContent='✦ Wrong password — try again ✦';
-    pwInput.value='';
-    setTimeout(()=>{ setEmotion('idle','Something special awaits…','Enter the password to unwrap your birthday surprise 🎁',false); applyDogClass('animation: dogIdle 2s ease-in-out infinite'); pwError.textContent=''; boardTyped.textContent=''; },1600);
-    pwInput.focus();
+  // ── Dog elements ──
+  const dogWrap = document.getElementById('lock-dog-wrap');
+  const boardText = document.getElementById('board-text');
+  const boardLabel = document.getElementById('board-label');
+  const lockTitle = document.getElementById('lock-title');
+  const lockSub = document.getElementById('lock-subtitle');
+  const pwInput = document.getElementById('pw-input');
+  const pwError = document.getElementById('pw-error');
+
+  const dogTail = document.getElementById('dog-tail');
+  const earLeft = document.getElementById('ear-left');
+  const earRight = document.getElementById('ear-right');
+  const eyeLeftGroup = document.getElementById('eye-left');
+  const eyeRightGroup = document.getElementById('eye-right');
+  const lidLeft = document.getElementById('lid-left');
+  const lidRight = document.getElementById('lid-right');
+  const browLeft = document.getElementById('brow-left');
+  const browRight = document.getElementById('brow-right');
+  const mouthPath = document.getElementById('mouth-path');
+  const dogTongue = document.getElementById('dog-tongue');
+  const dogHead = document.getElementById('dog-head');
+
+  const MOUTHS = {
+    neutral: "M148 188 Q165 196 182 188",
+    smileSoft: "M145 186 Q165 202 185 186",
+    bigSmile: "M142 184 Q165 210 188 184",
+    sad: "M148 196 Q165 184 182 196"
+  };
+  const BROWS = {
+    neutral: { l: "M120 108 C128 102, 142 102, 150 108", r: "M180 108 C188 102, 202 102, 210 108" },
+    curious: { l: "M118 104 C128 96, 144 98, 150 106", r: "M180 106 C188 98, 204 96, 212 104" },
+    sad:     { l: "M122 114 C130 110, 142 112, 148 116", r: "M182 116 C190 112, 202 110, 208 114" },
+    happy:   { l: "M120 102 C130 96, 144 98, 150 104", r: "M180 104 C188 98, 202 96, 210 102" }
+  };
+
+  // Reset all dynamic classes/states
+  function resetDogClasses() {
+    dogWrap.className = '';
+    dogTail.className = '';
+    earLeft.className = '';
+    earRight.className = '';
+    dogHead.className = '';
+    dogTongue.style.opacity = '0';
+    lidLeft.setAttribute('ry', '0');
+    lidRight.setAttribute('ry', '0');
+    eyeLeftGroup.style.transform = '';
+    eyeRightGroup.style.transform = '';
   }
-}
-document.getElementById('pw-btn').addEventListener('click',tryUnlock);
-pwInput.addEventListener('keydown',e=>{ if(e.key==='Enter') tryUnlock(); });
 
-/* Add CSS for dog animations to head dynamically */
-const style=document.createElement('style');
-style.textContent=`
-#lock-dog-wrap { animation: dogIdle 2s ease-in-out infinite; }
-@keyframes dogIdle{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-@keyframes dogHappy{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-10px) rotate(-4deg)}75%{transform:translateY(-10px) rotate(4deg)}}
-@keyframes dogShake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-7px)}80%{transform:translateX(7px)}}
-`;
-document.head.appendChild(style);
+  function setState(state) {
+    resetDogClasses();
+    switch (state) {
+      case 'empty':
+        dogWrap.classList.add('dog-idle-anim');
+        dogTail.classList.add('tail-slow');
+        eyeLeftGroup.classList.add('blink-eyes');
+        eyeRightGroup.classList.add('blink-eyes');
+        mouthPath.setAttribute('d', MOUTHS.neutral);
+        browLeft.setAttribute('d', BROWS.neutral.l);
+        browRight.setAttribute('d', BROWS.neutral.r);
+        boardLabel.style.opacity = '1';
+        boardLabel.textContent = 'ENTER PASSWORD';
+        lockTitle.textContent = 'Hi there!';
+        lockSub.textContent = "Type the password — I'll show it on my sign 🐾";
+        break;
 
-/* Photo slots */
-let photoSlotCount=0, currentPhotoSlot=null;
-function createPhotoSlot(){
-  photoSlotCount++;
-  const s=document.createElement('div'); s.className='photo-slot'; s.dataset.id=photoSlotCount;
-  s.innerHTML=`<div class="slot-icon">📷</div><div class="slot-label">Click to add photo</div><img src="" alt="Photo ${photoSlotCount}"/><div class="photo-caption">Photo ${photoSlotCount}</div>`;
-  s.addEventListener('click',()=>{ currentPhotoSlot=s; document.getElementById('photo-file-input').click(); });
-  return s;
-}
-function addPhotoSlot(){ document.getElementById('photos-grid').appendChild(createPhotoSlot()); }
-for(let i=0;i<6;i++) addPhotoSlot();
-document.getElementById('photo-file-input').addEventListener('change',function(){
-  const files=Array.from(this.files); if(!files.length) return;
-  const slots=document.querySelectorAll('#photos-grid .photo-slot');
-  let idx=currentPhotoSlot?Array.from(slots).indexOf(currentPhotoSlot):0;
-  files.forEach((f,i)=>{
-    let t=slots[idx+i]; if(!t){t=createPhotoSlot();document.getElementById('photos-grid').appendChild(t);}
-    const url=URL.createObjectURL(f); const img=t.querySelector('img');
-    img.src=url; img.classList.add('loaded');
-    t.querySelector('.slot-icon').style.display='none';
-    t.querySelector('.slot-label').style.display='none';
-    t.querySelector('.photo-caption').textContent=f.name.replace(/\.[^.]+$/,'');
+      case 'typing':
+        dogHead.classList.add('head-tilt');
+        dogTail.classList.add('tail-slow');
+        eyeLeftGroup.classList.add('eye-track');
+        eyeRightGroup.classList.add('eye-track');
+        mouthPath.setAttribute('d', MOUTHS.neutral);
+        browLeft.setAttribute('d', BROWS.curious.l);
+        browRight.setAttribute('d', BROWS.curious.r);
+        boardLabel.style.opacity = '0.4';
+        lockTitle.textContent = 'Hmm, let me see…';
+        lockSub.textContent = "I'm watching the sign closely 👀";
+        break;
+
+      case 'partial':
+        dogWrap.classList.add('excited-bounce');
+        dogTail.classList.add('tail-fast');
+        earLeft.classList.add('ears-raise-left');
+        earRight.classList.add('ears-raise-right');
+        mouthPath.setAttribute('d', MOUTHS.smileSoft);
+        browLeft.setAttribute('d', BROWS.curious.l);
+        browRight.setAttribute('d', BROWS.curious.r);
+        boardLabel.style.opacity = '0.4';
+        lockTitle.textContent = "Ooh, getting warmer!";
+        lockSub.textContent = "My ears just perked up!";
+        break;
+
+      case 'close':
+        dogWrap.classList.add('happy-bounce');
+        dogTail.classList.add('tail-fast');
+        earLeft.classList.add('ears-raise-left');
+        earRight.classList.add('ears-raise-right');
+        mouthPath.setAttribute('d', MOUTHS.bigSmile);
+        browLeft.setAttribute('d', BROWS.happy.l);
+        browRight.setAttribute('d', BROWS.happy.r);
+        boardLabel.style.opacity = '0.4';
+        lockTitle.textContent = "So close, I can feel it!";
+        lockSub.textContent = "One more letter… maybe?";
+        break;
+
+      case 'correct':
+        dogWrap.classList.add('big-jump');
+        dogTail.classList.add('tail-fast');
+        earLeft.classList.add('ears-raise-left');
+        earRight.classList.add('ears-raise-right');
+        mouthPath.setAttribute('d', MOUTHS.bigSmile);
+        browLeft.setAttribute('d', BROWS.happy.l);
+        browRight.setAttribute('d', BROWS.happy.r);
+        dogTongue.style.opacity = '1';
+        boardLabel.style.opacity = '0';
+        lockTitle.textContent = "YAAAY! That's it! 🎉";
+        lockSub.textContent = "Unwrapping your surprise now…";
+        burstConfetti();
+        break;
+
+      case 'wrong':
+        dogHead.classList.add('sad-shake');
+        earLeft.classList.add('ears-droop-left');
+        earRight.classList.add('ears-droop-right');
+        dogTail.classList.add('tail-still');
+        mouthPath.setAttribute('d', MOUTHS.sad);
+        browLeft.setAttribute('d', BROWS.sad.l);
+        browRight.setAttribute('d', BROWS.sad.r);
+        boardLabel.style.opacity = '0.4';
+        lockTitle.textContent = "Aww, not quite…";
+        lockSub.textContent = "Let's try that again 🐾";
+        // resume idle tail after the shake
+        setTimeout(() => {
+          if (pwInput.value.length === 0) {
+            dogTail.classList.remove('tail-still');
+            dogTail.classList.add('tail-slow');
+          }
+        }, 1200);
+        break;
+    }
+  }
+
+  // Live board text + emotion updates while typing
+  pwInput.addEventListener('input', function () {
+    const val = this.value;
+    boardText.textContent = val;
+
+    if (!val) { setState('empty'); return; }
+
+    const correct = CORRECT_PASSWORD;
+    let matchLen = 0;
+    for (let i = 0; i < Math.min(val.length, correct.length); i++) {
+      if (val[i] === correct[i]) matchLen++;
+      else break;
+    }
+    const ratio = matchLen / correct.length;
+
+    if (val === correct) {
+      setState('close'); // visually celebrate slightly before final confirm
+    } else if (ratio >= 0.6) {
+      setState('close');
+    } else if (ratio >= 0.3) {
+      setState('partial');
+    } else {
+      setState('typing');
+    }
   });
-  this.value=''; currentPhotoSlot=null;
-});
 
-/* Video slots */
-let videoSlotCount=0, currentVideoSlot=null;
-function createVideoSlot(){
-  videoSlotCount++;
-  const s=document.createElement('div'); s.className='video-slot';
-  s.innerHTML=`<div class="slot-icon">🎬</div><div class="slot-label">Click to add video</div><video controls></video>`;
-  s.addEventListener('click',e=>{ if(e.target.tagName==='VIDEO') return; currentVideoSlot=s; document.getElementById('video-file-input').click(); });
-  return s;
-}
-function addVideoSlot(){ document.getElementById('videos-grid').appendChild(createVideoSlot()); }
-for(let i=0;i<2;i++) addVideoSlot();
-document.getElementById('video-file-input').addEventListener('change',function(){
-  const files=Array.from(this.files); if(!files.length) return;
-  const slots=document.querySelectorAll('#videos-grid .video-slot');
-  let idx=currentVideoSlot?Array.from(slots).indexOf(currentVideoSlot):0;
-  files.forEach((f,i)=>{
-    let t=slots[idx+i]; if(!t){t=createVideoSlot();document.getElementById('videos-grid').appendChild(t);}
-    const url=URL.createObjectURL(f); const vid=t.querySelector('video');
-    vid.src=url; vid.classList.add('loaded');
-    t.querySelector('.slot-icon').style.display='none';
-    t.querySelector('.slot-label').style.display='none';
+  // Lock screen logic
+  function tryUnlock() {
+    if (pwInput.value === CORRECT_PASSWORD) {
+      setState('correct');
+      setTimeout(() => {
+        lockScreen.style.opacity = '0';
+        lockScreen.style.transition = 'opacity 0.6s';
+        setTimeout(() => {
+          lockScreen.style.display = 'none';
+          document.body.classList.add('unlocked');
+        }, 600);
+      }, 1000);
+    } else {
+      setState('wrong');
+      pwError.textContent = '✦ Wrong password — try again ✦';
+      pwInput.value = '';
+      boardText.textContent = '';
+      setTimeout(() => {
+        setState('empty');
+        pwError.textContent = '';
+      }, 1500);
+      pwInput.focus();
+    }
+  }
+
+  document.getElementById('pw-btn').addEventListener('click', tryUnlock);
+  pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+
+  // Initialize
+  setState('empty');
+
+  // ── Photo slots ──
+  let photoSlotCount = 0;
+  let currentPhotoSlot = null;
+
+  function createPhotoSlot() {
+    photoSlotCount++;
+    const slot = document.createElement('div');
+    slot.className = 'photo-slot';
+    slot.dataset.id = photoSlotCount;
+    slot.innerHTML = `
+      <div class="slot-icon">📷</div>
+      <div class="slot-label">Click to add photo</div>
+      <img src="" alt="Photo ${photoSlotCount}" />
+      <div class="photo-caption">Photo ${photoSlotCount}</div>
+    `;
+    slot.addEventListener('click', () => {
+      currentPhotoSlot = slot;
+      document.getElementById('photo-file-input').click();
+    });
+    return slot;
+  }
+
+  function addPhotoSlot() {
+    document.getElementById('photos-grid').appendChild(createPhotoSlot());
+  }
+  for (let i = 0; i < 6; i++) addPhotoSlot();
+
+  document.getElementById('photo-file-input').addEventListener('change', function() {
+    const files = Array.from(this.files);
+    if (!files.length) return;
+    const slots = document.querySelectorAll('#photos-grid .photo-slot');
+    let slotIdx = currentPhotoSlot ? Array.from(slots).indexOf(currentPhotoSlot) : 0;
+    files.forEach((file, i) => {
+      let target = slots[slotIdx + i];
+      if (!target) { target = createPhotoSlot(); document.getElementById('photos-grid').appendChild(target); }
+      const url = URL.createObjectURL(file);
+      const img = target.querySelector('img');
+      img.src = url; img.classList.add('loaded');
+      target.querySelector('.slot-icon').style.display = 'none';
+      target.querySelector('.slot-label').style.display = 'none';
+      target.querySelector('.photo-caption').textContent = file.name.replace(/\.[^.]+$/, '');
+    });
+    this.value = ''; currentPhotoSlot = null;
   });
-  this.value=''; currentVideoSlot=null;
-});
 
-/* Wish modal */
-function openWishModal(){ document.getElementById('wish-editor').value=document.getElementById('wish-text').innerText; document.getElementById('from-editor').value=document.getElementById('wish-from').innerText; document.getElementById('wish-modal').classList.add('open'); }
-function closeWishModal(){ document.getElementById('wish-modal').classList.remove('open'); }
-function saveWish(){ document.getElementById('wish-text').innerText=document.getElementById('wish-editor').value; document.getElementById('wish-from').innerText=document.getElementById('from-editor').value; closeWishModal(); }
-document.getElementById('wish-modal').addEventListener('click',function(e){ if(e.target===this) closeWishModal(); });
+  // ── Video slots ──
+  let videoSlotCount = 0;
+  let currentVideoSlot = null;
+
+  function createVideoSlot() {
+    videoSlotCount++;
+    const slot = document.createElement('div');
+    slot.className = 'video-slot';
+    slot.innerHTML = `
+      <div class="slot-icon">🎬</div>
+      <div class="slot-label">Click to add video</div>
+      <video controls></video>
+    `;
+    slot.addEventListener('click', e => {
+      if (e.target.tagName === 'VIDEO') return;
+      currentVideoSlot = slot;
+      document.getElementById('video-file-input').click();
+    });
+    return slot;
+  }
+
+  function addVideoSlot() {
+    document.getElementById('videos-grid').appendChild(createVideoSlot());
+  }
+  for (let i = 0; i < 2; i++) addVideoSlot();
+
+  document.getElementById('video-file-input').addEventListener('change', function() {
+    const files = Array.from(this.files);
+    if (!files.length) return;
+    const slots = document.querySelectorAll('#videos-grid .video-slot');
+    let slotIdx = currentVideoSlot ? Array.from(slots).indexOf(currentVideoSlot) : 0;
+    files.forEach((file, i) => {
+      let target = slots[slotIdx + i];
+      if (!target) { target = createVideoSlot(); document.getElementById('videos-grid').appendChild(target); }
+      const url = URL.createObjectURL(file);
+      const vid = target.querySelector('video');
+      vid.src = url; vid.classList.add('loaded');
+      target.querySelector('.slot-icon').style.display = 'none';
+      target.querySelector('.slot-label').style.display = 'none';
+    });
+    this.value = ''; currentVideoSlot = null;
+  });
+
+  // ── Wish editor ──
+  function openWishModal() {
+    document.getElementById('wish-editor').value = document.getElementById('wish-text').innerText;
+    document.getElementById('from-editor').value = document.getElementById('wish-from').innerText;
+    document.getElementById('wish-modal').classList.add('open');
+  }
+  function closeWishModal() { document.getElementById('wish-modal').classList.remove('open'); }
+  function saveWish() {
+    document.getElementById('wish-text').innerText = document.getElementById('wish-editor').value;
+    document.getElementById('wish-from').innerText = document.getElementById('from-editor').value;
+    closeWishModal();
+  }
+  document.getElementById('wish-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeWishModal();
+  });
 </script>
 </body>
 </html>
-HTMLEOF
-echo "Done"
