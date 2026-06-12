@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Happy Birthday, Ariadne! 🎀🐾</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,7 +13,7 @@
             box-sizing: border-box;
         }
 
-        /* ========= LOCK SCREEN – CONFETTI GRADIENT BACKGROUND (exact hex colors) ========= */
+        /* ========= LOCK SCREEN – CONFETTI GRADIENT BACKGROUND ========= */
         #lock-screen {
             position: fixed;
             inset: 0;
@@ -19,7 +21,7 @@
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            font-family: 'Georgia', serif;
+            font-family: 'Inter', sans-serif;
             overflow: hidden;
             background: linear-gradient(135deg, #F16C89, #F7A361, #CB6BE5, #609BF1, #59CD90);
             background-size: 300% 300%;
@@ -31,7 +33,7 @@
             100% { background-position: 0% 0%; }
         }
 
-        /* confetti dots layer (bokeh + circles) */
+        /* confetti layer */
         .confetti-layer {
             position: absolute;
             inset: 0;
@@ -41,7 +43,7 @@
         .confetti-dot {
             position: absolute;
             border-radius: 50%;
-            opacity: 0.6;
+            opacity: 0.5;
             animation: floatConfetti linear infinite;
         }
         @keyframes floatConfetti {
@@ -49,7 +51,7 @@
             100% { transform: translateY(-20vh) rotate(720deg); opacity: 0; }
         }
 
-        /* burst confetti on correct password */
+        /* burst confetti */
         .burst-piece {
             position: fixed;
             width: 10px;
@@ -64,12 +66,12 @@
             100% { transform: translate(var(--tx), var(--ty)) rotate(var(--tr)) scale(0.3); opacity: 0; }
         }
 
-        /* glassmorphic card */
+        /* glass card */
         .glass-card {
             position: relative;
             z-index: 10;
             background: rgba(255, 248, 245, 0.25);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(24px);
             border-radius: 48px;
             padding: 1.8rem 2rem 2rem;
             width: 94%;
@@ -78,10 +80,10 @@
             box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 245, 240, 0.5);
         }
 
-        /* dog portrait container */
+        /* dog container - slightly larger */
         .dog-portrait {
             width: 100%;
-            margin: -1rem auto 0.2rem;
+            margin: -0.8rem auto 0.2rem;
             filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.1));
         }
         .dog-portrait svg {
@@ -90,7 +92,7 @@
             display: block;
         }
 
-        /* password input (single, clean) */
+        /* password input */
         .pw-field {
             margin: 1.5rem 0 0.8rem;
         }
@@ -140,7 +142,7 @@
             color: rgba(255, 250, 240, 0.85);
         }
 
-        /* ========= MAIN PAGE (clean, well-spaced) ========= */
+        /* ========= MAIN PAGE (full original version with photos, videos, wish, 14 dogs) ========= */
         body {
             font-family: 'Georgia', serif;
             background: #fffaf8;
@@ -218,7 +220,6 @@
             margin-bottom: 2rem;
         }
 
-        /* photo grid */
         #photos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
@@ -363,8 +364,8 @@
         /* lock screen dog animations */
         @keyframes dogIdleSway { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-3px) rotate(0.5deg); } }
         .dog-idle-anim { animation: dogIdleSway 3s ease-in-out infinite; }
-        @keyframes headTilt { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-5deg); } }
-        .head-tilt { animation: headTilt 1.6s ease-in-out infinite; transform-origin: 250px 190px; }
+        @keyframes headTilt { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-4deg); } }
+        .head-tilt { animation: headTilt 1.6s ease-in-out infinite; transform-origin: 150px 110px; }
         @keyframes excitedBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
         .excited-bounce { animation: excitedBounce 0.35s ease-in-out infinite; }
         @keyframes happyBounce { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-6px) scale(1.02); } }
@@ -374,34 +375,32 @@
         @keyframes sadShake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
         .sad-shake { animation: sadShake 0.5s ease-in-out 2; }
         @keyframes tailWagSlow { 0%,100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
-        .tail-slow { animation: tailWagSlow 1.4s infinite; transform-origin: 120px 250px; }
+        .tail-slow { animation: tailWagSlow 1.4s infinite; transform-origin: 70px 170px; }
         @keyframes tailWagFast { 0%,100% { transform: rotate(-22deg); } 50% { transform: rotate(22deg); } }
-        .tail-fast { animation: tailWagFast 0.22s infinite; transform-origin: 120px 250px; }
+        .tail-fast { animation: tailWagFast 0.22s infinite; transform-origin: 70px 170px; }
         .tail-still { animation: none; transform: rotate(0deg); }
         @keyframes earsRaise { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-5px) rotate(-5deg); } }
-        .ears-raise-left { animation: earsRaise 0.3s infinite; transform-origin: 160px 120px; }
-        .ears-raise-right { animation: earsRaise 0.3s infinite reverse; transform-origin: 340px 120px; }
-        .ears-droop-left { transform: rotate(14deg) translateY(10px); transform-origin: 160px 120px; transition: 0.3s; }
-        .ears-droop-right { transform: rotate(-14deg) translateY(10px); transform-origin: 340px 120px; transition: 0.3s; }
+        .ears-raise-left { animation: earsRaise 0.3s infinite; transform-origin: 95px 68px; }
+        .ears-raise-right { animation: earsRaise 0.3s infinite reverse; transform-origin: 205px 68px; }
+        .ears-droop-left { transform: rotate(14deg) translateY(10px); transform-origin: 95px 68px; transition: 0.3s; }
+        .ears-droop-right { transform: rotate(-14deg) translateY(10px); transform-origin: 205px 68px; transition: 0.3s; }
         @keyframes blink { 0%,92%,100% { transform: scaleY(1); } 96% { transform: scaleY(0.1); } }
         .blink-eyes { animation: blink 4s infinite; transform-origin: center; }
         @keyframes eyeShift { 0%,100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
         .eye-track { animation: eyeShift 0.8s infinite; }
-        @keyframes tonguePant { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(1.2); } }
-        .tongue-pant-anim { animation: tonguePant 0.35s infinite; transform-origin: top; }
     </style>
 </head>
 <body>
 
-<!-- LOCK SCREEN – EXACT MATCH TO THE DETAILED SHIH TZU DESCRIPTION -->
+<!-- LOCK SCREEN – CORRECTED SHIH TZU (face fixed, slightly larger, no weird artifacts) -->
 <div id="lock-screen">
     <div class="confetti-layer" id="confettiLayer"></div>
     <div class="glass-card">
         <div class="dog-portrait">
-            <!-- Studio-quality Shih Tzu: cream/gold, dark patches, teal harness, head tilt -->
-            <svg viewBox="0 0 500 480" xmlns="http://www.w3.org/2000/svg">
+            <!-- Realistic Shih Tzu: cream/gold, dark patches, teal harness, head tilt, NO pacifier – face fixed -->
+            <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <radialGradient id="creamFur" cx="45%" cy="35%" r="70%">
+                    <radialGradient id="furCream" cx="45%" cy="35%" r="70%">
                         <stop offset="0%" stop-color="#FDFBF7"/>
                         <stop offset="55%" stop-color="#F9EEDD"/>
                         <stop offset="100%" stop-color="#D4A373"/>
@@ -419,103 +418,92 @@
                         <stop offset="0%" stop-color="#2a1e14"/>
                         <stop offset="100%" stop-color="#000000"/>
                     </radialGradient>
-                    <filter id="furTexture" x="-10%" y="-10%" width="120%" height="120%">
-                        <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="3" result="noise"/>
-                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2"/>
+                    <filter id="furSoft" x="-10%" y="-10%" width="120%" height="120%">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="2" result="noise"/>
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.8"/>
                     </filter>
                 </defs>
-
-                <!-- Tail (fluffy) -->
+                
+                <!-- Tail -->
                 <g id="dog-tail" class="tail-slow">
-                    <path d="M120 290 C65 255, 30 200, 50 140 C78 180, 108 225, 125 290Z" fill="url(#creamFur)" stroke="#e0c8a8" stroke-width="2"/>
-                    <path d="M62 180 C78 215, 98 245, 118 278" stroke="#f2e0c8" fill="none" stroke-width="3" opacity="0.6"/>
+                    <path d="M72 170 C40 150, 18 120, 32 85 C48 105, 65 135, 75 170Z" fill="url(#furCream)" stroke="#e0c8a8" stroke-width="1.5"/>
+                    <path d="M38 100 C48 125, 60 148, 70 168" stroke="#f2e0c8" fill="none" stroke-width="2" opacity="0.6"/>
                 </g>
 
-                <!-- Body (sitting, fluffy) -->
-                <g id="dog-body" filter="url(#furTexture)">
-                    <ellipse cx="250" cy="300" rx="140" ry="105" fill="url(#creamFur)"/>
-                    <ellipse cx="245" cy="335" rx="85" ry="55" fill="#fffaf3" opacity="0.6"/>
-                    <g stroke="#eddbbc" stroke-width="3" fill="none" opacity="0.5">
-                        <path d="M150 270 Q135 310 155 365"/>
-                        <path d="M350 270 Q365 310 345 365"/>
-                        <path d="M190 255 Q178 300 200 375"/>
-                        <path d="M310 255 Q322 300 300 375"/>
+                <!-- Body -->
+                <g id="dog-body" filter="url(#furSoft)">
+                    <ellipse cx="150" cy="185" rx="82" ry="62" fill="url(#furCream)"/>
+                    <ellipse cx="148" cy="205" rx="50" ry="34" fill="#fffaf3" opacity="0.6"/>
+                    <g stroke="#eddbbc" stroke-width="2" fill="none" opacity="0.5">
+                        <path d="M92 165 Q84 192 96 225"/><path d="M208 165 Q216 192 204 225"/>
+                        <path d="M114 158 Q108 185 120 230"/><path d="M186 158 Q192 185 180 230"/>
                     </g>
-                    <!-- hind legs -->
-                    <ellipse cx="175" cy="385" rx="35" ry="45" fill="url(#creamFur)"/>
-                    <ellipse cx="175" cy="418" rx="26" ry="15" fill="#f3e7d4"/>
-                    <ellipse cx="325" cy="385" rx="35" ry="45" fill="url(#creamFur)"/>
-                    <ellipse cx="325" cy="418" rx="26" ry="15" fill="#f3e7d4"/>
+                    <ellipse cx="108" cy="235" rx="22" ry="28" fill="url(#furCream)"/>
+                    <ellipse cx="108" cy="255" rx="16" ry="10" fill="#f3e7d4"/>
+                    <ellipse cx="192" cy="235" rx="22" ry="28" fill="url(#furCream)"/>
+                    <ellipse cx="192" cy="255" rx="16" ry="10" fill="#f3e7d4"/>
                 </g>
 
-                <!-- Dark floppy ears -->
+                <!-- Ears (dark) -->
                 <g id="ear-left" class="ear-neutral">
-                    <path d="M155 110 C85 90, 40 165, 85 235 C120 210, 148 155, 168 118Z" fill="url(#darkEar)" filter="url(#furTexture)"/>
-                    <path d="M110 165 C90 195, 90 220, 108 235" stroke="#2b1a0c" stroke-width="2" fill="none" opacity="0.5"/>
+                    <path d="M95 68 C48 56, 28 100, 54 142 C72 128, 88 98, 100 72Z" fill="url(#darkEar)" filter="url(#furSoft)"/>
+                    <path d="M68 102 C58 120, 58 135, 68 145" stroke="#2b1a0c" stroke-width="1.5" fill="none" opacity="0.5"/>
                 </g>
                 <g id="ear-right" class="ear-neutral">
-                    <path d="M345 110 C415 90, 460 165, 415 235 C380 210, 352 155, 332 118Z" fill="url(#darkEar)" filter="url(#furTexture)"/>
-                    <path d="M390 165 C410 195, 410 220, 392 235" stroke="#2b1a0c" stroke-width="2" fill="none" opacity="0.5"/>
+                    <path d="M205 68 C252 56, 272 100, 246 142 C228 128, 212 98, 200 72Z" fill="url(#darkEar)" filter="url(#furSoft)"/>
+                    <path d="M232 102 C242 120, 242 135, 232 145" stroke="#2b1a0c" stroke-width="1.5" fill="none" opacity="0.5"/>
                 </g>
 
                 <!-- Head (round, fluffy) -->
-                <g id="dog-head" filter="url(#furTexture)">
-                    <ellipse cx="250" cy="180" rx="122" ry="112" fill="url(#creamFur)"/>
-                    <!-- top fluffy fringe -->
-                    <g fill="url(#creamFur)">
-                        <ellipse cx="172" cy="88" rx="44" ry="40" transform="rotate(-15 172 88)"/>
-                        <ellipse cx="250" cy="70" rx="50" ry="46"/>
-                        <ellipse cx="328" cy="88" rx="44" ry="40" transform="rotate(15 328 88)"/>
+                <g id="dog-head" filter="url(#furSoft)">
+                    <ellipse cx="150" cy="110" rx="74" ry="68" fill="url(#furCream)"/>
+                    <g fill="url(#furCream)">
+                        <ellipse cx="108" cy="56" rx="28" ry="25" transform="rotate(-15 108 56)"/>
+                        <ellipse cx="150" cy="44" rx="32" ry="28"/>
+                        <ellipse cx="192" cy="56" rx="28" ry="25" transform="rotate(15 192 56)"/>
                     </g>
 
-                    <!-- Dark patches around eyes (distinct Shih Tzu mask) -->
-                    <ellipse cx="195" cy="168" rx="40" ry="34" fill="url(#darkPatch)" opacity="0.9"/>
-                    <ellipse cx="305" cy="168" rx="40" ry="34" fill="url(#darkPatch)" opacity="0.9"/>
+                    <!-- Dark patches around eyes -->
+                    <ellipse cx="122" cy="102" rx="26" ry="22" fill="url(#darkPatch)" opacity="0.85"/>
+                    <ellipse cx="178" cy="102" rx="26" ry="22" fill="url(#darkPatch)" opacity="0.85"/>
 
-                    <!-- Muzzle (short, black nose) -->
-                    <ellipse cx="250" cy="230" rx="62" ry="48" fill="#fffcf5"/>
-                    <g stroke="#f1e7d4" stroke-width="2.5" fill="none" opacity="0.7">
-                        <path d="M208 210 Q198 232 206 252"/>
-                        <path d="M292 210 Q302 232 294 252"/>
+                    <!-- Muzzle -->
+                    <ellipse cx="150" cy="140" rx="38" ry="30" fill="#fffcf5"/>
+                    <g stroke="#f1e7d4" stroke-width="1.8" fill="none" opacity="0.7">
+                        <path d="M128 130 Q122 145 128 158"/>
+                        <path d="M172 130 Q178 145 172 158"/>
                     </g>
 
                     <!-- Black nose -->
-                    <ellipse cx="250" cy="202" rx="23" ry="16" fill="url(#blackNose)"/>
-                    <ellipse cx="242" cy="194" rx="7" ry="5" fill="rgba(255,255,235,0.9)"/>
-                    <ellipse cx="243" cy="207" rx="3.5" ry="2.5" fill="#1a1008"/>
-                    <ellipse cx="257" cy="207" rx="3.5" ry="2.5" fill="#1a1008"/>
+                    <ellipse cx="150" cy="125" rx="14" ry="10" fill="url(#blackNose)"/>
+                    <ellipse cx="146" cy="120" rx="4" ry="3" fill="rgba(255,255,235,0.9)"/>
+                    <ellipse cx="146" cy="129" rx="2.5" ry="1.8" fill="#1a1008"/>
+                    <ellipse cx="154" cy="129" rx="2.5" ry="1.8" fill="#1a1008"/>
 
-                    <!-- Large dark eyes with catchlights -->
+                    <!-- Eyes (large, dark, expressive) -->
                     <g id="eyes-group">
-                        <ellipse cx="196" cy="170" rx="17" ry="19" fill="#111111"/>
-                        <ellipse cx="189" cy="157" rx="6.5" ry="7.5" fill="white" opacity="0.95"/>
-                        <ellipse cx="200" cy="167" rx="3.5" ry="3" fill="white" opacity="0.6"/>
-                        <ellipse cx="304" cy="170" rx="17" ry="19" fill="#111111"/>
-                        <ellipse cx="297" cy="157" rx="6.5" ry="7.5" fill="white" opacity="0.95"/>
-                        <ellipse cx="308" cy="167" rx="3.5" ry="3" fill="white" opacity="0.6"/>
-                        <!-- eyelids -->
-                        <ellipse id="lid-left" cx="196" cy="160" rx="21" ry="0" fill="#fef3e6"/>
-                        <ellipse id="lid-right" cx="304" cy="160" rx="21" ry="0" fill="#fef3e6"/>
+                        <ellipse cx="122" cy="104" rx="10" ry="12" fill="#111111"/>
+                        <ellipse cx="118" cy="96" rx="4" ry="4.5" fill="white" opacity="0.95"/>
+                        <ellipse cx="125" cy="102" rx="2" ry="2" fill="white" opacity="0.6"/>
+                        <ellipse cx="178" cy="104" rx="10" ry="12" fill="#111111"/>
+                        <ellipse cx="174" cy="96" rx="4" ry="4.5" fill="white" opacity="0.95"/>
+                        <ellipse cx="181" cy="102" rx="2" ry="2" fill="white" opacity="0.6"/>
                     </g>
 
-                    <!-- eyebrows (dark, expressive) -->
-                    <g id="brows" stroke="#8B5A2B" stroke-width="5" fill="none" stroke-linecap="round">
-                        <path id="brow-left" d="M168 140 Q198 125 222 140"/>
-                        <path id="brow-right" d="M278 140 Q302 125 332 140"/>
+                    <!-- Eyebrows -->
+                    <g id="brows" stroke="#8B5A2B" stroke-width="3" fill="none" stroke-linecap="round">
+                        <path id="brow-left" d="M106 88 Q122 80 136 88"/>
+                        <path id="brow-right" d="M164 88 Q178 80 194 88"/>
                     </g>
 
                     <!-- Mouth (soft smile) -->
-                    <path id="mouth-path" d="M226 248 Q250 262 274 248" stroke="#b2805a" stroke-width="3" fill="none" stroke-linecap="round"/>
-                    <g id="tongue-group" opacity="0">
-                        <path d="M236 255 Q250 290 264 255 Q255 274 250 278 Q245 274 236 255Z" fill="#ff8caa"/>
-                        <path d="M250 260 L250 276" stroke="#e55979" stroke-width="2"/>
-                    </g>
+                    <path id="mouth-path" d="M138 150 Q150 158 162 150" stroke="#b2805a" stroke-width="2" fill="none" stroke-linecap="round"/>
 
-                    <!-- Teal blue and black harness (exact #00A896 & #111111) -->
-                    <path d="M170 262 Q250 236 330 262 Q325 278 250 280 Q175 278 170 262Z" fill="#00A896" stroke="#111111" stroke-width="2" opacity="0.95"/>
-                    <path d="M198 262 L198 288" stroke="#00A896" stroke-width="6" stroke-linecap="round"/>
-                    <path d="M302 262 L302 288" stroke="#00A896" stroke-width="6" stroke-linecap="round"/>
-                    <rect x="228" y="274" width="44" height="10" rx="4" fill="#111111" opacity="0.8"/>
+                    <!-- Teal harness -->
+                    <path d="M106 158 Q150 142 194 158 Q192 168 150 170 Q108 168 106 158Z" fill="#00A896" stroke="#111111" stroke-width="1.5" opacity="0.95"/>
+                    <path d="M122 158 L122 175" stroke="#00A896" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M178 158 L178 175" stroke="#00A896" stroke-width="4" stroke-linecap="round"/>
+                    <rect x="144" y="165" width="12" height="6" rx="2" fill="#111111" opacity="0.8"/>
                 </g>
             </svg>
         </div>
@@ -531,7 +519,7 @@
     </div>
 </div>
 
-<!-- ========= MAIN PAGE (no big dog, exactly 14 wandering dogs) ========= -->
+<!-- ========= MAIN PAGE (original full version) ========= -->
 <div id="hero">
     <div class="hero-eyebrow">A little something for you</div>
     <h1>Happy<br><em>Birthday,</em><br>Ariadne 🎂</h1>
@@ -568,7 +556,7 @@
 <footer>Made with love &nbsp;·&nbsp; 🐾 Birthday magic</footer>
 
 <script>
-    // ========== PASSWORD + DOG EMOTIONS ==========
+    // ========== PASSWORD = "bella" ==========
     const CORRECT_PASSWORD = "bella";
     const pwInput = document.getElementById('password-input');
     const unlockBtn = document.getElementById('unlock-btn');
@@ -577,17 +565,14 @@
     const lockTitle = document.getElementById('lock-title');
     const lockSub = document.getElementById('lock-subtitle');
 
-    // Dog SVG elements
+    // Dog elements (from SVG)
     const dogTail = document.getElementById('dog-tail');
     const earLeft = document.getElementById('ear-left');
     const earRight = document.getElementById('ear-right');
     const eyeGroup = document.getElementById('eyes-group');
-    const lidLeft = document.getElementById('lid-left');
-    const lidRight = document.getElementById('lid-right');
     const browLeft = document.getElementById('brow-left');
     const browRight = document.getElementById('brow-right');
     const mouthPath = document.getElementById('mouth-path');
-    const dogTongue = document.getElementById('tongue-group');
     const dogHead = document.getElementById('dog-head');
     const dogWrap = document.querySelector('.dog-portrait');
 
@@ -597,12 +582,9 @@
         if (earLeft) earLeft.classList.remove('ears-raise-left', 'ears-droop-left');
         if (earRight) earRight.classList.remove('ears-raise-right', 'ears-droop-right');
         if (dogHead) dogHead.classList.remove('head-tilt', 'sad-shake');
-        if (dogTongue) dogTongue.style.opacity = '0';
-        if (lidLeft) lidLeft.setAttribute('ry', '0');
-        if (lidRight) lidRight.setAttribute('ry', '0');
-        if (mouthPath) mouthPath.setAttribute('d', "M226 248 Q250 262 274 248");
-        if (browLeft) browLeft.setAttribute('d', "M168 140 Q198 125 222 140");
-        if (browRight) browRight.setAttribute('d', "M278 140 Q302 125 332 140");
+        if (mouthPath) mouthPath.setAttribute('d', "M138 150 Q150 158 162 150");
+        if (browLeft) browLeft.setAttribute('d', "M106 88 Q122 80 136 88");
+        if (browRight) browRight.setAttribute('d', "M164 88 Q178 80 194 88");
     }
 
     function setDogState(state) {
@@ -618,8 +600,8 @@
             case 'typing':
                 if (dogHead) dogHead.classList.add('head-tilt');
                 if (dogTail) dogTail.classList.add('tail-slow');
-                if (browLeft) browLeft.setAttribute('d', "M165 138 Q198 122 225 138");
-                if (browRight) browRight.setAttribute('d', "M275 138 Q302 122 335 138");
+                if (browLeft) browLeft.setAttribute('d', "M103 86 Q122 78 138 86");
+                if (browRight) browRight.setAttribute('d', "M162 86 Q178 78 197 86");
                 lockTitle.innerText = "Hmm, let me see…";
                 lockSub.innerText = "I'm watching every letter 👀";
                 break;
@@ -628,9 +610,9 @@
                 if (dogTail) dogTail.classList.add('tail-fast');
                 if (earLeft) earLeft.classList.add('ears-raise-left');
                 if (earRight) earRight.classList.add('ears-raise-right');
-                if (mouthPath) mouthPath.setAttribute('d', "M222 244 Q250 262 278 244");
-                if (browLeft) browLeft.setAttribute('d', "M164 130 Q198 116 226 130");
-                if (browRight) browRight.setAttribute('d', "M274 130 Q302 116 336 130");
+                if (mouthPath) mouthPath.setAttribute('d', "M135 147 Q150 160 165 147");
+                if (browLeft) browLeft.setAttribute('d', "M100 82 Q122 74 140 82");
+                if (browRight) browRight.setAttribute('d', "M160 82 Q178 74 200 82");
                 lockTitle.innerText = "Ooh, getting warmer!";
                 lockSub.innerText = "My ears just perked up!";
                 break;
@@ -639,9 +621,9 @@
                 if (dogTail) dogTail.classList.add('tail-fast');
                 if (earLeft) earLeft.classList.add('ears-raise-left');
                 if (earRight) earRight.classList.add('ears-raise-right');
-                if (mouthPath) mouthPath.setAttribute('d', "M218 240 Q250 264 282 240");
-                if (browLeft) browLeft.setAttribute('d', "M160 124 Q198 110 228 126");
-                if (browRight) browRight.setAttribute('d', "M272 126 Q302 110 340 124");
+                if (mouthPath) mouthPath.setAttribute('d', "M132 144 Q150 164 168 144");
+                if (browLeft) browLeft.setAttribute('d', "M98 78 Q122 68 142 78");
+                if (browRight) browRight.setAttribute('d', "M158 78 Q178 68 202 78");
                 lockTitle.innerText = "So close! One more letter…";
                 lockSub.innerText = "I can almost taste it!";
                 break;
@@ -650,10 +632,9 @@
                 if (dogTail) dogTail.classList.add('tail-fast');
                 if (earLeft) earLeft.classList.add('ears-raise-left');
                 if (earRight) earRight.classList.add('ears-raise-right');
-                if (mouthPath) mouthPath.setAttribute('d', "M212 235 Q250 270 288 235");
-                if (dogTongue) dogTongue.style.opacity = '1';
-                if (browLeft) browLeft.setAttribute('d', "M156 118 Q198 102 230 120");
-                if (browRight) browRight.setAttribute('d', "M270 120 Q302 102 344 118");
+                if (mouthPath) mouthPath.setAttribute('d', "M128 140 Q150 170 172 140");
+                if (browLeft) browLeft.setAttribute('d', "M95 72 Q122 62 145 74");
+                if (browRight) browRight.setAttribute('d', "M155 74 Q178 62 205 72");
                 lockTitle.innerText = "YAAAY! That's it! 🎉";
                 lockSub.innerText = "Unwrapping your surprise…";
                 burstConfetti();
@@ -663,9 +644,9 @@
                 if (earLeft) earLeft.classList.add('ears-droop-left');
                 if (earRight) earRight.classList.add('ears-droop-right');
                 if (dogTail) dogTail.classList.add('tail-still');
-                if (mouthPath) mouthPath.setAttribute('d', "M228 256 Q250 244 272 256");
-                if (browLeft) browLeft.setAttribute('d', "M170 152 Q198 148 220 156");
-                if (browRight) browRight.setAttribute('d', "M280 156 Q302 148 330 152");
+                if (mouthPath) mouthPath.setAttribute('d', "M140 154 Q150 146 160 154");
+                if (browLeft) browLeft.setAttribute('d', "M108 92 Q122 90 134 96");
+                if (browRight) browRight.setAttribute('d', "M166 96 Q178 90 192 92");
                 lockTitle.innerText = "Aww, not quite…";
                 lockSub.innerText = "Let's try that again 🐾";
                 errorDiv.innerText = "✦ Wrong password — try again ✦";
@@ -674,21 +655,21 @@
         }
     }
 
-    // background confetti (bokeh + circles in hex colors)
+    // background confetti
     const confettiColors = ['#FF4E7E', '#FFB834', '#609BF1', '#FFFFFF', '#59CD90'];
     const confettiLayer = document.getElementById('confettiLayer');
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 70; i++) {
         const dot = document.createElement('div');
         dot.className = 'confetti-dot';
-        const size = 4 + Math.random() * 18;
-        dot.style.cssText = `width:${size}px; height:${size}px; background:${confettiColors[Math.floor(Math.random()*confettiColors.length)]}; left:${Math.random()*100}%; animation-duration:${5+Math.random()*10}s; animation-delay:${Math.random()*6}s; opacity:${0.3+Math.random()*0.5}; filter:blur(${Math.random()<0.3?'2px':'0px'});`;
+        const size = 4 + Math.random() * 16;
+        dot.style.cssText = `width:${size}px; height:${size}px; background:${confettiColors[Math.floor(Math.random()*confettiColors.length)]}; left:${Math.random()*100}%; animation-duration:${5+Math.random()*10}s; animation-delay:${Math.random()*6}s; opacity:${0.3+Math.random()*0.5};`;
         confettiLayer.appendChild(dot);
     }
 
     function burstConfetti() {
         const box = document.querySelector('.glass-card'); const rect = box.getBoundingClientRect();
         const cx = rect.left + rect.width/2, cy = rect.top + rect.height/3;
-        for(let i=0;i<120;i++) {
+        for(let i=0;i<100;i++) {
             const piece = document.createElement('div'); piece.className = 'burst-piece';
             const angle = Math.random()*Math.PI*2, dist = 140+Math.random()*300;
             const tx = Math.cos(angle)*dist, ty = Math.sin(angle)*dist-100;
@@ -749,6 +730,7 @@
         return svg;
     }
 
+    let wanderingCount = 0;
     function addWanderingDog() {
         if (!document.body.classList.contains('unlocked')) return;
         const dogDiv = document.createElement('div');
@@ -789,7 +771,7 @@
         }, 12000);
     }
 
-    // ========== PHOTO & VIDEO SLOTS (fully functional) ==========
+    // ========== PHOTO & VIDEO SLOTS (full original functionality) ==========
     let photoSlotCount=0, currentPhotoSlot=null;
     function createPhotoSlot() { photoSlotCount++; const slot=document.createElement('div'); slot.className='photo-slot'; slot.innerHTML=`<div class="slot-icon">📷</div><div class="slot-label">add photo</div><img src=""/><div class="photo-caption"></div>`; slot.addEventListener('click',()=>{ currentPhotoSlot=slot; document.getElementById('photo-file-input').click(); }); return slot; }
     function addPhotoSlot(){ document.getElementById('photos-grid').appendChild(createPhotoSlot()); }
