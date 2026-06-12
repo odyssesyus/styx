@@ -76,7 +76,7 @@
             box-shadow: 0 25px 45px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 245, 240, 0.5);
         }
 
-        /* puppy container - scaled down by ~20% */
+        /* puppy container - scaled down */
         .dog-portrait {
             width: 80%;
             margin: -1rem auto 0rem;
@@ -141,16 +141,17 @@
             color: rgba(255, 250, 240, 0.9);
         }
 
-        /* ========= MAIN PAGE – SCULPTED ROSE WALL (monochromatic pink, edge-to-edge) ========= */
+        /* ========= MAIN PAGE – SCULPTED ROSE WALL (hand-crafted SVG background) ========= */
         body {
             font-family: 'Georgia', serif;
-            background: #FFF2EE;
+            background: #FFFAF5;
             color: #4a3b35;
             overflow-x: hidden;
         }
-        /* Floral wallpaper: layered radial gradients, conic patterns, and pseudo-elements to mimic sculpted roses & leaves */
+
+        /* Ultra-detailed rose garden background: single, non-repeating, edge-to-edge */
         body.unlocked {
-            background: #FCE4EC;  /* base warm blush */
+            background: #FCE4EC;
             position: relative;
         }
         body.unlocked::before {
@@ -162,30 +163,13 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
-            background-image: 
-                /* Giant rose centers (spiral illusion) */
-                radial-gradient(circle at 18% 22%, rgba(255,210,215,0.4) 0%, rgba(245,175,185,0.2) 40%, transparent 70%),
-                radial-gradient(circle at 72% 65%, rgba(255,200,210,0.45) 0%, rgba(245,165,180,0.2) 45%, transparent 75%),
-                radial-gradient(circle at 45% 80%, rgba(250,195,205,0.5) 0%, rgba(240,155,170,0.25) 50%, transparent 80%),
-                radial-gradient(circle at 88% 15%, rgba(255,215,225,0.4) 0%, rgba(245,180,195,0.2) 45%, transparent 70%),
-                radial-gradient(circle at 5% 55%, rgba(255,205,215,0.45) 0%, rgba(240,170,185,0.2) 50%, transparent 75%),
-                /* overlapping petal layers (large soft circles) */
-                radial-gradient(ellipse at 30% 40%, rgba(255,225,230,0.5) 0%, rgba(250,190,200,0.25) 60%, transparent 85%),
-                radial-gradient(ellipse at 65% 30%, rgba(255,220,225,0.5) 0%, rgba(248,180,195,0.25) 55%, transparent 80%),
-                radial-gradient(ellipse at 80% 75%, rgba(255,215,220,0.5) 0%, rgba(245,175,190,0.25) 60%, transparent 85%),
-                radial-gradient(ellipse at 12% 85%, rgba(255,210,220,0.5) 0%, rgba(240,170,185,0.2) 55%, transparent 80%),
-                /* leaf silhouettes (veined) using repeating conic gradients and angular shapes */
-                repeating-linear-gradient(115deg, rgba(210,150,160,0.12) 0px, rgba(210,150,160,0.12) 2px, transparent 2px, transparent 12px),
-                repeating-linear-gradient(25deg, rgba(200,140,155,0.1) 0px, rgba(200,140,155,0.1) 2px, transparent 2px, transparent 14px);
-            background-size: 80px 80px, 100px 100px, 200px 200px, 150px 150px, 180px 180px, 300px 300px, 280px 280px, 250px 250px, 220px 220px, auto, auto;
-            background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat, repeat;
-            background-position: 
-                18% 22%, 72% 65%, 45% 80%, 88% 15%, 5% 55%,
-                30% 40%, 65% 30%, 80% 75%, 12% 85%,
-                0 0, 0 0;
-            opacity: 0.85;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1200' preserveAspectRatio='xMidYMid slice'%3E%3Cdefs%3E%3CradialGradient id='roseCenter' cx='45%25' cy='45%25' r='55%25'%3E%3Cstop offset='0%25' stop-color='%23FFE0E8'/%3E%3Cstop offset='35%25' stop-color='%23FFB7C5'/%3E%3Cstop offset='70%25' stop-color='%23F28B9F'/%3E%3Cstop offset='100%25' stop-color='%23D96B82'/%3E%3C/radialGradient%3E%3CradialGradient id='petalShadow' cx='50%25' cy='50%25' r='60%25'%3E%3Cstop offset='0%25' stop-color='%23FFD0DA' stop-opacity='0.9'/%3E%3Cstop offset='60%25' stop-color='%23F29CB0' stop-opacity='0.6'/%3E%3Cstop offset='100%25' stop-color='%23C45D76' stop-opacity='0.8'/%3E%3C/radialGradient%3E%3CradialGradient id='leafGrad' cx='30%25' cy='30%25' r='70%25'%3E%3Cstop offset='0%25' stop-color='%23E8B4BF'/%3E%3Cstop offset='50%25' stop-color='%23C28596'/%3E%3Cstop offset='100%25' stop-color='%23915C6E'/%3E%3C/radialGradient%3E%3Cfilter id='softBlur'%3E%3CfeGaussianBlur stdDeviation='2'/%3E%3C/filter%3E%3C!-- Large rose symbol --%3E%3Cg id='largeRose'%3E%3Ccircle cx='0' cy='0' r='85' fill='url(%23petalShadow)' filter='url(%23softBlur)' opacity='0.5'/%3E%3Cpath d='M0,-15 C-20,-40 -45,-35 -60,-15 C-70,5 -65,25 -50,40 C-35,55 -15,60 0,55 C15,60 35,55 50,40 C65,25 70,5 60,-15 C45,-35 20,-40 0,-15Z' fill='url(%23roseCenter)' stroke='%23FFC0CD' stroke-width='1.5'/%3E%3Cpath d='M0,-20 C-25,-50 -55,-40 -65,-15 C-75,15 -60,40 -40,50 C-20,60 0,62 20,55 C40,48 55,30 60,8 C65,-15 45,-40 20,-38 C10,-36 5,-28 0,-20Z' fill='%23FFE0E8' opacity='0.8'/%3E%3Cpath d='M-15,-10 C-35,-28 -55,-18 -58,5 C-62,28 -45,48 -25,54 C-5,60 15,56 28,44 C40,32 45,12 36,-6 C27,-24 5,-30 -15,-10Z' fill='%23FFB7C5' opacity='0.7'/%3E%3Cpath d='M0,5 C-8,12 -18,10 -22,2 C-26,-6 -20,-18 -8,-22 C4,-26 18,-20 22,-8 C26,4 16,18 0,5Z' fill='%23FFE9F0'/%3E%3Ccircle cx='0' cy='0' r='12' fill='%23D96B82' opacity='0.9'/%3E%3Ccircle cx='-3' cy='-2' r='4' fill='%23FFFAF5' opacity='0.8'/%3E%3C/g%3E%3C!-- medium rose (fluffier) --%3E%3Cg id='mediumRose'%3E%3Ccircle cx='0' cy='0' r='55' fill='url(%23petalShadow)' filter='url(%23softBlur)' opacity='0.5'/%3E%3Cpath d='M0,-10 C-15,-30 -35,-28 -42,-10 C-48,8 -40,28 -25,35 C-10,42 10,40 22,30 C34,20 38,2 30,-12 C22,-26 8,-30 0,-10Z' fill='url(%23roseCenter)'/%3E%3Cpath d='M0,-5 C-12,-20 -25,-18 -30,-5 C-35,10 -26,24 -12,28 C2,32 18,28 24,18 C30,8 28,-8 20,-16 C12,-24 2,-22 0,-5Z' fill='%23FFD0DA' opacity='0.8'/%3E%3Ccircle cx='0' cy='2' r='8' fill='%23D96B82'/%3E%3Ccircle cx='-2' cy='0' r='2.5' fill='%23FFF' opacity='0.7'/%3E%3C/g%3E%3C!-- leaf symbol --%3E%3Cg id='leaf'%3E%3Cpath d='M0,0 C-5,-15 -20,-25 -35,-22 C-28,-12 -20,-4 0,0Z' fill='url(%23leafGrad)' stroke='%23AF7085' stroke-width='1.2'/%3E%3Cpath d='M0,0 C-8,-8 -18,-14 -28,-16' stroke='%23915C6E' stroke-width='1' fill='none' opacity='0.6'/%3E%3Cpath d='M-12,-8 C-18,-10 -24,-10 -28,-8' stroke='%23915C6E' stroke-width='0.8' fill='none' opacity='0.5'/%3E%3C/g%3E%3C/defs%3E%3Crect width='1600' height='1200' fill='%23FCE4EC' /%3E%3C!-- background texture: soft blurred petals --%3E%3Ccircle cx='200' cy='300' r='180' fill='%23FFD0DA' opacity='0.15' filter='url(%23softBlur)'/%3E%3Ccircle cx='1300' cy='800' r='240' fill='%23FFC0CD' opacity='0.12' filter='url(%23softBlur)'/%3E%3Ccircle cx='850' cy='200' r='280' fill='%23FFB7C5' opacity='0.1' filter='url(%23softBlur)'/%3E%3C!-- giant rose 1 (center-left) --%3E%3Cuse href='%23largeRose' x='280' y='320' transform='scale(1.4) translate(-80,-90)' /%3E%3Cuse href='%23largeRose' x='320' y='350' transform='scale(1.2) translate(-55,-60)' /%3E%3C!-- extra large dominant rose --%3E%3Cg transform='translate(480, 260) scale(1.8)'%3E%3Cuse href='%23largeRose' /%3E%3C/g%3E%3C!-- upper right large rose cluster --%3E%3Cg transform='translate(1280, 220) scale(1.6)'%3E%3Cuse href='%23largeRose' /%3E%3C/g%3E%3Cg transform='translate(1120, 160) scale(1.2)'%3E%3Cuse href='%23mediumRose' /%3E%3C/g%3E%3C!-- top left rose --%3E%3Cg transform='translate(140, 150) scale(1.5)'%3E%3Cuse href='%23largeRose' /%3E%3C/g%3E%3C!-- bottom left cluster --%3E%3Cg transform='translate(200, 900) scale(1.7)'%3E%3Cuse href='%23largeRose' /%3E%3C/g%3E%3Cg transform='translate(90, 1050) scale(1.3)'%3E%3Cuse href='%23mediumRose' /%3E%3C/g%3E%3C!-- bottom right dramatic rose --%3E%3Cg transform='translate(1400, 950) scale(1.9)'%3E%3Cuse href='%23largeRose' /%3E%3C/g%3E%3C!-- mid right --%3E%3Cg transform='translate(1480, 550) scale(1.4)'%3E%3Cuse href='%23largeRose' /%3E%3C/g%3E%3C!-- center lower rose --%3E%3Cg transform='translate(780, 980) scale(1.6)'%3E%3Cuse href='%23largeRose' /%3E%3C/g%3E%3C!-- upper mid roses --%3E%3Cg transform='translate(850, 480) scale(1.3)'%3E%3Cuse href='%23mediumRose' /%3E%3C/g%3E%3Cg transform='translate(680, 640) scale(1.4)'%3E%3Cuse href='%23largeRose' /%3E%3C/g%3E%3Cg transform='translate(1020, 720) scale(1.5)'%3E%3Cuse href='%23largeRose' /%3E%3C/g%3E%3C!-- smaller blossoms (peony-like) --%3E%3Cg transform='translate(580, 480) scale(0.9)'%3E%3Cuse href='%23mediumRose' /%3E%3C/g%3E%3Cg transform='translate(1320, 720) scale(0.9)'%3E%3Cuse href='%23mediumRose' /%3E%3C/g%3E%3Cg transform='translate(450, 780) scale(0.8)'%3E%3Cuse href='%23mediumRose' /%3E%3C/g%3E%3Cg transform='translate(1120, 980) scale(1.0)'%3E%3Cuse href='%23mediumRose' /%3E%3C/g%3E%3C!-- Leaves arranged around flowers to create depth --%3E%3Cg transform='translate(330, 370) rotate(30) scale(1.2)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3Cg transform='translate(550, 200) rotate(-40) scale(1.4)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3Cg transform='translate(1200, 180) rotate(60) scale(1.3)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3Cg transform='translate(1400, 280) rotate(-20) scale(1.5)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3Cg transform='translate(250, 820) rotate(15) scale(1.3)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3Cg transform='translate(150, 1000) rotate(-55) scale(1.2)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3Cg transform='translate(850, 880) rotate(70) scale(1.4)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3Cg transform='translate(1080, 850) rotate(-35) scale(1.3)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3Cg transform='translate(1480, 860) rotate(45) scale(1.5)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3Cg transform='translate(720, 550) rotate(-70) scale(1.2)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3Cg transform='translate(950, 380) rotate(25) scale(1.3)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3Cg transform='translate(1250, 600) rotate(-15) scale(1.4)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3Cg transform='translate(500, 920) rotate(80) scale(1.2)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3Cg transform='translate(1340, 440) rotate(-60) scale(1.3)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3C!-- Extra rose layers to fill empty spaces (deep background) --%3E%3Cg transform='translate(60, 500) scale(1.1)' opacity='0.7'%3E%3Cuse href='%23largeRose' /%3E%3C/g%3E%3Cg transform='translate(1550, 180) scale(1.2)' opacity='0.7'%3E%3Cuse href='%23largeRose' /%3E%3C/g%3E%3Cg transform='translate(1550, 1050) scale(1.1)' opacity='0.6'%3E%3Cuse href='%23largeRose' /%3E%3C/g%3E%3Cg transform='translate(780, 70) scale(1.0)' opacity='0.6'%3E%3Cuse href='%23mediumRose' /%3E%3C/g%3E%3Cg transform='translate(30, 1150) scale(1.0)' opacity='0.7'%3E%3Cuse href='%23mediumRose' /%3E%3C/g%3E%3C!-- Additional leaves to create lushness --%3E%3Cg transform='translate(420, 420) rotate(110) scale(1.1)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3Cg transform='translate(1300, 820) rotate(-90) scale(1.2)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3Cg transform='translate(600, 340) rotate(15) scale(1.0)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3Cg transform='translate(1050, 520) rotate(-45) scale(1.2)'%3E%3Cuse href='%23leaf' /%3E%3C/g%3E%3C/svg%3E");
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            opacity: 0.92;
         }
-        /* Additional sculpted petal layers: embossed look with box-shadow inset in container */
+        /* Subtle overlay to unify text contrast */
         body.unlocked::after {
             content: "";
             position: fixed;
@@ -195,35 +179,36 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255,235,240,0.2) 0%, rgba(245,200,210,0.1) 100%);
-            box-shadow: inset 0 0 80px rgba(250,180,190,0.2);
+            background: radial-gradient(circle at 50% 50%, rgba(255,240,245,0.15) 0%, rgba(230,200,210,0.08) 100%);
+            box-shadow: inset 0 0 120px rgba(230,180,190,0.2);
         }
-        /* Ensure main content appears above floral background */
+
+        /* Main content panels – frosted glass, readable over floral background */
         #hero, #photos-section, #videos-section, #wish-section, footer {
             position: relative;
             z-index: 2;
             background: rgba(255, 250, 245, 0.75);
-            backdrop-filter: blur(2px);
-            border-radius: 48px;
+            backdrop-filter: blur(4px);
+            border-radius: 56px;
             margin: 1.5rem auto;
             width: 90%;
             max-width: 1100px;
         }
         #hero {
             background: rgba(255, 248, 245, 0.8);
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(6px);
             border-radius: 64px;
             margin-top: 2rem;
         }
         #photos-section, #videos-section, #wish-section {
             background: rgba(255, 250, 245, 0.8);
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(5px);
             border-radius: 48px;
             padding: 3rem 2rem;
         }
         footer {
             background: rgba(255, 250, 245, 0.7);
-            backdrop-filter: blur(2px);
+            backdrop-filter: blur(3px);
             border-radius: 40px;
             width: 80%;
         }
@@ -252,6 +237,7 @@
             font-size: clamp(2.8rem, 8vw, 5.5rem);
             color: #C27788;
             line-height: 1.2;
+            text-shadow: 0 1px 3px rgba(255,240,240,0.5);
         }
         #hero h1 em { color: #EAA9B8; font-style: italic; }
         .hero-sub {
@@ -286,6 +272,7 @@
             margin-bottom: 2rem;
         }
 
+        /* photo & video grids unchanged */
         #photos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
@@ -410,7 +397,7 @@
             margin-bottom: 2rem;
         }
 
-        /* wandering dogs animation unchanged */
+        /* wandering tiny dogs */
         .cursor-dog {
             position: fixed;
             pointer-events: none;
@@ -422,7 +409,7 @@
         .tiny-leg { animation: tinyRunLeg 0.22s infinite; transform-origin: top; }
         .tiny-tail { animation: tinyTailWag 0.22s infinite; transform-origin: bottom right; }
 
-        /* lock screen dog animations */
+        /* lock screen dog animations (unchanged) */
         @keyframes dogIdleSway { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-4px) rotate(0.5deg); } }
         .dog-idle-anim { animation: dogIdleSway 3s ease-in-out infinite; }
         @keyframes headTilt { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-4deg); } }
@@ -451,12 +438,11 @@
 </head>
 <body>
 
-<!-- LOCK SCREEN – STORYBOOK SHIH TZU (scaled smaller by ~20% via container) -->
+<!-- LOCK SCREEN – STORYBOOK SHIH TZU (scaled) -->
 <div id="lock-screen">
     <div class="confetti-layer" id="confettiLayer"></div>
     <div class="glass-card">
         <div class="dog-portrait">
-            <!-- Detailed Shih Tzu with soft blush coat, dark floppy ears, blue collar, expressive eyes – exactly as described but container width reduced -->
             <svg viewBox="0 0 500 440" xmlns="http://www.w3.org/2000/svg">
                 <defs>
                     <radialGradient id="furFluff" cx="45%" cy="35%" r="72%">
@@ -464,11 +450,6 @@
                         <stop offset="40%" stop-color="#FEF5E7"/>
                         <stop offset="80%" stop-color="#F5E2C6"/>
                         <stop offset="100%" stop-color="#E5CDAB"/>
-                    </radialGradient>
-                    <radialGradient id="faceHighlight" cx="40%" cy="30%" r="65%">
-                        <stop offset="0%" stop-color="#FFFFFF"/>
-                        <stop offset="45%" stop-color="#FEF3E3"/>
-                        <stop offset="100%" stop-color="#F3E0C4"/>
                     </radialGradient>
                     <radialGradient id="darkPatchEye" cx="50%" cy="50%" r="60%">
                         <stop offset="0%" stop-color="#6E4D3A"/>
@@ -488,87 +469,47 @@
                         <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2"/>
                     </filter>
                 </defs>
-
-                <!-- Tail -->
                 <g id="dog-tail" class="tail-slow">
                     <path d="M120 250 C55 230, 30 175, 48 125 C70 150, 98 195, 125 248Z" fill="url(#furFluff)" stroke="#DEC58A" stroke-width="2"/>
                     <path d="M62 145 C78 175, 100 210, 122 245" stroke="#F3E2C8" fill="none" stroke-width="2.5" opacity="0.7"/>
                 </g>
-
-                <!-- Body -->
                 <g id="dog-body" filter="url(#fluffyFilter)">
                     <ellipse cx="250" cy="285" rx="110" ry="85" fill="url(#furFluff)"/>
                     <ellipse cx="250" cy="260" rx="85" ry="55" fill="#FFF9F0" opacity="0.5"/>
-                    <g stroke="#F0DDC0" stroke-width="2.5" fill="none" opacity="0.5">
-                        <path d="M155 245 Q145 280 160 330"/>
-                        <path d="M345 245 Q355 280 340 330"/>
-                        <path d="M188 235 Q180 275 192 340"/>
-                        <path d="M312 235 Q320 275 308 340"/>
-                    </g>
                     <ellipse cx="190" cy="345" rx="32" ry="38" fill="url(#furFluff)"/>
-                    <ellipse cx="190" cy="370" rx="24" ry="14" fill="#F9EBD8"/>
                     <ellipse cx="310" cy="345" rx="32" ry="38" fill="url(#furFluff)"/>
-                    <ellipse cx="310" cy="370" rx="24" ry="14" fill="#F9EBD8"/>
-                    <ellipse cx="145" cy="360" rx="30" ry="35" fill="url(#furFluff)" transform="rotate(-10 145 360)"/>
-                    <ellipse cx="145" cy="380" rx="22" ry="12" fill="#F9EBD8"/>
-                    <ellipse cx="355" cy="360" rx="30" ry="35" fill="url(#furFluff)" transform="rotate(10 355 360)"/>
-                    <ellipse cx="355" cy="380" rx="22" ry="12" fill="#F9EBD8"/>
                 </g>
-
-                <!-- Ears -->
                 <g id="ear-left" class="ear-neutral">
                     <path d="M160 100 C105 85, 60 135, 85 200 C115 175, 135 138, 160 115Z" fill="url(#earGrad)" filter="url(#fluffyFilter)"/>
-                    <path d="M108 145 C92 170, 94 190, 108 198" stroke="#2A180E" stroke-width="2" fill="none" opacity="0.4"/>
                 </g>
                 <g id="ear-right" class="ear-neutral">
                     <path d="M340 100 C395 85, 440 135, 415 200 C385 175, 365 138, 340 115Z" fill="url(#earGrad)" filter="url(#fluffyFilter)"/>
-                    <path d="M392 145 C408 170, 406 190, 392 198" stroke="#2A180E" stroke-width="2" fill="none" opacity="0.4"/>
                 </g>
-
-                <!-- Head -->
                 <g id="dog-head" filter="url(#fluffyFilter)">
                     <ellipse cx="250" cy="160" rx="105" ry="98" fill="url(#furFluff)"/>
-                    <ellipse cx="190" cy="85" rx="45" ry="38" fill="url(#furFluff)" transform="rotate(-18 190 85)"/>
-                    <ellipse cx="250" cy="68" rx="52" ry="44" fill="url(#furFluff)"/>
-                    <ellipse cx="310" cy="85" rx="45" ry="38" fill="url(#furFluff)" transform="rotate(18 310 85)"/>
-
                     <ellipse cx="200" cy="152" rx="38" ry="32" fill="url(#darkPatchEye)" opacity="0.9"/>
                     <ellipse cx="300" cy="152" rx="38" ry="32" fill="url(#darkPatchEye)" opacity="0.9"/>
                     <ellipse cx="250" cy="210" rx="55" ry="40" fill="#FFFCF8"/>
-                    <g stroke="#F5E2CE" stroke-width="2.5" fill="none" opacity="0.7">
-                        <path d="M210 195 Q198 215 210 232"/>
-                        <path d="M290 195 Q302 215 290 232"/>
-                    </g>
                     <ellipse cx="250" cy="190" rx="20" ry="14" fill="url(#noseGrad)"/>
-                    <ellipse cx="242" cy="183" rx="6" ry="4" fill="rgba(255,245,210,0.9)"/>
-                    <ellipse cx="242" cy="196" rx="3.5" ry="2.5" fill="#1F150C"/>
-                    <ellipse cx="258" cy="196" rx="3.5" ry="2.5" fill="#1F150C"/>
-
                     <g id="eyes-group">
                         <ellipse cx="202" cy="154" rx="16" ry="17" fill="#261E16"/>
                         <ellipse cx="196" cy="142" rx="6.5" ry="7" fill="white" opacity="0.98"/>
-                        <ellipse cx="207" cy="150" rx="3" ry="3.5" fill="white" opacity="0.7"/>
                         <ellipse cx="298" cy="154" rx="16" ry="17" fill="#261E16"/>
                         <ellipse cx="292" cy="142" rx="6.5" ry="7" fill="white" opacity="0.98"/>
-                        <ellipse cx="303" cy="150" rx="3" ry="3.5" fill="white" opacity="0.7"/>
                     </g>
-
                     <g id="brows" stroke="#B58968" stroke-width="5" fill="none" stroke-linecap="round">
                         <path id="brow-left" d="M176 130 Q200 118 226 130"/>
                         <path id="brow-right" d="M274 130 Q300 118 324 130"/>
                     </g>
-
-                    <path id="mouth-path" d="M228 220 Q250 232 272 220" stroke="#B28064" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <path id="mouth-path" d="M228 220 Q250 232 272 220" stroke="#B28064" stroke-width="3" fill="none"/>
                     <path id="tongue-tip" d="M244 226 Q250 238 256 226" fill="#FFA3B2" opacity="0.85"/>
-
                     <g id="collar">
                         <path d="M175 240 Q250 218 325 240 Q320 258 250 260 Q180 258 175 240Z" fill="#7CC6D0" stroke="#519BA8" stroke-width="2" opacity="0.95"/>
-                        <ellipse cx="250" cy="248" rx="6" ry="4" fill="#FFE0B5" stroke="#519BA8" stroke-width="1.5"/>
+                        <ellipse cx="250" cy="248" rx="6" ry="4" fill="#FFE0B5"/>
                     </g>
                 </g>
             </svg>
         </div>
-
         <h2 id="lock-title">✨ Enter the magic ✨</h2>
         <p id="lock-subtitle">Ariadne's birthday surprise awaits 🐾</p>
         <div class="pw-field">
@@ -580,7 +521,7 @@
     </div>
 </div>
 
-<!-- MAIN CONTENT (will be revealed after unlock) -->
+<!-- MAIN CONTENT (revealed after unlock) -->
 <div id="hero">
     <div class="hero-eyebrow">A little something for you</div>
     <h1>Happy<br><em>Birthday,</em><br>Ariadne 🎂</h1>
@@ -617,7 +558,7 @@
 <footer>Made with love &nbsp;·&nbsp; 🐾 Birthday magic</footer>
 
 <script>
-    // Password logic, dog reactions, confetti, photo/video slots, wandering dogs (identical to previous but with correct password)
+    // Password logic, dog reactions, confetti, photo/video slots, wandering dogs (same as working version)
     const CORRECT_PASSWORD = "bella";
     const pwInput = document.getElementById('password-input');
     const unlockBtn = document.getElementById('unlock-btn');
@@ -721,7 +662,6 @@
     pwInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') tryUnlock(); });
     setDogState('empty');
 
-    // Tiny wandering dogs (same as original)
     function createTinyDogSVG(scale) {
         const svgNS = "http://www.w3.org/2000/svg";
         const svg = document.createElementNS(svgNS, "svg");
@@ -748,7 +688,6 @@
     }
     function startWanderingDogs(count) { for (let i = 0; i < count; i++) setTimeout(() => addWanderingDog(), i * 420); setInterval(() => { if (document.body.classList.contains('unlocked')) { if (document.querySelectorAll('.cursor-dog').length < 12) addWanderingDog(); } }, 14000); }
 
-    // Photo & Video slots (full functionality)
     let photoSlotCount=0, currentPhotoSlot=null;
     function createPhotoSlot() { photoSlotCount++; const slot=document.createElement('div'); slot.className='photo-slot'; slot.innerHTML=`<div class="slot-icon">📷</div><div class="slot-label">add photo</div><img src=""/><div class="photo-caption"></div>`; slot.addEventListener('click',()=>{ currentPhotoSlot=slot; document.getElementById('photo-file-input').click(); }); return slot; }
     function addPhotoSlot(){ document.getElementById('photos-grid').appendChild(createPhotoSlot()); }
