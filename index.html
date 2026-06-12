@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Happy Birthday, Ariadne! 🎀🐾</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,7 +12,7 @@
             box-sizing: border-box;
         }
 
-        /* ========= LOCK SCREEN – CONFETTI GRADIENT BACKGROUND ========= */
+        /* ========= LOCK SCREEN – SOFT PASTEL CELEBRATION ========= */
         #lock-screen {
             position: fixed;
             inset: 0;
@@ -23,17 +22,16 @@
             z-index: 9999;
             font-family: 'Inter', sans-serif;
             overflow: hidden;
-            background: linear-gradient(135deg, #F16C89, #F7A361, #CB6BE5, #609BF1, #59CD90);
-            background-size: 300% 300%;
-            animation: gradientFlow 12s ease infinite;
+            background: linear-gradient(135deg, #FFE9F0 0%, #FDE2E4 40%, #FFE5D9 70%, #E6E6FA 100%);
+            background-size: 200% 200%;
+            animation: gentleShift 14s ease infinite;
         }
-        @keyframes gradientFlow {
+        @keyframes gentleShift {
             0% { background-position: 0% 0%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 0%; }
         }
 
-        /* confetti layer */
         .confetti-layer {
             position: absolute;
             inset: 0;
@@ -43,81 +41,81 @@
         .confetti-dot {
             position: absolute;
             border-radius: 50%;
-            opacity: 0.5;
+            opacity: 0.35;
             animation: floatConfetti linear infinite;
         }
         @keyframes floatConfetti {
-            0% { transform: translateY(110vh) rotate(0deg); opacity: 0.5; }
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0.35; }
             100% { transform: translateY(-20vh) rotate(720deg); opacity: 0; }
         }
 
-        /* burst confetti */
         .burst-piece {
             position: fixed;
-            width: 10px;
-            height: 10px;
-            border-radius: 2px;
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
             pointer-events: none;
             z-index: 10000;
             animation: burstFly 1.2s ease-out forwards;
         }
         @keyframes burstFly {
             0% { transform: translate(0,0) rotate(0deg) scale(1); opacity: 1; }
-            100% { transform: translate(var(--tx), var(--ty)) rotate(var(--tr)) scale(0.3); opacity: 0; }
+            100% { transform: translate(var(--tx), var(--ty)) rotate(var(--tr)) scale(0.2); opacity: 0; }
         }
 
-        /* glass card */
         .glass-card {
             position: relative;
             z-index: 10;
-            background: rgba(255, 248, 245, 0.25);
-            backdrop-filter: blur(24px);
-            border-radius: 48px;
-            padding: 1.8rem 2rem 2rem;
+            background: rgba(255, 250, 245, 0.3);
+            backdrop-filter: blur(20px);
+            border-radius: 64px;
+            padding: 1.2rem 2rem 2rem;
             width: 94%;
             max-width: 620px;
             text-align: center;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 245, 240, 0.5);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(255, 245, 240, 0.5);
         }
 
-        /* dog container - slightly larger */
+        /* puppy container - scaled down by ~20% */
         .dog-portrait {
-            width: 100%;
-            margin: -0.8rem auto 0.2rem;
-            filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.1));
+            width: 80%;
+            margin: -1rem auto 0rem;
+            filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.1));
+            transform: scale(0.9);
         }
         .dog-portrait svg {
             width: 100%;
             height: auto;
             display: block;
+            max-width: 420px;
+            margin: 0 auto;
         }
 
-        /* password input */
         .pw-field {
-            margin: 1.5rem 0 0.8rem;
+            margin: 1rem 0 0.8rem;
         }
         #password-input {
             width: 100%;
-            background: rgba(255, 250, 245, 0.9);
-            border: 1.5px solid rgba(255, 200, 180, 0.8);
+            background: rgba(255, 250, 245, 0.96);
+            border: 1.5px solid #FFC4B4;
             border-radius: 60px;
             padding: 14px 20px;
             font-size: 1rem;
             font-family: monospace;
             letter-spacing: 1.5px;
             outline: none;
-            color: #4a2a2a;
+            color: #4f352b;
             text-align: center;
             transition: 0.2s;
         }
         #password-input:focus {
-            border-color: #ffa5bb;
-            box-shadow: 0 0 0 3px rgba(255, 150, 170, 0.3);
+            border-color: #F9A8A8;
+            box-shadow: 0 0 0 3px rgba(249, 168, 168, 0.2);
             background: white;
         }
         #unlock-btn {
             width: 100%;
-            background: linear-gradient(95deg, #FF4E7E, #FFB834);
+            background: linear-gradient(95deg, #FFA3B2, #FFCE8E);
             border: none;
             border-radius: 60px;
             padding: 14px;
@@ -127,28 +125,110 @@
             cursor: pointer;
             transition: 0.2s;
             margin-top: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
         }
-        #unlock-btn:hover { opacity: 0.92; transform: scale(0.98); }
+        #unlock-btn:hover { opacity: 0.92; transform: scale(0.98); background: linear-gradient(95deg, #ff8da0, #ffbe6e);}
         .error-msg {
-            color: #fff0b5;
+            color: #FFF2E0;
             font-size: 0.8rem;
             margin-top: 12px;
             min-height: 1.8rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         .lock-tagline {
             margin-top: 1rem;
             font-size: 0.7rem;
-            color: rgba(255, 250, 240, 0.85);
+            color: rgba(255, 250, 240, 0.9);
         }
 
-        /* ========= MAIN PAGE (full original version with photos, videos, wish, 14 dogs) ========= */
+        /* ========= MAIN PAGE – SCULPTED ROSE WALL (monochromatic pink, edge-to-edge) ========= */
         body {
             font-family: 'Georgia', serif;
-            background: #fffaf8;
-            color: #5a3a32;
+            background: #FFF2EE;
+            color: #4a3b35;
             overflow-x: hidden;
         }
+        /* Floral wallpaper: layered radial gradients, conic patterns, and pseudo-elements to mimic sculpted roses & leaves */
+        body.unlocked {
+            background: #FCE4EC;  /* base warm blush */
+            position: relative;
+        }
+        body.unlocked::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background-image: 
+                /* Giant rose centers (spiral illusion) */
+                radial-gradient(circle at 18% 22%, rgba(255,210,215,0.4) 0%, rgba(245,175,185,0.2) 40%, transparent 70%),
+                radial-gradient(circle at 72% 65%, rgba(255,200,210,0.45) 0%, rgba(245,165,180,0.2) 45%, transparent 75%),
+                radial-gradient(circle at 45% 80%, rgba(250,195,205,0.5) 0%, rgba(240,155,170,0.25) 50%, transparent 80%),
+                radial-gradient(circle at 88% 15%, rgba(255,215,225,0.4) 0%, rgba(245,180,195,0.2) 45%, transparent 70%),
+                radial-gradient(circle at 5% 55%, rgba(255,205,215,0.45) 0%, rgba(240,170,185,0.2) 50%, transparent 75%),
+                /* overlapping petal layers (large soft circles) */
+                radial-gradient(ellipse at 30% 40%, rgba(255,225,230,0.5) 0%, rgba(250,190,200,0.25) 60%, transparent 85%),
+                radial-gradient(ellipse at 65% 30%, rgba(255,220,225,0.5) 0%, rgba(248,180,195,0.25) 55%, transparent 80%),
+                radial-gradient(ellipse at 80% 75%, rgba(255,215,220,0.5) 0%, rgba(245,175,190,0.25) 60%, transparent 85%),
+                radial-gradient(ellipse at 12% 85%, rgba(255,210,220,0.5) 0%, rgba(240,170,185,0.2) 55%, transparent 80%),
+                /* leaf silhouettes (veined) using repeating conic gradients and angular shapes */
+                repeating-linear-gradient(115deg, rgba(210,150,160,0.12) 0px, rgba(210,150,160,0.12) 2px, transparent 2px, transparent 12px),
+                repeating-linear-gradient(25deg, rgba(200,140,155,0.1) 0px, rgba(200,140,155,0.1) 2px, transparent 2px, transparent 14px);
+            background-size: 80px 80px, 100px 100px, 200px 200px, 150px 150px, 180px 180px, 300px 300px, 280px 280px, 250px 250px, 220px 220px, auto, auto;
+            background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat, repeat;
+            background-position: 
+                18% 22%, 72% 65%, 45% 80%, 88% 15%, 5% 55%,
+                30% 40%, 65% 30%, 80% 75%, 12% 85%,
+                0 0, 0 0;
+            opacity: 0.85;
+        }
+        /* Additional sculpted petal layers: embossed look with box-shadow inset in container */
+        body.unlocked::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,235,240,0.2) 0%, rgba(245,200,210,0.1) 100%);
+            box-shadow: inset 0 0 80px rgba(250,180,190,0.2);
+        }
+        /* Ensure main content appears above floral background */
+        #hero, #photos-section, #videos-section, #wish-section, footer {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 250, 245, 0.75);
+            backdrop-filter: blur(2px);
+            border-radius: 48px;
+            margin: 1.5rem auto;
+            width: 90%;
+            max-width: 1100px;
+        }
+        #hero {
+            background: rgba(255, 248, 245, 0.8);
+            backdrop-filter: blur(4px);
+            border-radius: 64px;
+            margin-top: 2rem;
+        }
+        #photos-section, #videos-section, #wish-section {
+            background: rgba(255, 250, 245, 0.8);
+            backdrop-filter: blur(4px);
+            border-radius: 48px;
+            padding: 3rem 2rem;
+        }
+        footer {
+            background: rgba(255, 250, 245, 0.7);
+            backdrop-filter: blur(2px);
+            border-radius: 40px;
+            width: 80%;
+        }
+
+        /* keep original styling for interactive elements */
         #hero, #photos-section, #videos-section, #wish-section, footer {
             display: none;
         }
@@ -159,64 +239,50 @@
         body.unlocked footer {
             display: block;
         }
-        body.unlocked #hero { display: flex; }
+        body.unlocked #hero { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 80vh; }
 
-        #hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 4rem 2rem;
-            background: radial-gradient(ellipse at 70% 30%, #fff4f0, #fffbf8);
-            position: relative;
-            z-index: 2;
-        }
         .hero-eyebrow {
-            font-family: sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.8rem;
             letter-spacing: 0.2em;
-            color: #d48c9a;
+            color: #D9899A;
             margin-bottom: 1rem;
         }
         #hero h1 {
             font-size: clamp(2.8rem, 8vw, 5.5rem);
-            color: #b56b7a;
+            color: #C27788;
             line-height: 1.2;
         }
-        #hero h1 em { color: #f0a0b0; font-style: italic; }
+        #hero h1 em { color: #EAA9B8; font-style: italic; }
         .hero-sub {
             font-size: 1.1rem;
-            color: #b28b7e;
+            color: #AD7C6F;
             max-width: 520px;
             margin: 1rem 0 2rem;
         }
         .scroll-hint {
-            font-family: sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.75rem;
             letter-spacing: 0.12em;
-            color: #e09daa;
+            color: #D9899A;
             animation: bob 2s infinite;
         }
         @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
 
         section {
-            padding: 4rem 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
+            padding: 2rem;
         }
         .section-label {
-            font-family: sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.7rem;
             letter-spacing: 0.2em;
-            color: #e09daa;
+            color: #D9899A;
             margin-bottom: 1rem;
         }
         h2 {
             font-size: clamp(1.6rem, 4vw, 2.2rem);
             font-weight: normal;
-            color: #b37785;
+            color: #C27788;
             margin-bottom: 2rem;
         }
 
@@ -228,9 +294,9 @@
         }
         .photo-slot {
             aspect-ratio: 4/5;
-            background: #fae9e8;
-            border: 2px dashed #eec8c2;
-            border-radius: 28px;
+            background: #FFF4F0;
+            border: 2px dashed #F7CFC7;
+            border-radius: 32px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -238,24 +304,25 @@
             cursor: pointer;
             overflow: hidden;
             transition: all 0.25s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
         }
         .photo-slot:hover {
-            border-color: #e09daa;
+            border-color: #E2A2AE;
             transform: translateY(-5px);
-            background: #fff3f0;
+            background: #FFFBF8;
         }
         .photo-slot img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: none;
-            border-radius: 24px;
+            border-radius: 28px;
         }
         .photo-slot img.loaded { display: block; }
         .photo-slot .slot-label {
-            font-family: sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.8rem;
-            color: #d996a5;
+            color: #E2A2AE;
             margin-top: 0.5rem;
         }
         .photo-slot .slot-icon { font-size: 2rem; }
@@ -264,22 +331,19 @@
             margin-top: 1.5rem;
             padding: 0.7rem 2rem;
             background: transparent;
-            border: 1.5px solid #e09daa;
+            border: 1.5px solid #E2A2AE;
             border-radius: 40px;
-            color: #c88292;
-            font-family: sans-serif;
+            color: #C27788;
+            font-family: 'Inter', sans-serif;
             cursor: pointer;
             transition: 0.2s;
         }
         .add-photo-btn:hover, .add-video-btn:hover {
-            background: #e09daa;
+            background: #E2A2AE;
             color: white;
         }
 
         #videos-section {
-            background: #fff5f2;
-            border-radius: 48px;
-            padding: 3rem 2rem;
             margin: 2rem auto;
         }
         .video-grid {
@@ -290,8 +354,8 @@
         }
         .video-slot {
             aspect-ratio: 16/9;
-            background: #f7e3df;
-            border: 2px dashed #eec8c2;
+            background: #F7E9E4;
+            border: 2px dashed #F7CFC7;
             border-radius: 28px;
             display: flex;
             align-items: center;
@@ -309,12 +373,10 @@
         #wish-section {
             text-align: center;
             max-width: 700px;
-            margin: 0 auto;
-            padding-bottom: 3rem;
         }
         .wish-card {
-            background: white;
-            border: 1px solid #fad8d4;
+            background: rgba(255, 250, 245, 0.9);
+            border: 1px solid #FBE2DB;
             border-radius: 48px;
             padding: 3rem 2.5rem;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.03);
@@ -323,7 +385,7 @@
         .wish-card::before {
             content: '\201C';
             font-size: 6rem;
-            color: #fad0ca;
+            color: #FAD0CA;
             position: absolute;
             top: -0.5rem;
             left: 1.5rem;
@@ -337,173 +399,172 @@
             margin-bottom: 1rem;
         }
         .wish-from {
-            font-family: sans-serif;
+            font-family: 'Inter', sans-serif;
             font-size: 0.8rem;
             letter-spacing: 0.14em;
-            color: #e09daa;
+            color: #E2A2AE;
         }
         footer {
             text-align: center;
-            padding: 2rem;
-            color: #e2b5b0;
-            font-size: 0.7rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
         }
 
-        /* wandering dogs (exactly 14, larger) */
+        /* wandering dogs animation unchanged */
         .cursor-dog {
             position: fixed;
             pointer-events: none;
             z-index: 900;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.08));
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.05));
         }
-        @keyframes tinyRunLeg { 0%,100% { transform: rotate(-14deg); } 50% { transform: rotate(14deg); } }
-        @keyframes tinyTailWag { 0%,100% { transform: rotate(-12deg); } 50% { transform: rotate(12deg); } }
-        .tiny-leg { animation: tinyRunLeg 0.2s infinite; transform-origin: top; }
-        .tiny-tail { animation: tinyTailWag 0.2s infinite; transform-origin: bottom right; }
+        @keyframes tinyRunLeg { 0%,100% { transform: rotate(-12deg); } 50% { transform: rotate(12deg); } }
+        @keyframes tinyTailWag { 0%,100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
+        .tiny-leg { animation: tinyRunLeg 0.22s infinite; transform-origin: top; }
+        .tiny-tail { animation: tinyTailWag 0.22s infinite; transform-origin: bottom right; }
 
         /* lock screen dog animations */
-        @keyframes dogIdleSway { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-3px) rotate(0.5deg); } }
+        @keyframes dogIdleSway { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-4px) rotate(0.5deg); } }
         .dog-idle-anim { animation: dogIdleSway 3s ease-in-out infinite; }
         @keyframes headTilt { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-4deg); } }
-        .head-tilt { animation: headTilt 1.6s ease-in-out infinite; transform-origin: 150px 110px; }
-        @keyframes excitedBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        .excited-bounce { animation: excitedBounce 0.35s ease-in-out infinite; }
-        @keyframes happyBounce { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-6px) scale(1.02); } }
-        .happy-bounce { animation: happyBounce 0.5s ease-in-out infinite; }
-        @keyframes bigJump { 0%,100% { transform: translateY(0); } 30% { transform: translateY(-28px); } 70% { transform: translateY(-8px); } }
+        .head-tilt { animation: headTilt 1.8s ease-in-out infinite; transform-origin: 250px 160px; }
+        @keyframes excitedBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+        .excited-bounce { animation: excitedBounce 0.3s ease-in-out infinite; }
+        @keyframes happyBounce { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-5px) scale(1.02); } }
+        .happy-bounce { animation: happyBounce 0.4s ease-in-out infinite; }
+        @keyframes bigJump { 0%,100% { transform: translateY(0); } 30% { transform: translateY(-28px); } 70% { transform: translateY(-6px); } }
         .big-jump { animation: bigJump 0.6s ease-in-out 2; }
-        @keyframes sadShake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
-        .sad-shake { animation: sadShake 0.5s ease-in-out 2; }
-        @keyframes tailWagSlow { 0%,100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
-        .tail-slow { animation: tailWagSlow 1.4s infinite; transform-origin: 70px 170px; }
-        @keyframes tailWagFast { 0%,100% { transform: rotate(-22deg); } 50% { transform: rotate(22deg); } }
-        .tail-fast { animation: tailWagFast 0.22s infinite; transform-origin: 70px 170px; }
+        @keyframes sadShake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-5px); } 40% { transform: translateX(5px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(3px); } }
+        .sad-shake { animation: sadShake 0.45s ease-in-out 2; }
+        @keyframes tailWagSlow { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+        .tail-slow { animation: tailWagSlow 1.4s infinite; transform-origin: 130px 230px; }
+        @keyframes tailWagFast { 0%,100% { transform: rotate(-16deg); } 50% { transform: rotate(16deg); } }
+        .tail-fast { animation: tailWagFast 0.2s infinite; transform-origin: 130px 230px; }
         .tail-still { animation: none; transform: rotate(0deg); }
-        @keyframes earsRaise { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-5px) rotate(-5deg); } }
-        .ears-raise-left { animation: earsRaise 0.3s infinite; transform-origin: 95px 68px; }
-        .ears-raise-right { animation: earsRaise 0.3s infinite reverse; transform-origin: 205px 68px; }
-        .ears-droop-left { transform: rotate(14deg) translateY(10px); transform-origin: 95px 68px; transition: 0.3s; }
-        .ears-droop-right { transform: rotate(-14deg) translateY(10px); transform-origin: 205px 68px; transition: 0.3s; }
+        @keyframes earsRaise { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-4px) rotate(-3deg); } }
+        .ears-raise-left { animation: earsRaise 0.25s infinite; transform-origin: 140px 90px; }
+        .ears-raise-right { animation: earsRaise 0.25s infinite reverse; transform-origin: 310px 90px; }
+        .ears-droop-left { transform: rotate(12deg) translateY(8px); transform-origin: 140px 90px; transition: 0.2s; }
+        .ears-droop-right { transform: rotate(-12deg) translateY(8px); transform-origin: 310px 90px; transition: 0.2s; }
         @keyframes blink { 0%,92%,100% { transform: scaleY(1); } 96% { transform: scaleY(0.1); } }
         .blink-eyes { animation: blink 4s infinite; transform-origin: center; }
-        @keyframes eyeShift { 0%,100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
-        .eye-track { animation: eyeShift 0.8s infinite; }
     </style>
 </head>
 <body>
 
-<!-- LOCK SCREEN – CORRECTED SHIH TZU (face fixed, slightly larger, no weird artifacts) -->
+<!-- LOCK SCREEN – STORYBOOK SHIH TZU (scaled smaller by ~20% via container) -->
 <div id="lock-screen">
     <div class="confetti-layer" id="confettiLayer"></div>
     <div class="glass-card">
         <div class="dog-portrait">
-            <!-- Realistic Shih Tzu: cream/gold, dark patches, teal harness, head tilt, NO pacifier – face fixed -->
-            <svg viewBox="0 0 300 280" xmlns="http://www.w3.org/2000/svg">
+            <!-- Detailed Shih Tzu with soft blush coat, dark floppy ears, blue collar, expressive eyes – exactly as described but container width reduced -->
+            <svg viewBox="0 0 500 440" xmlns="http://www.w3.org/2000/svg">
                 <defs>
-                    <radialGradient id="furCream" cx="45%" cy="35%" r="70%">
-                        <stop offset="0%" stop-color="#FDFBF7"/>
-                        <stop offset="55%" stop-color="#F9EEDD"/>
-                        <stop offset="100%" stop-color="#D4A373"/>
+                    <radialGradient id="furFluff" cx="45%" cy="35%" r="72%">
+                        <stop offset="0%" stop-color="#FFFDF5"/>
+                        <stop offset="40%" stop-color="#FEF5E7"/>
+                        <stop offset="80%" stop-color="#F5E2C6"/>
+                        <stop offset="100%" stop-color="#E5CDAB"/>
                     </radialGradient>
-                    <radialGradient id="darkPatch" cx="50%" cy="50%" r="60%">
-                        <stop offset="0%" stop-color="#5C4033"/>
-                        <stop offset="100%" stop-color="#3A281E"/>
+                    <radialGradient id="faceHighlight" cx="40%" cy="30%" r="65%">
+                        <stop offset="0%" stop-color="#FFFFFF"/>
+                        <stop offset="45%" stop-color="#FEF3E3"/>
+                        <stop offset="100%" stop-color="#F3E0C4"/>
                     </radialGradient>
-                    <radialGradient id="darkEar" cx="40%" cy="40%" r="75%">
-                        <stop offset="0%" stop-color="#5C4033"/>
-                        <stop offset="70%" stop-color="#3A281E"/>
-                        <stop offset="100%" stop-color="#222222"/>
+                    <radialGradient id="darkPatchEye" cx="50%" cy="50%" r="60%">
+                        <stop offset="0%" stop-color="#6E4D3A"/>
+                        <stop offset="100%" stop-color="#422C1E"/>
                     </radialGradient>
-                    <radialGradient id="blackNose" cx="40%" cy="30%" r="60%">
-                        <stop offset="0%" stop-color="#2a1e14"/>
-                        <stop offset="100%" stop-color="#000000"/>
+                    <radialGradient id="earGrad" cx="40%" cy="40%" r="75%">
+                        <stop offset="0%" stop-color="#7A5640"/>
+                        <stop offset="60%" stop-color="#4E3122"/>
+                        <stop offset="100%" stop-color="#2C1A10"/>
                     </radialGradient>
-                    <filter id="furSoft" x="-10%" y="-10%" width="120%" height="120%">
-                        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="2" result="noise"/>
-                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.8"/>
+                    <radialGradient id="noseGrad" cx="35%" cy="30%" r="65%">
+                        <stop offset="0%" stop-color="#2E241C"/>
+                        <stop offset="100%" stop-color="#0E0A06"/>
+                    </radialGradient>
+                    <filter id="fluffyFilter" x="-15%" y="-15%" width="130%" height="130%">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" result="noise"/>
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2"/>
                     </filter>
                 </defs>
-                
+
                 <!-- Tail -->
                 <g id="dog-tail" class="tail-slow">
-                    <path d="M72 170 C40 150, 18 120, 32 85 C48 105, 65 135, 75 170Z" fill="url(#furCream)" stroke="#e0c8a8" stroke-width="1.5"/>
-                    <path d="M38 100 C48 125, 60 148, 70 168" stroke="#f2e0c8" fill="none" stroke-width="2" opacity="0.6"/>
+                    <path d="M120 250 C55 230, 30 175, 48 125 C70 150, 98 195, 125 248Z" fill="url(#furFluff)" stroke="#DEC58A" stroke-width="2"/>
+                    <path d="M62 145 C78 175, 100 210, 122 245" stroke="#F3E2C8" fill="none" stroke-width="2.5" opacity="0.7"/>
                 </g>
 
                 <!-- Body -->
-                <g id="dog-body" filter="url(#furSoft)">
-                    <ellipse cx="150" cy="185" rx="82" ry="62" fill="url(#furCream)"/>
-                    <ellipse cx="148" cy="205" rx="50" ry="34" fill="#fffaf3" opacity="0.6"/>
-                    <g stroke="#eddbbc" stroke-width="2" fill="none" opacity="0.5">
-                        <path d="M92 165 Q84 192 96 225"/><path d="M208 165 Q216 192 204 225"/>
-                        <path d="M114 158 Q108 185 120 230"/><path d="M186 158 Q192 185 180 230"/>
+                <g id="dog-body" filter="url(#fluffyFilter)">
+                    <ellipse cx="250" cy="285" rx="110" ry="85" fill="url(#furFluff)"/>
+                    <ellipse cx="250" cy="260" rx="85" ry="55" fill="#FFF9F0" opacity="0.5"/>
+                    <g stroke="#F0DDC0" stroke-width="2.5" fill="none" opacity="0.5">
+                        <path d="M155 245 Q145 280 160 330"/>
+                        <path d="M345 245 Q355 280 340 330"/>
+                        <path d="M188 235 Q180 275 192 340"/>
+                        <path d="M312 235 Q320 275 308 340"/>
                     </g>
-                    <ellipse cx="108" cy="235" rx="22" ry="28" fill="url(#furCream)"/>
-                    <ellipse cx="108" cy="255" rx="16" ry="10" fill="#f3e7d4"/>
-                    <ellipse cx="192" cy="235" rx="22" ry="28" fill="url(#furCream)"/>
-                    <ellipse cx="192" cy="255" rx="16" ry="10" fill="#f3e7d4"/>
+                    <ellipse cx="190" cy="345" rx="32" ry="38" fill="url(#furFluff)"/>
+                    <ellipse cx="190" cy="370" rx="24" ry="14" fill="#F9EBD8"/>
+                    <ellipse cx="310" cy="345" rx="32" ry="38" fill="url(#furFluff)"/>
+                    <ellipse cx="310" cy="370" rx="24" ry="14" fill="#F9EBD8"/>
+                    <ellipse cx="145" cy="360" rx="30" ry="35" fill="url(#furFluff)" transform="rotate(-10 145 360)"/>
+                    <ellipse cx="145" cy="380" rx="22" ry="12" fill="#F9EBD8"/>
+                    <ellipse cx="355" cy="360" rx="30" ry="35" fill="url(#furFluff)" transform="rotate(10 355 360)"/>
+                    <ellipse cx="355" cy="380" rx="22" ry="12" fill="#F9EBD8"/>
                 </g>
 
-                <!-- Ears (dark) -->
+                <!-- Ears -->
                 <g id="ear-left" class="ear-neutral">
-                    <path d="M95 68 C48 56, 28 100, 54 142 C72 128, 88 98, 100 72Z" fill="url(#darkEar)" filter="url(#furSoft)"/>
-                    <path d="M68 102 C58 120, 58 135, 68 145" stroke="#2b1a0c" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path d="M160 100 C105 85, 60 135, 85 200 C115 175, 135 138, 160 115Z" fill="url(#earGrad)" filter="url(#fluffyFilter)"/>
+                    <path d="M108 145 C92 170, 94 190, 108 198" stroke="#2A180E" stroke-width="2" fill="none" opacity="0.4"/>
                 </g>
                 <g id="ear-right" class="ear-neutral">
-                    <path d="M205 68 C252 56, 272 100, 246 142 C228 128, 212 98, 200 72Z" fill="url(#darkEar)" filter="url(#furSoft)"/>
-                    <path d="M232 102 C242 120, 242 135, 232 145" stroke="#2b1a0c" stroke-width="1.5" fill="none" opacity="0.5"/>
+                    <path d="M340 100 C395 85, 440 135, 415 200 C385 175, 365 138, 340 115Z" fill="url(#earGrad)" filter="url(#fluffyFilter)"/>
+                    <path d="M392 145 C408 170, 406 190, 392 198" stroke="#2A180E" stroke-width="2" fill="none" opacity="0.4"/>
                 </g>
 
-                <!-- Head (round, fluffy) -->
-                <g id="dog-head" filter="url(#furSoft)">
-                    <ellipse cx="150" cy="110" rx="74" ry="68" fill="url(#furCream)"/>
-                    <g fill="url(#furCream)">
-                        <ellipse cx="108" cy="56" rx="28" ry="25" transform="rotate(-15 108 56)"/>
-                        <ellipse cx="150" cy="44" rx="32" ry="28"/>
-                        <ellipse cx="192" cy="56" rx="28" ry="25" transform="rotate(15 192 56)"/>
+                <!-- Head -->
+                <g id="dog-head" filter="url(#fluffyFilter)">
+                    <ellipse cx="250" cy="160" rx="105" ry="98" fill="url(#furFluff)"/>
+                    <ellipse cx="190" cy="85" rx="45" ry="38" fill="url(#furFluff)" transform="rotate(-18 190 85)"/>
+                    <ellipse cx="250" cy="68" rx="52" ry="44" fill="url(#furFluff)"/>
+                    <ellipse cx="310" cy="85" rx="45" ry="38" fill="url(#furFluff)" transform="rotate(18 310 85)"/>
+
+                    <ellipse cx="200" cy="152" rx="38" ry="32" fill="url(#darkPatchEye)" opacity="0.9"/>
+                    <ellipse cx="300" cy="152" rx="38" ry="32" fill="url(#darkPatchEye)" opacity="0.9"/>
+                    <ellipse cx="250" cy="210" rx="55" ry="40" fill="#FFFCF8"/>
+                    <g stroke="#F5E2CE" stroke-width="2.5" fill="none" opacity="0.7">
+                        <path d="M210 195 Q198 215 210 232"/>
+                        <path d="M290 195 Q302 215 290 232"/>
                     </g>
+                    <ellipse cx="250" cy="190" rx="20" ry="14" fill="url(#noseGrad)"/>
+                    <ellipse cx="242" cy="183" rx="6" ry="4" fill="rgba(255,245,210,0.9)"/>
+                    <ellipse cx="242" cy="196" rx="3.5" ry="2.5" fill="#1F150C"/>
+                    <ellipse cx="258" cy="196" rx="3.5" ry="2.5" fill="#1F150C"/>
 
-                    <!-- Dark patches around eyes -->
-                    <ellipse cx="122" cy="102" rx="26" ry="22" fill="url(#darkPatch)" opacity="0.85"/>
-                    <ellipse cx="178" cy="102" rx="26" ry="22" fill="url(#darkPatch)" opacity="0.85"/>
-
-                    <!-- Muzzle -->
-                    <ellipse cx="150" cy="140" rx="38" ry="30" fill="#fffcf5"/>
-                    <g stroke="#f1e7d4" stroke-width="1.8" fill="none" opacity="0.7">
-                        <path d="M128 130 Q122 145 128 158"/>
-                        <path d="M172 130 Q178 145 172 158"/>
-                    </g>
-
-                    <!-- Black nose -->
-                    <ellipse cx="150" cy="125" rx="14" ry="10" fill="url(#blackNose)"/>
-                    <ellipse cx="146" cy="120" rx="4" ry="3" fill="rgba(255,255,235,0.9)"/>
-                    <ellipse cx="146" cy="129" rx="2.5" ry="1.8" fill="#1a1008"/>
-                    <ellipse cx="154" cy="129" rx="2.5" ry="1.8" fill="#1a1008"/>
-
-                    <!-- Eyes (large, dark, expressive) -->
                     <g id="eyes-group">
-                        <ellipse cx="122" cy="104" rx="10" ry="12" fill="#111111"/>
-                        <ellipse cx="118" cy="96" rx="4" ry="4.5" fill="white" opacity="0.95"/>
-                        <ellipse cx="125" cy="102" rx="2" ry="2" fill="white" opacity="0.6"/>
-                        <ellipse cx="178" cy="104" rx="10" ry="12" fill="#111111"/>
-                        <ellipse cx="174" cy="96" rx="4" ry="4.5" fill="white" opacity="0.95"/>
-                        <ellipse cx="181" cy="102" rx="2" ry="2" fill="white" opacity="0.6"/>
+                        <ellipse cx="202" cy="154" rx="16" ry="17" fill="#261E16"/>
+                        <ellipse cx="196" cy="142" rx="6.5" ry="7" fill="white" opacity="0.98"/>
+                        <ellipse cx="207" cy="150" rx="3" ry="3.5" fill="white" opacity="0.7"/>
+                        <ellipse cx="298" cy="154" rx="16" ry="17" fill="#261E16"/>
+                        <ellipse cx="292" cy="142" rx="6.5" ry="7" fill="white" opacity="0.98"/>
+                        <ellipse cx="303" cy="150" rx="3" ry="3.5" fill="white" opacity="0.7"/>
                     </g>
 
-                    <!-- Eyebrows -->
-                    <g id="brows" stroke="#8B5A2B" stroke-width="3" fill="none" stroke-linecap="round">
-                        <path id="brow-left" d="M106 88 Q122 80 136 88"/>
-                        <path id="brow-right" d="M164 88 Q178 80 194 88"/>
+                    <g id="brows" stroke="#B58968" stroke-width="5" fill="none" stroke-linecap="round">
+                        <path id="brow-left" d="M176 130 Q200 118 226 130"/>
+                        <path id="brow-right" d="M274 130 Q300 118 324 130"/>
                     </g>
 
-                    <!-- Mouth (soft smile) -->
-                    <path id="mouth-path" d="M138 150 Q150 158 162 150" stroke="#b2805a" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    <path id="mouth-path" d="M228 220 Q250 232 272 220" stroke="#B28064" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <path id="tongue-tip" d="M244 226 Q250 238 256 226" fill="#FFA3B2" opacity="0.85"/>
 
-                    <!-- Teal harness -->
-                    <path d="M106 158 Q150 142 194 158 Q192 168 150 170 Q108 168 106 158Z" fill="#00A896" stroke="#111111" stroke-width="1.5" opacity="0.95"/>
-                    <path d="M122 158 L122 175" stroke="#00A896" stroke-width="4" stroke-linecap="round"/>
-                    <path d="M178 158 L178 175" stroke="#00A896" stroke-width="4" stroke-linecap="round"/>
-                    <rect x="144" y="165" width="12" height="6" rx="2" fill="#111111" opacity="0.8"/>
+                    <g id="collar">
+                        <path d="M175 240 Q250 218 325 240 Q320 258 250 260 Q180 258 175 240Z" fill="#7CC6D0" stroke="#519BA8" stroke-width="2" opacity="0.95"/>
+                        <ellipse cx="250" cy="248" rx="6" ry="4" fill="#FFE0B5" stroke="#519BA8" stroke-width="1.5"/>
+                    </g>
                 </g>
             </svg>
         </div>
@@ -519,7 +580,7 @@
     </div>
 </div>
 
-<!-- ========= MAIN PAGE (original full version) ========= -->
+<!-- MAIN CONTENT (will be revealed after unlock) -->
 <div id="hero">
     <div class="hero-eyebrow">A little something for you</div>
     <h1>Happy<br><em>Birthday,</em><br>Ariadne 🎂</h1>
@@ -530,7 +591,7 @@
 <section id="photos-section">
     <div class="section-label">Memories</div>
     <h2>Photos of us</h2>
-    <p style="color:#b2887a; margin-bottom:1rem;">Click any slot to add a photo.</p>
+    <p style="color:#BB958A; margin-bottom:1rem;">Click any slot to add a photo.</p>
     <div id="photos-grid"></div>
     <input type="file" id="photo-file-input" accept="image/*" multiple />
     <button class="add-photo-btn" onclick="addPhotoSlot()">+ Add more slots</button>
@@ -548,15 +609,15 @@
     <div class="section-label">From the heart</div>
     <h2>A birthday wish</h2>
     <div class="wish-card">
-        <p class="wish-text" id="wish-text">Here's to you — for your laughter, your kindness, and the irreplaceable way you light up every room. May this year bring you everything you deserve.</p>
-        <div class="wish-from" id="wish-from">— With love, [Your Name]</div>
+        <p class="wish-text">Here's to you — for your laughter, your kindness, and the irreplaceable way you light up every room. May this year bring you everything you deserve.</p>
+        <div class="wish-from">— With love, [Your Name]</div>
     </div>
 </section>
 
 <footer>Made with love &nbsp;·&nbsp; 🐾 Birthday magic</footer>
 
 <script>
-    // ========== PASSWORD = "bella" ==========
+    // Password logic, dog reactions, confetti, photo/video slots, wandering dogs (identical to previous but with correct password)
     const CORRECT_PASSWORD = "bella";
     const pwInput = document.getElementById('password-input');
     const unlockBtn = document.getElementById('unlock-btn');
@@ -565,7 +626,6 @@
     const lockTitle = document.getElementById('lock-title');
     const lockSub = document.getElementById('lock-subtitle');
 
-    // Dog elements (from SVG)
     const dogTail = document.getElementById('dog-tail');
     const earLeft = document.getElementById('ear-left');
     const earRight = document.getElementById('ear-right');
@@ -573,6 +633,7 @@
     const browLeft = document.getElementById('brow-left');
     const browRight = document.getElementById('brow-right');
     const mouthPath = document.getElementById('mouth-path');
+    const tongueTip = document.getElementById('tongue-tip');
     const dogHead = document.getElementById('dog-head');
     const dogWrap = document.querySelector('.dog-portrait');
 
@@ -582,97 +643,41 @@
         if (earLeft) earLeft.classList.remove('ears-raise-left', 'ears-droop-left');
         if (earRight) earRight.classList.remove('ears-raise-right', 'ears-droop-right');
         if (dogHead) dogHead.classList.remove('head-tilt', 'sad-shake');
-        if (mouthPath) mouthPath.setAttribute('d', "M138 150 Q150 158 162 150");
-        if (browLeft) browLeft.setAttribute('d', "M106 88 Q122 80 136 88");
-        if (browRight) browRight.setAttribute('d', "M164 88 Q178 80 194 88");
+        if (mouthPath) mouthPath.setAttribute('d', "M228 220 Q250 232 272 220");
+        if (tongueTip) tongueTip.setAttribute('d', "M244 226 Q250 238 256 226");
+        if (browLeft) browLeft.setAttribute('d', "M176 130 Q200 118 226 130");
+        if (browRight) browRight.setAttribute('d', "M274 130 Q300 118 324 130");
+        if (eyeGroup) eyeGroup.classList.add('blink-eyes');
     }
 
     function setDogState(state) {
         resetDog();
         switch(state) {
-            case 'empty':
-                if (dogWrap) dogWrap.classList.add('dog-idle-anim');
-                if (dogTail) dogTail.classList.add('tail-slow');
-                if (eyeGroup) eyeGroup.classList.add('blink-eyes');
-                lockTitle.innerText = "✨ Enter the magic ✨";
-                lockSub.innerText = "Ariadne's birthday surprise awaits 🐾";
-                break;
-            case 'typing':
-                if (dogHead) dogHead.classList.add('head-tilt');
-                if (dogTail) dogTail.classList.add('tail-slow');
-                if (browLeft) browLeft.setAttribute('d', "M103 86 Q122 78 138 86");
-                if (browRight) browRight.setAttribute('d', "M162 86 Q178 78 197 86");
-                lockTitle.innerText = "Hmm, let me see…";
-                lockSub.innerText = "I'm watching every letter 👀";
-                break;
-            case 'partial':
-                if (dogWrap) dogWrap.classList.add('excited-bounce');
-                if (dogTail) dogTail.classList.add('tail-fast');
-                if (earLeft) earLeft.classList.add('ears-raise-left');
-                if (earRight) earRight.classList.add('ears-raise-right');
-                if (mouthPath) mouthPath.setAttribute('d', "M135 147 Q150 160 165 147");
-                if (browLeft) browLeft.setAttribute('d', "M100 82 Q122 74 140 82");
-                if (browRight) browRight.setAttribute('d', "M160 82 Q178 74 200 82");
-                lockTitle.innerText = "Ooh, getting warmer!";
-                lockSub.innerText = "My ears just perked up!";
-                break;
-            case 'close':
-                if (dogWrap) dogWrap.classList.add('happy-bounce');
-                if (dogTail) dogTail.classList.add('tail-fast');
-                if (earLeft) earLeft.classList.add('ears-raise-left');
-                if (earRight) earRight.classList.add('ears-raise-right');
-                if (mouthPath) mouthPath.setAttribute('d', "M132 144 Q150 164 168 144");
-                if (browLeft) browLeft.setAttribute('d', "M98 78 Q122 68 142 78");
-                if (browRight) browRight.setAttribute('d', "M158 78 Q178 68 202 78");
-                lockTitle.innerText = "So close! One more letter…";
-                lockSub.innerText = "I can almost taste it!";
-                break;
-            case 'correct':
-                if (dogWrap) dogWrap.classList.add('big-jump');
-                if (dogTail) dogTail.classList.add('tail-fast');
-                if (earLeft) earLeft.classList.add('ears-raise-left');
-                if (earRight) earRight.classList.add('ears-raise-right');
-                if (mouthPath) mouthPath.setAttribute('d', "M128 140 Q150 170 172 140");
-                if (browLeft) browLeft.setAttribute('d', "M95 72 Q122 62 145 74");
-                if (browRight) browRight.setAttribute('d', "M155 74 Q178 62 205 72");
-                lockTitle.innerText = "YAAAY! That's it! 🎉";
-                lockSub.innerText = "Unwrapping your surprise…";
-                burstConfetti();
-                break;
-            case 'wrong':
-                if (dogHead) dogHead.classList.add('sad-shake');
-                if (earLeft) earLeft.classList.add('ears-droop-left');
-                if (earRight) earRight.classList.add('ears-droop-right');
-                if (dogTail) dogTail.classList.add('tail-still');
-                if (mouthPath) mouthPath.setAttribute('d', "M140 154 Q150 146 160 154");
-                if (browLeft) browLeft.setAttribute('d', "M108 92 Q122 90 134 96");
-                if (browRight) browRight.setAttribute('d', "M166 96 Q178 90 192 92");
-                lockTitle.innerText = "Aww, not quite…";
-                lockSub.innerText = "Let's try that again 🐾";
-                errorDiv.innerText = "✦ Wrong password — try again ✦";
-                setTimeout(() => { if(pwInput.value.length === 0) setDogState('empty'); errorDiv.innerText = ''; }, 1400);
-                break;
+            case 'empty': if (dogWrap) dogWrap.classList.add('dog-idle-anim'); lockTitle.innerText = "✨ Enter the magic ✨"; lockSub.innerText = "Ariadne's birthday surprise awaits 🐾"; break;
+            case 'typing': if (dogHead) dogHead.classList.add('head-tilt'); if (browLeft) browLeft.setAttribute('d', "M174 126 Q200 114 228 126"); if (browRight) browRight.setAttribute('d', "M272 126 Q300 114 326 126"); lockTitle.innerText = "Hmm, let me see…"; lockSub.innerText = "I'm watching every letter 👀"; break;
+            case 'partial': if (dogWrap) dogWrap.classList.add('excited-bounce'); if (dogTail) dogTail.classList.add('tail-fast'); if (earLeft) earLeft.classList.add('ears-raise-left'); if (earRight) earRight.classList.add('ears-raise-right'); if (mouthPath) mouthPath.setAttribute('d', "M222 215 Q250 234 278 215"); if (tongueTip) tongueTip.setAttribute('d', "M242 222 Q250 240 258 222"); if (browLeft) browLeft.setAttribute('d', "M170 120 Q200 106 232 120"); if (browRight) browRight.setAttribute('d', "M268 120 Q300 106 330 120"); lockTitle.innerText = "Ooh, getting warmer!"; lockSub.innerText = "My ears just perked up!"; break;
+            case 'close': if (dogWrap) dogWrap.classList.add('happy-bounce'); if (dogTail) dogTail.classList.add('tail-fast'); if (earLeft) earLeft.classList.add('ears-raise-left'); if (earRight) earRight.classList.add('ears-raise-right'); if (mouthPath) mouthPath.setAttribute('d', "M216 210 Q250 238 284 210"); if (tongueTip) tongueTip.setAttribute('d', "M240 225 Q250 248 260 225"); if (browLeft) browLeft.setAttribute('d', "M165 114 Q200 98 236 114"); if (browRight) browRight.setAttribute('d', "M264 114 Q300 98 335 114"); lockTitle.innerText = "So close! One more letter…"; lockSub.innerText = "I can almost taste it!"; break;
+            case 'correct': if (dogWrap) dogWrap.classList.add('big-jump'); if (dogTail) dogTail.classList.add('tail-fast'); if (earLeft) earLeft.classList.add('ears-raise-left'); if (earRight) earRight.classList.add('ears-raise-right'); if (mouthPath) mouthPath.setAttribute('d', "M210 205 Q250 242 290 205"); if (tongueTip) tongueTip.setAttribute('d', "M238 228 Q250 252 262 228"); if (browLeft) browLeft.setAttribute('d', "M160 108 Q200 90 240 108"); if (browRight) browRight.setAttribute('d', "M260 108 Q300 90 340 108"); lockTitle.innerText = "YAAAY! That's it! 🎉"; lockSub.innerText = "Unwrapping your surprise…"; burstConfetti(); break;
+            case 'wrong': if (dogHead) dogHead.classList.add('sad-shake'); if (earLeft) earLeft.classList.add('ears-droop-left'); if (earRight) earRight.classList.add('ears-droop-right'); if (dogTail) dogTail.classList.add('tail-still'); if (mouthPath) mouthPath.setAttribute('d', "M232 225 Q250 216 268 225"); if (tongueTip) tongueTip.setAttribute('d', "M246 224 Q250 232 254 224"); if (browLeft) browLeft.setAttribute('d', "M182 136 Q200 126 218 136"); if (browRight) browRight.setAttribute('d', "M282 136 Q300 126 318 136"); lockTitle.innerText = "Aww, not quite…"; lockSub.innerText = "Let's try that again 🐾"; errorDiv.innerText = "✦ Wrong password — try again ✦"; setTimeout(() => { if(pwInput.value.length === 0) setDogState('empty'); errorDiv.innerText = ''; }, 1400); break;
         }
     }
 
-    // background confetti
-    const confettiColors = ['#FF4E7E', '#FFB834', '#609BF1', '#FFFFFF', '#59CD90'];
-    const confettiLayer = document.getElementById('confettiLayer');
-    for (let i = 0; i < 70; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'confetti-dot';
-        const size = 4 + Math.random() * 16;
-        dot.style.cssText = `width:${size}px; height:${size}px; background:${confettiColors[Math.floor(Math.random()*confettiColors.length)]}; left:${Math.random()*100}%; animation-duration:${5+Math.random()*10}s; animation-delay:${Math.random()*6}s; opacity:${0.3+Math.random()*0.5};`;
-        confettiLayer.appendChild(dot);
+    const confettiColors = ['#FFC8DD', '#FFE0B5', '#B5E3D5', '#FFFFFF', '#FADADD'];
+    const confettiLayerDiv = document.getElementById('confettiLayer');
+    for (let i = 0; i < 80; i++) {
+        const dot = document.createElement('div'); dot.className = 'confetti-dot';
+        const size = 4 + Math.random() * 18;
+        dot.style.cssText = `width:${size}px; height:${size}px; background:${confettiColors[Math.floor(Math.random()*confettiColors.length)]}; left:${Math.random()*100}%; animation-duration:${5+Math.random()*12}s; animation-delay:${Math.random()*7}s; opacity:${0.3+Math.random()*0.5};`;
+        confettiLayerDiv.appendChild(dot);
     }
 
     function burstConfetti() {
         const box = document.querySelector('.glass-card'); const rect = box.getBoundingClientRect();
         const cx = rect.left + rect.width/2, cy = rect.top + rect.height/3;
-        for(let i=0;i<100;i++) {
+        for(let i=0;i<150;i++) {
             const piece = document.createElement('div'); piece.className = 'burst-piece';
-            const angle = Math.random()*Math.PI*2, dist = 140+Math.random()*300;
-            const tx = Math.cos(angle)*dist, ty = Math.sin(angle)*dist-100;
+            const angle = Math.random()*Math.PI*2, dist = 160+Math.random()*380;
+            const tx = Math.cos(angle)*dist, ty = Math.sin(angle)*dist-120;
             piece.style.left = cx+'px'; piece.style.top = cy+'px';
             piece.style.background = confettiColors[Math.floor(Math.random()*confettiColors.length)];
             piece.style.setProperty('--tx', tx+'px'); piece.style.setProperty('--ty', ty+'px');
@@ -716,67 +721,39 @@
     pwInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') tryUnlock(); });
     setDogState('empty');
 
-    // ========== TINY WANDERING DOGS (exactly 14, larger) ==========
+    // Tiny wandering dogs (same as original)
     function createTinyDogSVG(scale) {
         const svgNS = "http://www.w3.org/2000/svg";
         const svg = document.createElementNS(svgNS, "svg");
         svg.setAttribute("viewBox", "0 0 100 90");
         svg.setAttribute("width", 90 * scale);
         svg.setAttribute("height", 78 * scale);
-        svg.innerHTML = `<defs><radialGradient id="tfur" cx="45%" cy="35%" r="70%"><stop offset="0%" stop-color="#fffef7"/><stop offset="60%" stop-color="#fef0e0"/><stop offset="100%" stop-color="#f7dfc0"/></radialGradient><radialGradient id="tear" cx="35%" cy="40%" r="75%"><stop offset="0%" stop-color="#7a5c3a"/><stop offset="100%" stop-color="#2b1a0c"/></radialGradient></defs><g class="tiny-tail"><path d="M70 45 C85 35, 88 20, 78 10 C72 22, 68 38, 65 48Z" fill="url(#tfur)"/></g><g class="tiny-leg"><ellipse cx="40" cy="68" rx="9" ry="15" fill="url(#tfur)"/><ellipse cx="40" cy="79" rx="8" ry="6" fill="#f3e7d4"/></g><g class="tiny-leg" style="animation-delay:0.1s"><ellipse cx="55" cy="68" rx="9" ry="15" fill="url(#tfur)"/><ellipse cx="55" cy="79" rx="8" ry="6" fill="#f3e7d4"/></g><ellipse cx="45" cy="52" rx="30" ry="24" fill="url(#tfur)"/><g class="tiny-leg"><ellipse cx="25" cy="65" rx="9" ry="15" fill="url(#tfur)"/><ellipse cx="25" cy="76" rx="8" ry="6" fill="#f3e7d4"/></g><g class="tiny-leg" style="animation-delay:0.1s"><ellipse cx="70" cy="65" rx="9" ry="15" fill="url(#tfur)"/><ellipse cx="70" cy="76" rx="8" ry="6" fill="#f3e7d4"/></g><g><path d="M30 30 C22 32, 18 48, 28 60 C38 53, 44 42, 46 32Z" fill="url(#tear)"/><path d="M62 30 C70 32, 74 48, 64 60 C54 53, 48 42, 46 32Z" fill="url(#tear)"/><ellipse cx="46" cy="36" rx="28" ry="26" fill="url(#tfur)"/><ellipse cx="46" cy="48" rx="18" ry="14" fill="#fffef5"/><ellipse cx="46" cy="43" rx="6" ry="4" fill="#1f1610"/><ellipse cx="43" cy="42" rx="2" ry="1.5" fill="white"/><circle cx="36" cy="34" r="4.5" fill="#2f241b"/><circle cx="33" cy="31" r="2" fill="white"/><circle cx="56" cy="34" r="4.5" fill="#2f241b"/><circle cx="53" cy="31" r="2" fill="white"/><path d="M40 51 Q46 56 52 51" stroke="#b2805a" stroke-width="1.8" fill="none"/><path d="M43 54 Q46 66 49 54" fill="#ff8caa" opacity="0.9"/></g>`;
+        svg.innerHTML = `<defs><radialGradient id="tfur" cx="45%" cy="35%" r="70%"><stop offset="0%" stop-color="#fffef7"/><stop offset="60%" stop-color="#fef0e0"/><stop offset="100%" stop-color="#f7dfc0"/></radialGradient><radialGradient id="tear" cx="35%" cy="40%" r="75%"><stop offset="0%" stop-color="#7a5c3a"/><stop offset="100%" stop-color="#2b1a0c"/></radialGradient></defs><g class="tiny-tail"><path d="M70 45 C85 35, 88 20, 78 10 C72 22, 68 38, 65 48Z" fill="url(#tfur)"/></g><g class="tiny-leg"><ellipse cx="40" cy="68" rx="9" ry="15" fill="url(#tfur)"/><ellipse cx="40" cy="79" rx="8" ry="6" fill="#f3e7d4"/></g><g class="tiny-leg" style="animation-delay:0.1s"><ellipse cx="55" cy="68" rx="9" ry="15" fill="url(#tfur)"/><ellipse cx="55" cy="79" rx="8" ry="6" fill="#f3e7d4"/></g><ellipse cx="45" cy="52" rx="30" ry="24" fill="url(#tfur)"/><g class="tiny-leg"><ellipse cx="25" cy="65" rx="9" ry="15" fill="url(#tfur)"/><ellipse cx="25" cy="76" rx="8" ry="6" fill="#f3e7d4"/></g><g class="tiny-leg" style="animation-delay:0.1s"><ellipse cx="70" cy="65" rx="9" ry="15" fill="url(#tfur)"/><ellipse cx="70" cy="76" rx="8" ry="6" fill="#f3e7d4"/></g><g><path d="M30 30 C22 32, 18 48, 28 60 C38 53, 44 42, 46 32Z" fill="url(#tear)"/><path d="M62 30 C70 32, 74 48, 64 60 C54 53, 48 42, 46 32Z" fill="url(#tear)"/><ellipse cx="46" cy="36" rx="28" ry="26" fill="url(#tfur)"/><ellipse cx="46" cy="48" rx="18" ry="14" fill="#fffef5"/><ellipse cx="46" cy="43" rx="6" ry="4" fill="#1f1610"/><ellipse cx="43" cy="42" rx="2" ry="1.5" fill="white"/><circle cx="36" cy="34" r="4.5" fill="#2f241b"/><circle cx="33" cy="31" r="2" fill="white"/><circle cx="56" cy="34" r="4.5" fill="#2f241b"/><circle cx="53" cy="31" r="2" fill="white"/><path d="M40 51 Q46 56 52 51" stroke="#b2805a" stroke-width="1.8" fill="none"/><path d="M43 54 Q46 66 49 54" fill="#ffa3b2" opacity="0.9"/></g>`;
         const style = document.createElementNS(svgNS, "style");
         style.textContent = `.tiny-leg { animation: tinyRunLeg 0.2s infinite; transform-origin: top; } .tiny-tail { animation: tinyTailWag 0.2s infinite; transform-origin: bottom right; } @keyframes tinyRunLeg { 0%,100% { transform: rotate(-14deg); } 50% { transform: rotate(14deg); } } @keyframes tinyTailWag { 0%,100% { transform: rotate(-12deg); } 50% { transform: rotate(12deg); } }`;
         svg.appendChild(style);
         return svg;
     }
-
-    let wanderingCount = 0;
     function addWanderingDog() {
         if (!document.body.classList.contains('unlocked')) return;
-        const dogDiv = document.createElement('div');
-        dogDiv.className = 'cursor-dog';
+        const dogDiv = document.createElement('div'); dogDiv.className = 'cursor-dog';
         const scale = 0.65 + Math.random() * 0.5;
-        dogDiv.style.position = 'fixed';
-        dogDiv.style.left = Math.random() * (window.innerWidth - 110) + 'px';
-        dogDiv.style.top = Math.random() * (window.innerHeight - 100) + 'px';
-        dogDiv.style.width = (90 * scale) + 'px';
-        dogDiv.style.height = (78 * scale) + 'px';
-        dogDiv.appendChild(createTinyDogSVG(scale));
-        document.body.appendChild(dogDiv);
-        let posX = parseFloat(dogDiv.style.left);
-        let posY = parseFloat(dogDiv.style.top);
-        let velX = (Math.random() - 0.5) * 1.0;
-        let velY = (Math.random() - 0.5) * 1.0;
-        function animate() {
-            if (!dogDiv.parentNode) return;
-            posX += velX;
-            posY += velY;
-            if (posX < 0 || posX > window.innerWidth - 100) velX *= -1;
-            if (posY < 0 || posY > window.innerHeight - 90) velY *= -1;
-            dogDiv.style.left = posX + 'px';
-            dogDiv.style.top = posY + 'px';
-            requestAnimationFrame(animate);
-        }
-        requestAnimationFrame(animate);
-        setTimeout(() => { if(dogDiv.parentNode) dogDiv.remove(); }, 60000);
+        dogDiv.style.position = 'fixed'; dogDiv.style.left = Math.random() * (window.innerWidth - 110) + 'px'; dogDiv.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+        dogDiv.style.width = (90 * scale) + 'px'; dogDiv.style.height = (78 * scale) + 'px';
+        dogDiv.appendChild(createTinyDogSVG(scale)); document.body.appendChild(dogDiv);
+        let posX = parseFloat(dogDiv.style.left), posY = parseFloat(dogDiv.style.top);
+        let velX = (Math.random() - 0.5) * 1.0, velY = (Math.random() - 0.5) * 1.0;
+        function animate() { if (!dogDiv.parentNode) return; posX += velX; posY += velY; if (posX < 0 || posX > window.innerWidth - 100) velX *= -1; if (posY < 0 || posY > window.innerHeight - 90) velY *= -1; dogDiv.style.left = posX + 'px'; dogDiv.style.top = posY + 'px'; requestAnimationFrame(animate); }
+        requestAnimationFrame(animate); setTimeout(() => { if(dogDiv.parentNode) dogDiv.remove(); }, 60000);
     }
+    function startWanderingDogs(count) { for (let i = 0; i < count; i++) setTimeout(() => addWanderingDog(), i * 420); setInterval(() => { if (document.body.classList.contains('unlocked')) { if (document.querySelectorAll('.cursor-dog').length < 12) addWanderingDog(); } }, 14000); }
 
-    function startWanderingDogs(count) {
-        for (let i = 0; i < count; i++) setTimeout(() => addWanderingDog(), i * 350);
-        setInterval(() => {
-            if (document.body.classList.contains('unlocked')) {
-                const existing = document.querySelectorAll('.cursor-dog').length;
-                if (existing < 12) addWanderingDog();
-            }
-        }, 12000);
-    }
-
-    // ========== PHOTO & VIDEO SLOTS (full original functionality) ==========
+    // Photo & Video slots (full functionality)
     let photoSlotCount=0, currentPhotoSlot=null;
     function createPhotoSlot() { photoSlotCount++; const slot=document.createElement('div'); slot.className='photo-slot'; slot.innerHTML=`<div class="slot-icon">📷</div><div class="slot-label">add photo</div><img src=""/><div class="photo-caption"></div>`; slot.addEventListener('click',()=>{ currentPhotoSlot=slot; document.getElementById('photo-file-input').click(); }); return slot; }
     function addPhotoSlot(){ document.getElementById('photos-grid').appendChild(createPhotoSlot()); }
     for(let i=0;i<6;i++) addPhotoSlot();
-    document.getElementById('photo-file-input').addEventListener('change',function(){ const files=Array.from(this.files); if(!files.length)return; const slots=document.querySelectorAll('#photos-grid .photo-slot'); let idx=currentPhotoSlot?Array.from(slots).indexOf(currentPhotoSlot):0; files.forEach((f,i)=>{ let target=slots[idx+i]; if(!target){ target=createPhotoSlot(); document.getElementById('photos-grid').appendChild(target); } const url=URL.createObjectURL(f); const img=target.querySelector('img'); img.src=url; img.classList.add('loaded'); target.querySelector('.slot-icon').style.display='none'; target.querySelector('.slot-label').style.display='none'; target.querySelector('.photo-caption').textContent=f.name.replace(/\.[^.]+$/,''); }); this.value=''; currentPhotoSlot=null; });
+    document.getElementById('photo-file-input').addEventListener('change',function(){ const files=Array.from(this.files); if(!files.length)return; const slots=document.querySelectorAll('#photos-grid .photo-slot'); let idx=currentPhotoSlot?Array.from(slots).indexOf(currentPhotoSlot):0; files.forEach((f,i)=>{ let target=slots[idx+i]; if(!target){ target=createPhotoSlot(); document.getElementById('photos-grid').appendChild(target); } const url=URL.createObjectURL(f); const img=target.querySelector('img'); img.src=url; img.classList.add('loaded'); target.querySelector('.slot-icon').style.display='none'; target.querySelector('.slot-label').style.display='none'; }); this.value=''; currentPhotoSlot=null; });
     let videoSlotCount=0, currentVideoSlot=null;
     function createVideoSlot(){ videoSlotCount++; const slot=document.createElement('div'); slot.className='video-slot'; slot.innerHTML=`<div class="slot-icon">🎬</div><div class="slot-label">add video</div><video controls></video>`; slot.addEventListener('click',e=>{ if(e.target.tagName!=='VIDEO'){ currentVideoSlot=slot; document.getElementById('video-file-input').click(); } }); return slot; }
     function addVideoSlot(){ document.getElementById('videos-grid').appendChild(createVideoSlot()); }
