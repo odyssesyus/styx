@@ -3,28 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Happy Birthday, Ariadne! 🎂</title>
+<title>Happy Birthday, Ariadne! 🐾</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* ===== LOCK SCREEN - MODERN GLASS STYLE ===== */
+  /* ========= LOCK SCREEN ========= */
   #lock-screen {
     position: fixed; inset: 0;
     display: flex; align-items: center; justify-content: center;
     z-index: 9999;
-    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-family: 'Georgia', serif;
     overflow: hidden;
-    background: radial-gradient(circle at 20% 30%, #ffb77c, #ff8a9f, #b77eff, #5da9e9);
-    background-size: 200% 200%;
-    animation: auroraFlow 12s ease infinite;
-  }
-  @keyframes auroraFlow {
-    0% { background-position: 0% 0%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 0%; }
+    background: #1a0533;
   }
 
-  /* floating confetti particles (subtle) */
+  #lock-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #ff6b9d, #ff9a5c, #ffd93d, #6bcb77, #4d96ff, #c77dff);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    opacity: 0.85;
+  }
+  @keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
   .confetti-piece {
     position: absolute;
     border-radius: 50%;
@@ -37,7 +42,6 @@
     100% { transform: translateY(-20vh) rotate(720deg); opacity: 0; }
   }
 
-  /* burst confetti for success */
   .burst-piece {
     position: fixed;
     width: 10px; height: 10px;
@@ -48,32 +52,27 @@
   }
   @keyframes burstFly {
     0% { transform: translate(0,0) rotate(0deg) scale(1); opacity: 1; }
-    100% { transform: translate(var(--tx), var(--ty)) rotate(var(--tr)) scale(0.3); opacity: 0; }
+    100% { transform: translate(var(--tx), var(--ty)) rotate(var(--tr)) scale(0.4); opacity: 0; }
   }
 
-  /* glass card - modern */
   #lock-box {
     position: relative; z-index: 2;
-    background: rgba(255, 248, 240, 0.22);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 245, 0.5);
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(18px);
     border-radius: 48px;
-    padding: 2rem 2rem 2.2rem;
+    padding: 1.5rem 2rem 2rem;
     text-align: center;
-    max-width: 560px;
+    max-width: 580px;
     width: 92%;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,215,170,0.3);
-    transition: transform 0.2s ease;
+    box-shadow: 0 25px 45px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.2);
   }
 
-  /* Shih Tzu - made 45% larger (from 390px to 460px) for prominence */
   #lock-dog-wrap {
     width: 460px;
     height: 460px;
-    margin: -0.8rem auto 0.2rem;
+    margin: -1.2rem auto 0.2rem;
     position: relative;
-    filter: drop-shadow(0 18px 24px rgba(0,0,0,0.2));
+    filter: drop-shadow(0 20px 25px rgba(0,0,0,0.2));
   }
   #lock-dog-wrap svg {
     width: 100%;
@@ -82,418 +81,275 @@
   }
 
   #lock-box h2 {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: white;
-    margin-top: 0.5rem;
-    letter-spacing: -0.2px;
+    font-size: 1.5rem; color: #fff;
+    margin-bottom: 0.25rem; font-weight: 600;
+    letter-spacing: -0.3px;
     text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    font-family: 'Georgia', serif;
   }
   #lock-box p {
-    font-size: 0.85rem;
-    color: rgba(255,255,245,0.9);
+    font-size: 0.85rem; color: rgba(255,255,255,0.9);
     margin-bottom: 1.5rem;
-    font-weight: 400;
   }
 
   #pw-input {
-    width: 100%; padding: 1rem 1.2rem;
-    border: 1.5px solid rgba(255,255,240,0.7);
+    width: 100%; padding: 0.9rem 1.2rem;
+    border: 1.5px solid rgba(255,255,255,0.6);
     border-radius: 60px;
     font-size: 1rem;
-    font-family: 'Courier New', monospace;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    font-family: monospace;
     letter-spacing: 1.5px;
     outline: none;
-    margin-bottom: 0.9rem;
-    color: #2d241c;
-    background: rgba(255,255,250,0.85);
-    backdrop-filter: blur(4px);
-    transition: all 0.2s;
-    font-weight: 500;
   }
-  #pw-input:focus {
-    border-color: #ffdd99;
-    background: rgba(255,255,250,0.95);
-    box-shadow: 0 0 0 3px rgba(255,220,150,0.3);
-  }
-  #pw-input::placeholder {
-    color: #b6a089;
-    font-family: 'Inter', monospace;
-    letter-spacing: normal;
-  }
+  #pw-input:focus { border-color: #ffd93d; background: rgba(255,255,255,0.3); }
 
   #pw-btn {
-    width: 100%; padding: 1rem;
-    background: linear-gradient(95deg, #ff8a5c, #ff4d6d);
+    width: 100%; padding: 0.9rem;
+    background: linear-gradient(90deg, #ff6b9d, #ff9a5c);
     border: none;
     border-radius: 60px;
-    font-size: 1rem;
-    font-weight: 600;
+    font-weight: bold;
     color: white;
     cursor: pointer;
+    margin-top: 0.5rem;
     transition: 0.2s;
-    box-shadow: 0 8px 18px rgba(0,0,0,0.2);
   }
-  #pw-btn:hover { transform: scale(0.98); opacity: 0.92; }
+  #pw-btn:hover { opacity: 0.9; transform: scale(0.98); }
 
   #pw-error {
-    min-height: 2rem;
+    color: #ffd93d; font-size: 0.8rem;
     margin-top: 0.8rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: #ffec9f;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    min-height: 1.2em;
   }
 
-  .lock-tagline {
-    margin-top: 1.5rem;
-    font-size: 0.7rem;
-    color: rgba(255,250,235,0.7);
-    letter-spacing: 0.2em;
-  }
-
-  /* ===== MAIN SITE (unchanged functionality, preserved) ===== */
-  body {
-    font-family: 'Georgia', serif;
-    background: #fdf8f4;
-    color: #3a2e27;
-    overflow-x: hidden;
-  }
-  #hero, #photos-section, #videos-section, #wish-section, footer,
-  section:not(#photos-section):not(#wish-section) {
-    display: none;
-  }
-  body.unlocked #hero,
-  body.unlocked #photos-section,
-  body.unlocked #videos-section,
-  body.unlocked #wish-section,
-  body.unlocked footer,
-  body.unlocked section {
-    display: block;
-  }
+  /* ========= MAIN SITE ========= */
+  body { font-family: 'Georgia', serif; background: #fdf8f4; color: #3a2e27; overflow-x: hidden; cursor: default; }
+  #hero, #photos-section, #videos-section, #wish-section, footer { display: none; }
+  body.unlocked #hero, body.unlocked #photos-section, body.unlocked #videos-section, body.unlocked #wish-section, body.unlocked footer { display: block; }
   body.unlocked #hero { display: flex; }
 
-  /* Running dog main page - realistic, 50% larger */
+  /* Main running dog (large, bottom) */
   #main-dog {
     position: fixed;
     bottom: 20px;
-    left: -220px;
-    width: 230px;
-    height: 195px;
+    left: -280px;
+    width: 240px;
+    height: 210px;
     z-index: 500;
     pointer-events: none;
     filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
   }
   #main-dog svg { width: 100%; height: 100%; display: block; }
 
-  /* Hero & rest styles remain exactly as original */
-  #hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    padding: 4rem 2rem;
-    position: relative;
-    overflow: hidden;
-  }
-  #hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 60% 40%, #f5e8d8 0%, #fdf8f4 70%);
-    z-index: 0;
-  }
-  #hero > * { position: relative; z-index: 1; }
-  .hero-eyebrow {
-    font-family: sans-serif; font-size: 0.78rem;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: #b08060; margin-bottom: 1.5rem;
-  }
-  #hero h1 {
-    font-size: clamp(2.8rem, 8vw, 6rem);
-    font-weight: normal;
-    color: #2e211a;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
-  }
-  #hero h1 em { font-style: italic; color: #b08060; }
-  .hero-sub {
-    font-size: 1.1rem; color: #7a6455;
-    max-width: 460px; line-height: 1.8;
-    margin-bottom: 2.5rem;
-  }
-  .scroll-hint {
-    font-family: sans-serif; font-size: 0.75rem;
-    letter-spacing: 0.12em; color: #b08060;
-    text-transform: uppercase;
-    animation: bob 2s ease-in-out infinite;
-  }
-  @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
-  section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
-  .section-label {
-    font-family: sans-serif; font-size: 0.72rem;
-    letter-spacing: 0.2em; text-transform: uppercase;
-    color: #b08060; margin-bottom: 1.2rem;
-  }
-  h2 {
-    font-size: clamp(1.6rem, 4vw, 2.2rem);
-    font-weight: normal; color: #2e211a;
-    margin-bottom: 1.5rem; letter-spacing: -0.01em;
-  }
-  #photos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
-    margin-top: 1.5rem;
-  }
-  .photo-slot {
-    aspect-ratio: 4/5;
-    background: #f0e8df;
-    border-radius: 10px;
-    border: 2px dashed #d5c4b4;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    text-align: center;
-    cursor: pointer;
-    overflow: hidden;
-    transition: border-color 0.2s;
-    position: relative;
-  }
-  .photo-slot:hover { border-color: #b08060; }
-  .photo-slot img {
-    width: 100%; height: 100%; object-fit: cover;
-    display: none; border-radius: 8px;
-  }
-  .photo-slot img.loaded { display: block; }
-  .photo-slot .slot-label {
-    font-family: sans-serif; font-size: 0.78rem;
-    color: #b08060; letter-spacing: 0.06em;
-    margin-top: 0.5rem;
-  }
-  .photo-slot .slot-icon { font-size: 1.6rem; margin-bottom: 0.3rem; }
-  .add-photo-btn {
-    margin-top: 1.5rem;
-    padding: 0.65rem 1.5rem;
-    background: transparent;
-    border: 1px solid #b08060;
-    border-radius: 8px;
-    color: #b08060; font-family: sans-serif;
-    font-size: 0.85rem; letter-spacing: 0.06em;
-    cursor: pointer; transition: all 0.2s;
-  }
-  .add-photo-btn:hover { background: #b08060; color: #fff; }
-  #photo-file-input { display: none; }
-  .photo-caption {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    background: rgba(46,33,26,0.7);
-    color: #fff; font-family: sans-serif; font-size: 0.75rem;
-    padding: 0.4rem 0.6rem; text-align: center;
-    opacity: 0; transition: opacity 0.2s;
-    border-radius: 0 0 8px 8px;
-  }
-  .photo-slot:hover .photo-caption { opacity: 1; }
-  #videos-section { background: #f7f0e8; border-radius: 16px; padding: 3rem 2rem; max-width: 900px; margin: 0 auto 3rem; }
-  .video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 1rem; margin-top: 1.5rem;
-  }
-  .video-slot {
-    aspect-ratio: 16/9;
-    background: #ede3d8;
-    border-radius: 10px;
-    border: 2px dashed #d5c4b4;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    cursor: pointer; overflow: hidden;
-    transition: border-color 0.2s; position: relative;
-  }
-  .video-slot:hover { border-color: #b08060; }
-  .video-slot video {
-    width: 100%; height: 100%;
-    object-fit: cover; display: none;
-    border-radius: 8px;
-  }
-  .video-slot video.loaded { display: block; }
-  .video-slot .slot-label { font-family: sans-serif; font-size: 0.78rem; color: #b08060; margin-top: 0.4rem; }
-  .video-slot .slot-icon { font-size: 1.6rem; }
-  #video-file-input { display: none; }
-  .add-video-btn {
-    margin-top: 1.5rem;
-    padding: 0.65rem 1.5rem;
-    background: transparent;
-    border: 1px solid #b08060;
-    border-radius: 8px;
-    color: #b08060; font-family: sans-serif;
-    font-size: 0.85rem; letter-spacing: 0.06em;
-    cursor: pointer; transition: all 0.2s;
-  }
-  .add-video-btn:hover { background: #b08060; color: #fff; }
-  #wish-section { text-align: center; padding: 5rem 2rem; max-width: 680px; margin: 0 auto; }
-  .wish-card {
-    background: #fff;
-    border: 1px solid #e8ddd4;
-    border-radius: 16px;
-    padding: 3rem 2.5rem;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
-    position: relative;
-  }
-  .wish-card::before {
-    content: '\201C';
-    font-size: 8rem; line-height: 1;
-    color: #f0e8df; position: absolute;
-    top: -1rem; left: 1.5rem;
-    font-family: Georgia, serif;
+  /* Cursor-following tiny dogs container */
+  .cursor-dog {
+    position: fixed;
     pointer-events: none;
+    z-index: 1000;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+    transition: transform 0.05s linear;
+    will-change: left, top;
   }
-  .wish-text {
-    font-size: 1.15rem; line-height: 1.9;
-    color: #4a3a2e;
-    font-style: italic;
-    margin-bottom: 1.5rem;
-    position: relative; z-index: 1;
+  .cursor-dog svg {
+    display: block;
+    width: 100%;
+    height: 100%;
   }
-  .wish-from {
-    font-family: sans-serif; font-size: 0.82rem;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: #b08060;
+  /* tiny running animations */
+  @keyframes tinyRunLeg {
+    0%,100% { transform: rotate(-15deg); }
+    50% { transform: rotate(15deg); }
   }
-  .edit-wish-btn {
-    margin-top: 1.2rem;
-    padding: 0.5rem 1.2rem;
-    background: transparent; border: 1px solid #ddd;
-    border-radius: 8px; color: #9a8a7e;
-    font-family: sans-serif; font-size: 0.78rem;
-    cursor: pointer; transition: all 0.2s; display: block; margin: 1.2rem auto 0;
+  .tiny-leg { animation: tinyRunLeg 0.2s infinite; transform-origin: top; }
+  @keyframes tinyTailWag {
+    0%,100% { transform: rotate(-12deg); }
+    50% { transform: rotate(12deg); }
   }
-  .edit-wish-btn:hover { border-color: #b08060; color: #b08060; }
-  #wish-modal {
-    position: fixed; inset: 0;
-    background: rgba(46,33,26,0.5);
-    display: none; align-items: center; justify-content: center;
-    z-index: 888; padding: 1rem;
+  .tiny-tail { animation: tinyTailWag 0.2s infinite; transform-origin: bottom right; }
+  @keyframes tinyFadeOut {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.6); }
   }
-  #wish-modal.open { display: flex; }
-  #wish-modal-box {
-    background: #fff; border-radius: 14px;
-    padding: 2rem; width: 100%; max-width: 500px;
+  .fade-out {
+    animation: tinyFadeOut 0.4s ease-out forwards;
   }
-  #wish-modal h3 { font-weight: normal; font-size: 1.1rem; margin-bottom: 1rem; color: #2e211a; }
-  #wish-modal textarea {
-    width: 100%; height: 160px; padding: 0.75rem;
-    border: 1px solid #ddd; border-radius: 8px;
-    font-size: 0.95rem; font-family: Georgia, serif;
-    resize: vertical; color: #3a2e27;
-    line-height: 1.7; margin-bottom: 0.75rem;
-  }
-  #wish-modal input[type=text] {
-    width: 100%; padding: 0.6rem 0.75rem;
-    border: 1px solid #ddd; border-radius: 8px;
-    font-size: 0.85rem; font-family: sans-serif;
-    color: #3a2e27; margin-bottom: 1rem;
-  }
-  .modal-btns { display: flex; gap: 0.75rem; justify-content: flex-end; }
-  .modal-btns button {
-    padding: 0.6rem 1.2rem; border-radius: 8px;
-    font-family: sans-serif; font-size: 0.85rem; cursor: pointer;
-  }
-  .btn-cancel { background: transparent; border: 1px solid #ddd; color: #7a6455; }
-  .btn-save { background: #3a2e27; border: none; color: #fff; }
-  .btn-save:hover { background: #5a4a3a; }
-  footer {
-    text-align: center; padding: 2.5rem;
-    font-family: sans-serif; font-size: 0.75rem;
-    color: #c4b4a4; letter-spacing: 0.08em;
-  }
-  .pw-hint {
-    background: #fdf0e8; border: 1px solid #e8d4c0;
-    border-radius: 10px; padding: 1rem 1.2rem;
-    font-family: sans-serif; font-size: 0.8rem;
-    color: #7a5a40; margin-top: 3rem;
-    display: inline-block;
-  }
-  .pw-hint code { background: #efe0d0; padding: 2px 6px; border-radius: 4px; font-size: 0.78rem; }
 
-  /* ===== DOG ANIMATIONS (same as original but enhanced) ===== */
+  /* Hero & rest styles (unchanged) */
+  #hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 4rem 2rem; background: radial-gradient(ellipse at 60% 40%, #f5e8d8 0%, #fdf8f4 70%); }
+  .hero-eyebrow { font-family: sans-serif; font-size: 0.78rem; letter-spacing: 0.18em; color: #b08060; }
+  #hero h1 { font-size: clamp(2.8rem, 8vw, 6rem); color: #2e211a; }
+  #hero h1 em { color: #b08060; }
+  .hero-sub { font-size: 1.1rem; color: #7a6455; max-width: 460px; }
+  section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
+  .section-label { font-family: sans-serif; font-size: 0.72rem; letter-spacing: 0.2em; color: #b08060; }
+  h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: normal; color: #2e211a; }
+  #photos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+  .photo-slot { aspect-ratio: 4/5; background: #f0e8df; border: 2px dashed #d5c4b4; border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; position: relative; }
+  .photo-slot img { width: 100%; height: 100%; object-fit: cover; display: none; }
+  .photo-slot img.loaded { display: block; }
+  .add-photo-btn, .add-video-btn { margin-top: 1.5rem; padding: 0.65rem 1.5rem; background: transparent; border: 1px solid #b08060; border-radius: 8px; color: #b08060; cursor: pointer; }
+  #videos-section { background: #f7f0e8; border-radius: 16px; padding: 3rem 2rem; margin-bottom: 3rem; }
+  .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+  .video-slot { aspect-ratio: 16/9; background: #ede3d8; border: 2px dashed #d5c4b4; border-radius: 10px; display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; }
+  .video-slot video { width: 100%; display: none; }
+  .video-slot video.loaded { display: block; }
+  #wish-section { text-align: center; max-width: 680px; margin: 0 auto; }
+  .wish-card { background: #fff; border: 1px solid #e8ddd4; border-radius: 16px; padding: 3rem 2.5rem; position: relative; }
+  .wish-card::before { content: '\201C'; font-size: 8rem; color: #f0e8df; position: absolute; top: -1rem; left: 1.5rem; }
+  .wish-text { font-size: 1.15rem; line-height: 1.9; color: #4a3a2e; font-style: italic; }
+  .wish-from { font-family: sans-serif; font-size: 0.82rem; letter-spacing: 0.14em; color: #b08060; }
+  footer { text-align: center; padding: 2.5rem; color: #c4b4a4; }
+
+  /* ========= DOG ANIMATIONS (lock screen) ========= */
   @keyframes dogIdleSway { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-3px) rotate(0.5deg); } }
   .dog-idle-anim { animation: dogIdleSway 3s ease-in-out infinite; }
   @keyframes headTilt { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-4deg); } }
-  .head-tilt { animation: headTilt 1.6s ease-in-out infinite; transform-origin: 165px 150px; }
+  .head-tilt { animation: headTilt 1.6s ease-in-out infinite; transform-origin: 230px 190px; }
   @keyframes excitedBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
   .excited-bounce { animation: excitedBounce 0.35s ease-in-out infinite; }
   @keyframes happyBounce { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-6px) scale(1.02); } }
   .happy-bounce { animation: happyBounce 0.5s ease-in-out infinite; }
-  @keyframes bigJump { 0%,100% { transform: translateY(0) rotate(0deg); } 30% { transform: translateY(-28px) rotate(-3deg); } 50% { transform: translateY(-32px) rotate(3deg); } 70% { transform: translateY(-28px) rotate(-2deg); } }
-  .big-jump { animation: bigJump 0.6s ease-in-out infinite; }
-  @keyframes sadShake { 0%,100% { transform: translateX(0) rotate(0deg); } 20% { transform: translateX(-6px) rotate(-3deg); } 40% { transform: translateX(6px) rotate(3deg); } 60% { transform: translateX(-5px) rotate(-2deg); } 80% { transform: translateX(5px) rotate(2deg); } }
+  @keyframes bigJump { 0%,100% { transform: translateY(0); } 30% { transform: translateY(-28px); } 70% { transform: translateY(-8px); } }
+  .big-jump { animation: bigJump 0.6s ease-in-out 2; }
+  @keyframes sadShake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
   .sad-shake { animation: sadShake 0.5s ease-in-out 2; }
-  @keyframes tailWagSlow { 0%,100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
-  .tail-slow { animation: tailWagSlow 1.4s ease-in-out infinite; transform-origin: 60px 175px; }
+  @keyframes tailWagSlow { 0%,100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
+  .tail-slow { animation: tailWagSlow 1.4s infinite; transform-origin: 90px 230px; }
   @keyframes tailWagFast { 0%,100% { transform: rotate(-22deg); } 50% { transform: rotate(22deg); } }
-  .tail-fast { animation: tailWagFast 0.22s ease-in-out infinite; transform-origin: 60px 175px; }
-  .tail-still { transform: rotate(0deg); }
-  @keyframes earsRaise { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-4px) rotate(-4deg); } }
-  .ears-raise-left { animation: earsRaise 0.3s ease-in-out infinite; transform-origin: 120px 95px; }
-  .ears-raise-right { animation: earsRaise 0.3s ease-in-out infinite reverse; transform-origin: 195px 95px; }
-  .ears-droop-left { transform: rotate(12deg) translateY(8px); transform-origin: 120px 95px; transition: transform 0.4s; }
-  .ears-droop-right { transform: rotate(-12deg) translateY(8px); transform-origin: 195px 95px; transition: transform 0.4s; }
+  .tail-fast { animation: tailWagFast 0.22s infinite; transform-origin: 90px 230px; }
+  .tail-still { animation: none; transform: rotate(0deg); }
+  @keyframes earsRaise { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-5px) rotate(-5deg); } }
+  .ears-raise-left { animation: earsRaise 0.3s infinite; transform-origin: 170px 120px; }
+  .ears-raise-right { animation: earsRaise 0.3s infinite reverse; transform-origin: 310px 120px; }
+  .ears-droop-left { transform: rotate(14deg) translateY(10px); transform-origin: 170px 120px; transition: 0.3s; }
+  .ears-droop-right { transform: rotate(-14deg) translateY(10px); transform-origin: 310px 120px; transition: 0.3s; }
   @keyframes blink { 0%,92%,100% { transform: scaleY(1); } 96% { transform: scaleY(0.1); } }
-  .blink-eyes { animation: blink 4s ease-in-out infinite; transform-origin: center; }
-  @keyframes eyeShift { 0%,100% { transform: translateX(0); } 50% { transform: translateX(2px); } }
-  .eye-track { animation: eyeShift 0.8s ease-in-out infinite; }
-  @keyframes tonguePant { 0%,100% { transform: scaleY(1) translateY(0); } 50% { transform: scaleY(1.15) translateY(2px); } }
-  .tongue-pant-anim { animation: tonguePant 0.35s ease-in-out infinite; }
+  .blink-eyes { animation: blink 4s infinite; transform-origin: center; }
+  @keyframes eyeShift { 0%,100% { transform: translateX(0); } 50% { transform: translateX(3px); } }
+  .eye-track { animation: eyeShift 0.8s infinite; }
+  @keyframes tonguePant { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(1.2); } }
+  .tongue-pant-anim { animation: tonguePant 0.35s infinite; transform-origin: top; }
   @keyframes runAcross {
-    0%   { left: -220px; transform: scaleX(1); }
+    0%   { left: -280px; transform: scaleX(1); }
     45%  { left: calc(100vw + 30px); transform: scaleX(1); }
     46%  { left: calc(100vw + 30px); transform: scaleX(-1); }
-    91%  { left: -220px; transform: scaleX(-1); }
-    92%  { left: -220px; transform: scaleX(1); }
-    100% { left: -220px; transform: scaleX(1); }
+    91%  { left: -280px; transform: scaleX(-1); }
+    92%  { left: -280px; transform: scaleX(1); }
+    100% { left: -280px; transform: scaleX(1); }
   }
-  #main-dog { animation: runAcross 9s linear infinite; }
-  /* running dog internal leg animations */
-  @keyframes legSwingFront { 0%,100% { transform: rotate(-22deg); } 50% { transform: rotate(22deg); } }
-  @keyframes legSwingBack { 0%,100% { transform: rotate(22deg); } 50% { transform: rotate(-22deg); } }
-  .run-leg-front { animation: legSwingFront 0.28s ease-in-out infinite; }
-  .run-leg-back { animation: legSwingBack 0.28s ease-in-out infinite; }
-  .run-leg-front-2 { animation: legSwingFront 0.28s ease-in-out infinite; animation-delay: 0.14s; }
-  .run-leg-back-2 { animation: legSwingBack 0.28s ease-in-out infinite; animation-delay: 0.14s; }
+  #main-dog { animation: runAcross 10s linear infinite; }
+  /* running dog leg & ear animations */
+  @keyframes runLeg { 0%,100% { transform: rotate(-20deg); } 50% { transform: rotate(20deg); } }
+  @keyframes runLeg2 { 0%,100% { transform: rotate(20deg); } 50% { transform: rotate(-20deg); } }
+  .run-leg-front { animation: runLeg 0.28s infinite; transform-origin: top; }
+  .run-leg-back { animation: runLeg2 0.28s infinite; transform-origin: top; }
+  .run-ear-flap { animation: runEarFlap 0.3s infinite; transform-origin: top; }
+  @keyframes runEarFlap { 0%,100% { transform: rotate(-8deg); } 50% { transform: rotate(8deg); } }
+  .run-tail-wag { animation: tailWagFast 0.2s infinite; transform-origin: bottom right; }
+  .run-bob { animation: runBob 0.28s infinite; }
   @keyframes runBob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-  .run-bob { animation: runBob 0.28s ease-in-out infinite; }
-  @keyframes runEarFlap { 0%,100% { transform: rotate(-6deg); } 50% { transform: rotate(10deg); } }
-  .run-ear-flap { animation: runEarFlap 0.3s ease-in-out infinite; transform-origin: top center; }
-  @keyframes runTailWag { 0%,100% { transform: rotate(-15deg); } 50% { transform: rotate(15deg); } }
-  .run-tail-wag { animation: runTailWag 0.25s ease-in-out infinite; transform-origin: bottom right; }
 </style>
 </head>
 <body>
 
-<!-- LOCK SCREEN (modern glass + larger shih tzu) -->
+<!-- LOCK SCREEN (same as before) -->
 <div id="lock-screen">
+  <div id="lock-bg"></div>
   <div id="lock-box">
     <div id="lock-dog-wrap">
-      <!-- SAME REALISTIC SHIH TZU SVG (identical to original, but container bigger) -->
-      <svg viewBox="0 0 330 330" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <radialGradient id="furBody" cx="50%" cy="35%" r="75%"><stop offset="0%" stop-color="#fffdf8"/><stop offset="55%" stop-color="#f7eedd"/><stop offset="100%" stop-color="#e8d8bd"/></radialGradient>
-          <radialGradient id="furHead" cx="50%" cy="35%" r="70%"><stop offset="0%" stop-color="#fffefb"/><stop offset="60%" stop-color="#f9f1e4"/><stop offset="100%" stop-color="#e9dac0"/></radialGradient>
-          <linearGradient id="earGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6b5238"/><stop offset="100%" stop-color="#3f2e1d"/></linearGradient>
-          <linearGradient id="boardGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#caa06a"/><stop offset="100%" stop-color="#a87c4d"/></linearGradient>
-          <radialGradient id="eyeGrad" cx="40%" cy="35%" r="65%"><stop offset="0%" stop-color="#5a4534"/><stop offset="55%" stop-color="#2a1c10"/><stop offset="100%" stop-color="#0f0a06"/></radialGradient>
-          <filter id="furTexture"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="2"/></filter>
+          <radialGradient id="fur" cx="45%" cy="35%" r="70%">
+            <stop offset="0%" stop-color="#fffef7"/>
+            <stop offset="50%" stop-color="#fef0e0"/>
+            <stop offset="100%" stop-color="#f7dfc0"/>
+          </radialGradient>
+          <radialGradient id="earDark" cx="35%" cy="40%" r="75%">
+            <stop offset="0%" stop-color="#7a5c3a"/>
+            <stop offset="70%" stop-color="#4d2f18"/>
+            <stop offset="100%" stop-color="#2b1a0c"/>
+          </radialGradient>
+          <radialGradient id="nose" cx="40%" cy="30%" r="60%">
+            <stop offset="0%" stop-color="#2a2018"/>
+            <stop offset="100%" stop-color="#0f0a06"/>
+          </radialGradient>
+          <filter id="furTexture" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="3" result="noise"/>
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2"/>
+          </filter>
         </defs>
-        <g id="dog-tail" class="tail-slow"><path d="M70 165 C40 145, 25 110, 45 80 C60 95, 75 120, 78 160 Z" fill="url(#furBody)" stroke="#e2cfae" stroke-width="1.5"/><path d="M48 90 C40 110, 45 135, 65 158" stroke="#d8c4a4" stroke-width="2.5" fill="none" opacity="0.6"/><path d="M58 95 C50 115, 53 138, 70 160" stroke="#d8c4a4" stroke-width="2" fill="none" opacity="0.5"/><path d="M68 100 C62 120, 64 142, 76 162" stroke="#efe3cc" stroke-width="2" fill="none" opacity="0.7"/></g>
-        <g id="dog-body" filter="url(#furTexture)"><ellipse cx="170" cy="220" rx="105" ry="78" fill="url(#furBody)"/><ellipse cx="165" cy="245" rx="68" ry="42" fill="#fffdf6" opacity="0.7"/><g stroke="#e6d6b8" stroke-width="2" fill="none" opacity="0.55"><path d="M95 200 C90 215, 92 232, 100 248"/><path d="M110 188 C103 208, 106 228, 116 248"/><path d="M130 180 C122 202, 126 226, 136 250"/><path d="M220 188 C228 208, 226 228, 218 248"/><path d="M240 200 C248 218, 246 235, 238 252"/><path d="M255 215 C262 230, 260 245, 252 258"/></g><g id="back-leg-left"><ellipse cx="118" cy="288" rx="22" ry="34" fill="url(#furBody)"/><ellipse cx="118" cy="312" rx="18" ry="11" fill="#f5ead4"/><g stroke="#e3d2b1" stroke-width="1.5" fill="none" opacity="0.6"><path d="M108 270 C104 285, 106 300, 112 314"/><path d="M128 270 C132 285, 130 300, 124 314"/></g></g><g id="back-leg-right"><ellipse cx="225" cy="288" rx="22" ry="34" fill="url(#furBody)"/><ellipse cx="225" cy="312" rx="18" ry="11" fill="#f5ead4"/><g stroke="#e3d2b1" stroke-width="1.5" fill="none" opacity="0.6"><path d="M215 270 C211 285, 213 300, 219 314"/><path d="M235 270 C239 285, 237 300, 231 314"/></g></g></g>
-        <g id="dog-head" filter="url(#furTexture)"><g id="ear-left" class="ear-left-default"><path d="M108 90 C55 105, 40 190, 82 245 C110 220, 124 150, 122 95 Z" fill="url(#earGrad)"/><path d="M98 120 C80 140, 75 175, 90 200" stroke="#2c1f12" stroke-width="2" fill="none" opacity="0.6"/></g><g id="ear-right" class="ear-right-default"><path d="M222 90 C275 105, 290 190, 248 245 C220 220, 206 150, 208 95 Z" fill="url(#earGrad)"/><path d="M232 120 C250 140, 255 175, 240 200" stroke="#2c1f12" stroke-width="2" fill="none" opacity="0.6"/></g><ellipse cx="165" cy="140" rx="105" ry="95" fill="url(#furHead)"/><g fill="url(#furHead)"><ellipse cx="120" cy="78" rx="26" ry="22" transform="rotate(-15 120 78)"/><ellipse cx="150" cy="65" rx="28" ry="24" transform="rotate(-5 150 65)"/><ellipse cx="182" cy="65" rx="28" ry="24" transform="rotate(5 182 65)"/><ellipse cx="212" cy="78" rx="26" ry="22" transform="rotate(15 212 78)"/></g><g stroke="#ecdfc8" stroke-width="2" fill="none" opacity="0.55"><path d="M100 110 C90 130, 92 150, 102 168"/><path d="M230 110 C240 130, 238 150, 228 168"/><path d="M130 70 C125 85, 128 98, 136 108"/><path d="M200 70 C205 85, 202 98, 194 108"/></g><ellipse cx="165" cy="172" rx="46" ry="34" fill="#ffffff"/><g stroke="#f1e7d4" stroke-width="1.8" fill="none" opacity="0.7"><path d="M135 165 C128 178, 130 192, 138 202"/><path d="M150 172 C145 184, 147 196, 153 206"/><path d="M180 172 C185 184, 183 196, 177 206"/><path d="M195 165 C202 178, 200 192, 192 202"/></g><ellipse cx="165" cy="155" rx="15" ry="11" fill="#1a1410"/><ellipse cx="159" cy="151" rx="4" ry="2.5" fill="rgba(255,255,255,0.55)"/><ellipse cx="159" cy="158" rx="2" ry="1.5" fill="#000"/><ellipse cx="171" cy="158" rx="2" ry="1.5" fill="#000"/><g fill="#f8efe2" opacity="0.95"><ellipse cx="130" cy="118" rx="28" ry="18" transform="rotate(-12 130 118)"/><ellipse cx="165" cy="108" rx="32" ry="20"/><ellipse cx="200" cy="118" rx="28" ry="18" transform="rotate(12 200 118)"/></g><g id="dog-eyes-group"><g id="eye-left"><ellipse cx="135" cy="135" rx="9" ry="10" fill="url(#eyeGrad)"/><ellipse cx="131" cy="119" rx="4" ry="4.5" fill="rgba(255,255,255,0.85)"/><ellipse cx="139" cy="129" rx="2" ry="2" fill="rgba(255,255,255,0.4)"/></g><g id="eye-right"><ellipse cx="195" cy="135" rx="9" ry="10" fill="url(#eyeGrad)"/><ellipse cx="191" cy="119" rx="4" ry="4.5" fill="rgba(255,255,255,0.85)"/><ellipse cx="199" cy="129" rx="2" ry="2" fill="rgba(255,255,255,0.4)"/></g><ellipse id="lid-left" cx="135" cy="125" rx="13" ry="0" fill="#f9f1e4"/><ellipse id="lid-right" cx="195" cy="125" rx="13" ry="0" fill="#f9f1e4"/></g><g id="brows" stroke="#e9dcc6" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.8"><path id="brow-left" d="M120 108 C128 102, 142 102, 150 108"/><path id="brow-right" d="M180 108 C188 102, 202 102, 210 108"/></g><g id="dog-mouth"><path id="mouth-path" d="M148 188 Q165 196 182 188" stroke="#7a5d3f" stroke-width="2.5" fill="none" stroke-linecap="round"/></g><g id="dog-tongue" opacity="0" class="tongue-pant-anim"><path d="M155 195 Q165 225 175 195 Q170 212 165 213 Q160 212 155 195 Z" fill="#f08aa0"/><path d="M165 198 L165 210" stroke="#e06d88" stroke-width="1.5" opacity="0.6"/></g></g>
-        <g id="dog-arms"><path d="M105 230 C70 245, 50 270, 45 295" stroke="url(#furBody)" stroke-width="26" stroke-linecap="round" fill="none"/><path d="M225 230 C260 245, 280 270, 285 295" stroke="url(#furBody)" stroke-width="26" stroke-linecap="round" fill="none"/><ellipse cx="45" cy="300" rx="18" ry="13" fill="#f7efdd"/><ellipse cx="285" cy="300" rx="18" ry="13" fill="#f7efdd"/><g stroke="#e3d2b1" stroke-width="1.5" opacity="0.7"><path d="M36 296 L36 306"/><path d="M45 297 L45 308"/><path d="M54 296 L54 306"/><path d="M276 296 L276 306"/><path d="M285 297 L285 308"/><path d="M294 296 L294 306"/></g></g>
-        <g id="sign-board"><rect x="30" y="270" width="270" height="58" rx="8" fill="url(#boardGrad)" stroke="#8a6238" stroke-width="2.5"/><g stroke="#946b41" stroke-width="1.5" opacity="0.5" fill="none"><path d="M35 285 H295"/><path d="M35 300 H295"/><path d="M35 315 H295"/></g><rect x="42" y="280" width="246" height="36" rx="5" fill="#fffaf0" stroke="#d9c2a0" stroke-width="1.5"/><text id="board-label" x="165" y="294" text-anchor="middle" font-family="sans-serif" font-size="9" letter-spacing="2" fill="#b08060" font-weight="bold">ENTER PASSWORD</text><text id="board-text" x="165" y="310" text-anchor="middle" font-family="'Courier New', monospace" font-size="17" letter-spacing="3" fill="#3a2e27" font-weight="bold"></text></g>
-        <g id="party-hat" opacity="0.95"><polygon points="165,28 138,75 192,75" fill="#ff6b9d"/><polygon points="165,28 152,52 178,52" fill="#ffd93d" opacity="0.7"/><circle cx="165" cy="28" r="6" fill="#ffd93d"/><circle cx="152" cy="62" r="3" fill="#fff" opacity="0.8"/><circle cx="178" cy="62" r="3" fill="#fff" opacity="0.8"/><circle cx="165" cy="50" r="3" fill="#fff" opacity="0.8"/></g>
+        <g id="dog-tail" class="tail-slow">
+          <path d="M120 300 C70 270, 40 220, 60 160 C85 195, 108 240, 125 300Z" fill="url(#fur)" stroke="#e5cdae" stroke-width="2"/>
+          <path d="M70 200 C85 230, 105 260, 120 290" stroke="#f5e2cb" fill="none" stroke-width="3" opacity="0.7"/>
+        </g>
+        <g id="dog-body" filter="url(#furTexture)">
+          <ellipse cx="240" cy="320" rx="140" ry="100" fill="url(#fur)"/>
+          <ellipse cx="230" cy="355" rx="85" ry="50" fill="#fffaf3" opacity="0.6"/>
+          <g stroke="#eddbbc" stroke-width="3" fill="none" opacity="0.6">
+            <path d="M150 290 Q135 325 155 370"/><path d="M330 290 Q345 325 325 370"/>
+            <path d="M190 275 Q178 315 200 375"/><path d="M290 275 Q302 315 280 375"/>
+          </g>
+          <ellipse cx="160" cy="400" rx="35" ry="45" fill="url(#fur)"/><ellipse cx="160" cy="430" rx="25" ry="15" fill="#f3e7d4"/>
+          <ellipse cx="320" cy="400" rx="35" ry="45" fill="url(#fur)"/><ellipse cx="320" cy="430" rx="25" ry="15" fill="#f3e7d4"/>
+        </g>
+        <g id="ear-left" class="ear-neutral">
+          <path d="M155 120 C85 100, 50 175, 90 245 C125 220, 148 170, 170 130Z" fill="url(#earDark)" filter="url(#furTexture)"/>
+          <path d="M115 170 C95 200, 95 225, 110 240" stroke="#2b1a0c" stroke-width="2.5" fill="none" opacity="0.5"/>
+        </g>
+        <g id="ear-right" class="ear-neutral">
+          <path d="M325 120 C395 100, 430 175, 390 245 C355 220, 332 170, 310 130Z" fill="url(#earDark)" filter="url(#furTexture)"/>
+          <path d="M365 170 C385 200, 385 225, 370 240" stroke="#2b1a0c" stroke-width="2.5" fill="none" opacity="0.5"/>
+        </g>
+        <g id="dog-head" filter="url(#furTexture)">
+          <ellipse cx="240" cy="190" rx="125" ry="115" fill="url(#fur)"/>
+          <g fill="url(#fur)">
+            <ellipse cx="165" cy="95" rx="42" ry="38" transform="rotate(-15 165 95)"/>
+            <ellipse cx="240" cy="78" rx="50" ry="44"/>
+            <ellipse cx="315" cy="95" rx="42" ry="38" transform="rotate(15 315 95)"/>
+          </g>
+          <ellipse cx="240" cy="235" rx="65" ry="50" fill="#fffef5"/>
+          <g stroke="#f1e7d4" stroke-width="2.5" fill="none" opacity="0.7">
+            <path d="M195 215 Q185 235 195 255"/><path d="M285 215 Q295 235 285 255"/>
+          </g>
+          <ellipse cx="240" cy="205" rx="22" ry="15" fill="url(#nose)"/>
+          <ellipse cx="233" cy="198" rx="6" ry="4" fill="rgba(255,255,220,0.8)"/>
+          <ellipse cx="234" cy="210" rx="3" ry="2.5" fill="#1a1008"/><ellipse cx="246" cy="210" rx="3" ry="2.5" fill="#1a1008"/>
+          <g id="eyes-group">
+            <ellipse cx="195" cy="175" rx="18" ry="20" fill="#2f241b"/>
+            <ellipse cx="189" cy="160" rx="7" ry="7" fill="white" opacity="0.9"/>
+            <ellipse cx="198" cy="172" rx="4" ry="3" fill="white" opacity="0.5"/>
+            <ellipse cx="285" cy="175" rx="18" ry="20" fill="#2f241b"/>
+            <ellipse cx="279" cy="160" rx="7" ry="7" fill="white" opacity="0.9"/>
+            <ellipse cx="288" cy="172" rx="4" ry="3" fill="white" opacity="0.5"/>
+            <ellipse id="lid-left" cx="195" cy="165" rx="22" ry="0" fill="#fef3e6"/>
+            <ellipse id="lid-right" cx="285" cy="165" rx="22" ry="0" fill="#fef3e6"/>
+          </g>
+          <g id="brows" stroke="#e7cfb0" stroke-width="5" fill="none" stroke-linecap="round">
+            <path id="brow-left" d="M170 150 Q190 138 210 148"/>
+            <path id="brow-right" d="M270 148 Q290 138 310 150"/>
+          </g>
+          <path id="mouth-path" d="M222 255 Q240 270 258 255" stroke="#b2805a" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <g id="tongue-group" opacity="0">
+            <path d="M232 262 Q245 300 258 262 Q250 285 245 288 Q240 285 232 262Z" fill="#ff8caa"/>
+            <path d="M245 268 L245 282" stroke="#e55979" stroke-width="2"/>
+          </g>
+        </g>
+        <path d="M165 340 C125 375, 120 420, 130 450" stroke="url(#fur)" stroke-width="38" stroke-linecap="round" fill="none"/>
+        <path d="M315 340 C355 375, 360 420, 350 450" stroke="url(#fur)" stroke-width="38" stroke-linecap="round" fill="none"/>
+        <ellipse cx="130" cy="455" rx="24" ry="16" fill="#faefdd"/><ellipse cx="350" cy="455" rx="24" ry="16" fill="#faefdd"/>
+        <g id="sign-board">
+          <rect x="85" y="415" width="310" height="68" rx="16" fill="#dba56d" stroke="#9c6a3e" stroke-width="4"/>
+          <rect x="100" y="424" width="280" height="50" rx="12" fill="#fff5e8" stroke="#dbb57a" stroke-width="2"/>
+          <text x="240" y="444" text-anchor="middle" font-family="'Inter', sans-serif" font-size="12" fill="#a57248" font-weight="bold">🔐 PASSWORD BOARD</text>
+          <text id="board-text" x="240" y="466" text-anchor="middle" font-family="'Courier New', monospace" font-size="24" fill="#35251a" font-weight="bold" letter-spacing="2"></text>
+        </g>
       </svg>
     </div>
     <h2 id="lock-title">Hi there!</h2>
-    <p id="lock-subtitle">Type the password — I'll show it on my sign 🐾</p>
+    <p id="lock-subtitle">Type the password — watch my sign 🐾</p>
     <input type="text" id="pw-input" placeholder="✦  type here  ✦" autocomplete="off" />
     <button id="pw-btn">Open →</button>
     <div id="pw-error"></div>
@@ -501,36 +357,208 @@
   </div>
 </div>
 
-<!-- RUNNING DOG (Main page) -->
-<div id="main-dog"><svg viewBox="0 0 260 220" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="rFurBody" cx="50%" cy="35%" r="75%"><stop offset="0%" stop-color="#fffdf8"/><stop offset="55%" stop-color="#f7eedd"/><stop offset="100%" stop-color="#e8d8bd"/></radialGradient><linearGradient id="rEarGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#574131"/><stop offset="100%" stop-color="#1f1712"/></linearGradient><radialGradient id="rEyeGrad" cx="40%" cy="35%" r="65%"><stop offset="0%" stop-color="#5a4534"/><stop offset="55%" stop-color="#2a1c10"/><stop offset="100%" stop-color="#0f0a06"/></radialGradient></defs><g class="run-tail-wag"><path d="M210 110 C245 90, 250 55, 225 35 C215 60, 205 90, 200 120 Z" fill="url(#rFurBody)" stroke="#e2cfae" stroke-width="1.5"/></g><g class="run-leg-back"><ellipse cx="160" cy="165" rx="16" ry="28" fill="url(#rFurBody)"/><ellipse cx="160" cy="190" rx="13" ry="8" fill="#f5ead4"/></g><g class="run-leg-back-2"><ellipse cx="190" cy="165" rx="16" ry="28" fill="url(#rFurBody)"/><ellipse cx="190" cy="190" rx="13" ry="8" fill="#f5ead4"/></g><g class="run-bob"><ellipse cx="150" cy="125" rx="78" ry="58" fill="url(#rFurBody)"/><ellipse cx="145" cy="148" rx="50" ry="32" fill="#fffdf6" opacity="0.7"/><g class="run-leg-front"><ellipse cx="95" cy="160" rx="16" ry="28" fill="url(#rFurBody)"/><ellipse cx="95" cy="185" rx="13" ry="8" fill="#f5ead4"/></g><g class="run-leg-front-2"><ellipse cx="120" cy="160" rx="16" ry="28" fill="url(#rFurBody)"/><ellipse cx="120" cy="185" rx="13" ry="8" fill="#f5ead4"/></g><g><g class="run-ear-flap"><path d="M68 65 C45 70, 35 105, 50 135 C65 125, 78 95, 80 68 Z" fill="url(#rEarGrad)"/></g><g class="run-ear-flap" style="animation-delay:0.15s; transform-origin: top center;"><path d="M138 65 C161 70, 171 105, 156 135 C141 125, 128 95, 126 68 Z" fill="url(#rEarGrad)"/></g><ellipse cx="103" cy="88" rx="58" ry="52" fill="url(#rFurBody)"/><g fill="url(#rFurBody)"><ellipse cx="75" cy="50" rx="18" ry="15" transform="rotate(-15 75 50)"/><ellipse cx="95" cy="42" rx="19" ry="16" transform="rotate(-5 95 42)"/><ellipse cx="115" cy="42" rx="19" ry="16" transform="rotate(5 115 42)"/><ellipse cx="135" cy="50" rx="18" ry="15" transform="rotate(15 135 50)"/></g><ellipse cx="103" cy="108" rx="30" ry="22" fill="#ffffff"/><ellipse cx="103" cy="98" rx="10" ry="7" fill="#1a1410"/><ellipse cx="99" cy="95" rx="2.5" ry="1.5" fill="rgba(255,255,255,0.55)"/><path d="M75 75 Q83 65 91 75" stroke="#2a1c10" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M115 75 Q123 65 131 75" stroke="#2a1c10" stroke-width="4" fill="none" stroke-linecap="round"/><g class="tongue-pant-anim"><path d="M93 118 Q103 145 113 118 Q108 133 103 134 Q98 133 93 118 Z" fill="#f08aa0"/></g><polygon points="103,15 85,48 121,48" fill="#ff6b9d"/><polygon points="103,15 94,32 112,32" fill="#ffd93d" opacity="0.7"/><circle cx="103" cy="15" r="4" fill="#ffd93d"/></g></g></svg></div>
+<!-- Main page elements -->
+<div id="main-dog"><svg viewBox="0 0 300 260" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="runFur" cx="45%" cy="35%" r="70%"><stop offset="0%" stop-color="#fffef7"/><stop offset="60%" stop-color="#fef0e0"/><stop offset="100%" stop-color="#f7dfc0"/></radialGradient><radialGradient id="runEar" cx="35%" cy="40%" r="75%"><stop offset="0%" stop-color="#7a5c3a"/><stop offset="100%" stop-color="#2b1a0c"/></radialGradient></defs><g class="run-tail-wag"><path d="M230 110 C265 90, 275 55, 255 30 C240 60, 225 95, 215 130Z" fill="url(#runFur)"/></g><g class="run-leg-back"><ellipse cx="170" cy="185" rx="20" ry="32" fill="url(#runFur)"/><ellipse cx="170" cy="212" rx="16" ry="10" fill="#f3e7d4"/></g><g class="run-leg-back" style="animation-delay:0.14s"><ellipse cx="200" cy="185" rx="20" ry="32" fill="url(#runFur)"/><ellipse cx="200" cy="212" rx="16" ry="10" fill="#f3e7d4"/></g><g class="run-bob"><ellipse cx="150" cy="135" rx="90" ry="65" fill="url(#runFur)"/><ellipse cx="145" cy="160" rx="60" ry="38" fill="#fffaf3" opacity="0.6"/></g><g class="run-leg-front"><ellipse cx="95" cy="180" rx="20" ry="32" fill="url(#runFur)"/><ellipse cx="95" cy="208" rx="16" ry="10" fill="#f3e7d4"/></g><g class="run-leg-front" style="animation-delay:0.14s"><ellipse cx="120" cy="180" rx="20" ry="32" fill="url(#runFur)"/><ellipse cx="120" cy="208" rx="16" ry="10" fill="#f3e7d4"/></g><g><g class="run-ear-flap"><path d="M75 75 C45 80, 35 120, 55 155 C75 140, 88 110, 90 80Z" fill="url(#runEar)"/></g><g class="run-ear-flap" style="animation-delay:0.2s"><path d="M155 75 C185 80, 195 120, 175 155 C155 140, 142 110, 140 80Z" fill="url(#runEar)"/></g><ellipse cx="115" cy="100" rx="65" ry="58" fill="url(#runFur)"/><ellipse cx="115" cy="125" rx="35" ry="26" fill="#fffef5"/><ellipse cx="115" cy="110" rx="12" ry="9" fill="#1f1610"/><ellipse cx="111" cy="106" rx="4" ry="3" fill="white" opacity="0.8"/><path d="M82 88 Q92 78 100 88" stroke="#2f241b" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M128 88 Q138 78 146 88" stroke="#2f241b" stroke-width="5" fill="none" stroke-linecap="round"/><path d="M105 136 Q115 152 125 136" stroke="#b2805a" stroke-width="2.5" fill="none"/><path d="M108 140 Q115 162 122 140" fill="#ff8caa" opacity="0.9"/></g></svg></div>
 
-<!-- MAIN CONTENT -->
 <div id="hero"><div class="hero-eyebrow">A little something for you</div><h1>Happy<br><em>Birthday,</em><br>Ariadne 🎂</h1><p class="hero-sub">You only turn this age once — here's to celebrating you, your story, and everything that makes you wonderful.</p><div class="scroll-hint">↓ scroll to explore ↓</div></div>
-<section id="photos-section"><div class="section-label">Memories</div><h2>Photos of us</h2><p style="color:#7a6455; font-family:sans-serif; font-size:0.9rem;">Click any slot to add a photo. Changes are saved while the page is open.</p><div id="photos-grid"></div><input type="file" id="photo-file-input" accept="image/*" multiple /><button class="add-photo-btn" onclick="addPhotoSlot()">+ Add more slots</button></section>
-<div id="videos-section"><div class="section-label">Moving Memories</div><h2>Videos</h2><div class="video-grid" id="videos-grid"></div><input type="file" id="video-file-input" accept="video/*" multiple /><button class="add-video-btn" onclick="addVideoSlot()">+ Add video slot</button></div>
-<section id="wish-section"><div class="section-label">From the heart</div><h2>A birthday wish</h2><div class="wish-card"><p class="wish-text" id="wish-text">Here's to you — for your laughter, kindness, and the irreplaceable way you light up every room. May this year bring you everything you deserve.</p><div class="wish-from" id="wish-from">— With love, [Your Name]</div><button class="edit-wish-btn" onclick="openWishModal()">✏ Edit this message</button></div></section>
-<div id="wish-modal"><div id="wish-modal-box"><h3>Edit birthday wish</h3><textarea id="wish-editor"></textarea><input type="text" id="from-editor" placeholder="From (e.g. — From Sarah)" /><div class="modal-btns"><button class="btn-cancel" onclick="closeWishModal()">Cancel</button><button class="btn-save" onclick="saveWish()">Save</button></div></div></div>
-<section style="text-align:center; padding: 2rem;"><div class="pw-hint">💡 <strong>To change the password:</strong> open HTML and edit <code>CORRECT_PASSWORD</code> in script (default "bella").</div></section>
+
+<section id="photos-section"><div class="section-label">Memories</div><h2>Photos of us</h2><p style="color:#7a6455">Click any slot to add a photo.</p><div id="photos-grid"></div><input type="file" id="photo-file-input" accept="image/*" multiple /><button class="add-photo-btn" onclick="addPhotoSlot()">+ Add more slots</button></section>
+
+<div id="videos-section"><div class="section-label">Moving Memories</div><h2>Videos</h2><div class="video-grid" id="videos-grid"></div><input type="file" id="video-file-input" accept="video/*" multiple /><button class="add-video-btn" onclick="addVideoSlot()">+ Add more slots</button></div>
+
+<section id="wish-section"><div class="section-label">From the heart</div><h2>A birthday wish</h2><div class="wish-card"><p class="wish-text" id="wish-text">Here's to you — for your laughter, your kindness, and the irreplaceable way you light up every room. May this year bring you everything you deserve.</p><div class="wish-from" id="wish-from">— With love, [Your Name]</div></div></section>
+
 <footer>Made with love &nbsp;·&nbsp; 🐾 Birthday magic</footer>
 
 <script>
+  // ========== PASSWORD LOGIC (same) ==========
   const CORRECT_PASSWORD = "bella";
   const colors = ['#ff6b9d','#ff9a5c','#ffd93d','#6bcb77','#4d96ff','#c77dff','#fff'];
   const lockScreen = document.getElementById('lock-screen');
-  for (let i = 0; i < 26; i++) { const dot = document.createElement('div'); dot.className = 'confetti-piece'; const size = 8 + Math.random() * 18; dot.style.cssText = `width:${size}px; height:${size}px; background:${colors[Math.floor(Math.random()*colors.length)]}; left:${Math.random()*100}%; animation-duration:${4+Math.random()*6}s; animation-delay:${Math.random()*5}s;`; lockScreen.appendChild(dot); }
-  function burstConfetti() { const box = document.getElementById('lock-box'); const rect = box.getBoundingClientRect(); const cx = rect.left+rect.width/2, cy = rect.top+rect.height/3; for(let i=0;i<70;i++) { const piece = document.createElement('div'); piece.className = 'burst-piece'; const angle = Math.random()*Math.PI*2; const dist = 150+Math.random()*250; const tx = Math.cos(angle)*dist, ty = Math.sin(angle)*dist-100; piece.style.left = cx+'px'; piece.style.top = cy+'px'; piece.style.background = colors[Math.floor(Math.random()*colors.length)]; piece.style.setProperty('--tx', tx+'px'); piece.style.setProperty('--ty', ty+'px'); piece.style.setProperty('--tr', (Math.random()*720-360)+'deg'); document.body.appendChild(piece); setTimeout(()=>piece.remove(),1500); } }
-  const dogWrap = document.getElementById('lock-dog-wrap'), boardText = document.getElementById('board-text'), boardLabel = document.getElementById('board-label'), lockTitle = document.getElementById('lock-title'), lockSub = document.getElementById('lock-subtitle'), pwInput = document.getElementById('pw-input'), pwError = document.getElementById('pw-error');
-  const dogTail = document.getElementById('dog-tail'), earLeft = document.getElementById('ear-left'), earRight = document.getElementById('ear-right'), eyeLeftGroup = document.getElementById('eye-left'), eyeRightGroup = document.getElementById('eye-right'), lidLeft = document.getElementById('lid-left'), lidRight = document.getElementById('lid-right'), browLeft = document.getElementById('brow-left'), browRight = document.getElementById('brow-right'), mouthPath = document.getElementById('mouth-path'), dogTongue = document.getElementById('dog-tongue'), dogHead = document.getElementById('dog-head');
-  const MOUTHS = { neutral:"M148 188 Q165 196 182 188", smileSoft:"M145 186 Q165 202 185 186", bigSmile:"M142 184 Q165 210 188 184", sad:"M148 196 Q165 184 182 196" };
-  const BROWS = { neutral:{ l:"M120 108 C128 102, 142 102, 150 108", r:"M180 108 C188 102, 202 102, 210 108" }, curious:{ l:"M118 104 C128 96, 144 98, 150 106", r:"M180 106 C188 98, 204 96, 212 104" }, sad:{ l:"M122 114 C130 110, 142 112, 148 116", r:"M182 116 C190 112, 202 110, 208 114" }, happy:{ l:"M120 102 C130 96, 144 98, 150 104", r:"M180 104 C188 98, 202 96, 210 102" } };
-  function resetDogClasses(){ dogWrap.className=''; dogTail.className=''; earLeft.className=''; earRight.className=''; dogHead.className=''; dogTongue.style.opacity='0'; lidLeft.setAttribute('ry','0'); lidRight.setAttribute('ry','0'); eyeLeftGroup.style.transform=''; eyeRightGroup.style.transform=''; }
-  function setState(state){ resetDogClasses(); switch(state){ case 'empty': dogWrap.classList.add('dog-idle-anim'); dogTail.classList.add('tail-slow'); eyeLeftGroup.classList.add('blink-eyes'); eyeRightGroup.classList.add('blink-eyes'); mouthPath.setAttribute('d',MOUTHS.neutral); browLeft.setAttribute('d',BROWS.neutral.l); browRight.setAttribute('d',BROWS.neutral.r); boardLabel.style.opacity='1'; boardLabel.textContent='ENTER PASSWORD'; lockTitle.textContent='Hi there!'; lockSub.textContent="Type the password — I'll show it on my sign 🐾"; break; case 'typing': dogHead.classList.add('head-tilt'); dogTail.classList.add('tail-slow'); eyeLeftGroup.classList.add('eye-track'); eyeRightGroup.classList.add('eye-track'); mouthPath.setAttribute('d',MOUTHS.neutral); browLeft.setAttribute('d',BROWS.curious.l); browRight.setAttribute('d',BROWS.curious.r); boardLabel.style.opacity='0.4'; lockTitle.textContent='Hmm, let me see…'; lockSub.textContent="I'm watching the sign closely 👀"; break; case 'partial': dogWrap.classList.add('excited-bounce'); dogTail.classList.add('tail-fast'); earLeft.classList.add('ears-raise-left'); earRight.classList.add('ears-raise-right'); mouthPath.setAttribute('d',MOUTHS.smileSoft); browLeft.setAttribute('d',BROWS.curious.l); browRight.setAttribute('d',BROWS.curious.r); boardLabel.style.opacity='0.4'; lockTitle.textContent='Ooh, getting warmer!'; lockSub.textContent="My ears just perked up!"; break; case 'close': dogWrap.classList.add('happy-bounce'); dogTail.classList.add('tail-fast'); earLeft.classList.add('ears-raise-left'); earRight.classList.add('ears-raise-right'); mouthPath.setAttribute('d',MOUTHS.bigSmile); browLeft.setAttribute('d',BROWS.happy.l); browRight.setAttribute('d',BROWS.happy.r); boardLabel.style.opacity='0.4'; lockTitle.textContent="So close, I can feel it!"; lockSub.textContent="One more letter… maybe?"; break; case 'correct': dogWrap.classList.add('big-jump'); dogTail.classList.add('tail-fast'); earLeft.classList.add('ears-raise-left'); earRight.classList.add('ears-raise-right'); mouthPath.setAttribute('d',MOUTHS.bigSmile); browLeft.setAttribute('d',BROWS.happy.l); browRight.setAttribute('d',BROWS.happy.r); dogTongue.style.opacity='1'; boardLabel.style.opacity='0'; lockTitle.textContent="YAAAY! That's it! 🎉"; lockSub.textContent="Unwrapping your surprise now…"; burstConfetti(); break; case 'wrong': dogHead.classList.add('sad-shake'); earLeft.classList.add('ears-droop-left'); earRight.classList.add('ears-droop-right'); dogTail.classList.add('tail-still'); mouthPath.setAttribute('d',MOUTHS.sad); browLeft.setAttribute('d',BROWS.sad.l); browRight.setAttribute('d',BROWS.sad.r); boardLabel.style.opacity='0.4'; lockTitle.textContent="Aww, not quite…"; lockSub.textContent="Let's try that again 🐾"; setTimeout(()=>{ if(pwInput.value.length===0){ dogTail.classList.remove('tail-still'); dogTail.classList.add('tail-slow'); } },1200); break; } }
-  pwInput.addEventListener('input',function(){ const val=this.value; boardText.textContent=val; if(!val){ setState('empty'); return; } const correct=CORRECT_PASSWORD; let match=0; for(let i=0;i<Math.min(val.length,correct.length);i++) if(val[i]===correct[i]) match++; const ratio=match/correct.length; if(val===correct) setState('close'); else if(ratio>=0.6) setState('close'); else if(ratio>=0.3) setState('partial'); else setState('typing'); });
-  function tryUnlock(){ if(pwInput.value===CORRECT_PASSWORD){ setState('correct'); setTimeout(()=>{ lockScreen.style.opacity='0'; lockScreen.style.transition='opacity 0.6s'; setTimeout(()=>{ lockScreen.style.display='none'; document.body.classList.add('unlocked'); },600); },1000); } else { setState('wrong'); pwError.textContent='✦ Wrong password — try again ✦'; pwInput.value=''; boardText.textContent=''; setTimeout(()=>{ setState('empty'); pwError.textContent=''; },1500); pwInput.focus(); } }
-  document.getElementById('pw-btn').addEventListener('click',tryUnlock); pwInput.addEventListener('keydown',e=>{ if(e.key==='Enter') tryUnlock(); }); setState('empty');
-  let photoSlotCount=0,currentPhotoSlot=null; function createPhotoSlot(){ photoSlotCount++; const slot=document.createElement('div'); slot.className='photo-slot'; slot.dataset.id=photoSlotCount; slot.innerHTML=`<div class="slot-icon">📷</div><div class="slot-label">Click to add photo</div><img src=""/><div class="photo-caption">Photo ${photoSlotCount}</div>`; slot.addEventListener('click',()=>{ currentPhotoSlot=slot; document.getElementById('photo-file-input').click(); }); return slot; } function addPhotoSlot(){ document.getElementById('photos-grid').appendChild(createPhotoSlot()); } for(let i=0;i<6;i++) addPhotoSlot(); document.getElementById('photo-file-input').addEventListener('change',function(){ const files=Array.from(this.files); if(!files.length) return; const slots=document.querySelectorAll('#photos-grid .photo-slot'); let idx=currentPhotoSlot?Array.from(slots).indexOf(currentPhotoSlot):0; files.forEach((f,i)=>{ let target=slots[idx+i]; if(!target){ target=createPhotoSlot(); document.getElementById('photos-grid').appendChild(target); } const url=URL.createObjectURL(f); const img=target.querySelector('img'); img.src=url; img.classList.add('loaded'); target.querySelector('.slot-icon').style.display='none'; target.querySelector('.slot-label').style.display='none'; target.querySelector('.photo-caption').textContent=f.name.replace(/\.[^.]+$/,''); }); this.value=''; currentPhotoSlot=null; });
-  let videoSlotCount=0,currentVideoSlot=null; function createVideoSlot(){ videoSlotCount++; const slot=document.createElement('div'); slot.className='video-slot'; slot.innerHTML=`<div class="slot-icon">🎬</div><div class="slot-label">Click to add video</div><video controls></video>`; slot.addEventListener('click',e=>{ if(e.target.tagName!=='VIDEO'){ currentVideoSlot=slot; document.getElementById('video-file-input').click(); } }); return slot; } function addVideoSlot(){ document.getElementById('videos-grid').appendChild(createVideoSlot()); } for(let i=0;i<2;i++) addVideoSlot(); document.getElementById('video-file-input').addEventListener('change',function(){ const files=Array.from(this.files); if(!files.length)return; const slots=document.querySelectorAll('#videos-grid .video-slot'); let idx=currentVideoSlot?Array.from(slots).indexOf(currentVideoSlot):0; files.forEach((f,i)=>{ let target=slots[idx+i]; if(!target){ target=createVideoSlot(); document.getElementById('videos-grid').appendChild(target); } const url=URL.createObjectURL(f); const vid=target.querySelector('video'); vid.src=url; vid.classList.add('loaded'); target.querySelector('.slot-icon').style.display='none'; target.querySelector('.slot-label').style.display='none'; }); this.value=''; currentVideoSlot=null; });
-  function openWishModal(){ document.getElementById('wish-editor').value=document.getElementById('wish-text').innerText; document.getElementById('from-editor').value=document.getElementById('wish-from').innerText; document.getElementById('wish-modal').classList.add('open'); } function closeWishModal(){ document.getElementById('wish-modal').classList.remove('open'); } function saveWish(){ document.getElementById('wish-text').innerText=document.getElementById('wish-editor').value; document.getElementById('wish-from').innerText=document.getElementById('from-editor').value; closeWishModal(); } document.getElementById('wish-modal').addEventListener('click',function(e){ if(e.target===this) closeWishModal(); });
+  for (let i = 0; i < 28; i++) {
+    const dot = document.createElement('div'); dot.className = 'confetti-piece';
+    const size = 8 + Math.random() * 18;
+    dot.style.cssText = `width:${size}px; height:${size}px; background:${colors[Math.floor(Math.random()*colors.length)]}; left:${Math.random()*100}%; animation-duration:${4+Math.random()*6}s; animation-delay:${Math.random()*5}s;`;
+    lockScreen.appendChild(dot);
+  }
+  function burstConfetti() {
+    const box = document.getElementById('lock-box'); const rect = box.getBoundingClientRect();
+    const cx = rect.left+rect.width/2, cy = rect.top+rect.height/3;
+    for(let i=0;i<80;i++) {
+      const piece = document.createElement('div'); piece.className = 'burst-piece';
+      const angle = Math.random()*Math.PI*2, dist = 150+Math.random()*250;
+      const tx = Math.cos(angle)*dist, ty = Math.sin(angle)*dist-100;
+      piece.style.left = cx+'px'; piece.style.top = cy+'px';
+      piece.style.background = colors[Math.floor(Math.random()*colors.length)];
+      piece.style.setProperty('--tx', tx+'px'); piece.style.setProperty('--ty', ty+'px');
+      piece.style.setProperty('--tr', (Math.random()*720-360)+'deg');
+      document.body.appendChild(piece);
+      setTimeout(()=>piece.remove(),1600);
+    }
+  }
+
+  const boardText = document.getElementById('board-text');
+  const lockTitle = document.getElementById('lock-title');
+  const lockSub = document.getElementById('lock-subtitle');
+  const pwInput = document.getElementById('pw-input');
+  const pwError = document.getElementById('pw-error');
+  const dogTail = document.getElementById('dog-tail');
+  const earLeft = document.getElementById('ear-left');
+  const earRight = document.getElementById('ear-right');
+  const eyeLeftGroup = document.getElementById('eyes-group');
+  const lidLeft = document.getElementById('lid-left');
+  const lidRight = document.getElementById('lid-right');
+  const browLeft = document.getElementById('brow-left');
+  const browRight = document.getElementById('brow-right');
+  const mouthPath = document.getElementById('mouth-path');
+  const dogTongue = document.getElementById('tongue-group');
+  const dogHead = document.getElementById('dog-head');
+  const dogWrap = document.getElementById('lock-dog-wrap');
+
+  function resetDog() {
+    dogWrap.className = ''; dogTail.className = ''; earLeft.className = ''; earRight.className = '';
+    dogHead.className = ''; dogTongue.style.opacity = '0';
+    lidLeft.setAttribute('ry', '0'); lidRight.setAttribute('ry', '0');
+    mouthPath.setAttribute('d', "M222 255 Q240 270 258 255");
+    browLeft.setAttribute('d', "M170 150 Q190 138 210 148");
+    browRight.setAttribute('d', "M270 148 Q290 138 310 150");
+  }
+  function setState(state) {
+    resetDog();
+    switch(state) {
+      case 'empty': dogWrap.classList.add('dog-idle-anim'); dogTail.classList.add('tail-slow'); eyeLeftGroup.classList.add('blink-eyes'); lockTitle.innerText = "Hi there!"; lockSub.innerText = "Type the password — watch my sign 🐾"; break;
+      case 'typing': dogHead.classList.add('head-tilt'); dogTail.classList.add('tail-slow'); browLeft.setAttribute('d', "M165 148 Q190 134 215 148"); browRight.setAttribute('d', "M265 148 Q290 134 315 148"); lockTitle.innerText = "Hmm, let me see…"; lockSub.innerText = "I'm watching the board 👀"; break;
+      case 'partial': dogWrap.classList.add('excited-bounce'); dogTail.classList.add('tail-fast'); earLeft.classList.add('ears-raise-left'); earRight.classList.add('ears-raise-right'); mouthPath.setAttribute('d', "M218 250 Q240 266 262 250"); browLeft.setAttribute('d', "M168 142 Q192 130 215 142"); browRight.setAttribute('d', "M265 142 Q290 130 312 142"); lockTitle.innerText = "Ooh, getting warmer!"; lockSub.innerText = "My ears just perked up!"; break;
+      case 'close': dogWrap.classList.add('happy-bounce'); dogTail.classList.add('tail-fast'); earLeft.classList.add('ears-raise-left'); earRight.classList.add('ears-raise-right'); mouthPath.setAttribute('d', "M215 246 Q240 268 265 246"); browLeft.setAttribute('d', "M165 136 Q192 124 218 138"); browRight.setAttribute('d', "M262 138 Q290 124 315 136"); lockTitle.innerText = "So close, I can feel it!"; lockSub.innerText = "One more letter… maybe?"; break;
+      case 'correct': dogWrap.classList.add('big-jump'); dogTail.classList.add('tail-fast'); earLeft.classList.add('ears-raise-left'); earRight.classList.add('ears-raise-right'); mouthPath.setAttribute('d', "M212 242 Q240 272 268 242"); dogTongue.style.opacity = '1'; browLeft.setAttribute('d', "M162 130 Q192 116 220 132"); browRight.setAttribute('d', "M260 132 Q290 116 318 130"); lockTitle.innerText = "YAAAY! That's it! 🎉"; lockSub.innerText = "Unwrapping your surprise…"; burstConfetti(); break;
+      case 'wrong': dogHead.classList.add('sad-shake'); earLeft.classList.add('ears-droop-left'); earRight.classList.add('ears-droop-right'); dogTail.classList.add('tail-still'); mouthPath.setAttribute('d', "M225 262 Q240 250 255 262"); browLeft.setAttribute('d', "M172 158 Q192 155 212 162"); browRight.setAttribute('d', "M268 162 Q288 155 308 158"); lockTitle.innerText = "Aww, not quite…"; lockSub.innerText = "Let's try that again 🐾"; setTimeout(() => { if(pwInput.value.length === 0) setState('empty'); }, 1300); break;
+    }
+  }
+  pwInput.addEventListener('input', (e) => { boardText.textContent = e.target.value; const val = e.target.value; if(!val) { setState('empty'); return; } const correct = CORRECT_PASSWORD; let match = 0; for(let i=0;i<Math.min(val.length,correct.length);i++) if(val[i]===correct[i]) match++; const ratio = match / correct.length; if(val === correct) setState('correct'); else if(ratio >= 0.7) setState('close'); else if(ratio >= 0.4) setState('partial'); else setState('typing'); });
+  function tryUnlock() { if(pwInput.value === CORRECT_PASSWORD) { setState('correct'); setTimeout(() => { lockScreen.style.opacity = '0'; setTimeout(() => { lockScreen.style.display = 'none'; document.body.classList.add('unlocked'); }, 600); }, 900); } else { setState('wrong'); pwError.innerText = '✦ Wrong password — try again ✦'; pwInput.value = ''; boardText.textContent = ''; setTimeout(() => { setState('empty'); pwError.innerText = ''; }, 1500); pwInput.focus(); } }
+  document.getElementById('pw-btn').addEventListener('click', tryUnlock);
+  pwInput.addEventListener('keydown', e => { if(e.key === 'Enter') tryUnlock(); });
+  setState('empty');
+
+  // ========== CURSOR DOGS (different sizes, running behind cursor) ==========
+  function createTinyDogSVG(sizeScale) {
+    // returns an SVG element of a running Shih Tzu with animated legs/tail
+    const svgNS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(svgNS, "svg");
+    const baseSize = 80; // base width
+    const w = baseSize * sizeScale;
+    const h = 70 * sizeScale;
+    svg.setAttribute("viewBox", "0 0 100 90");
+    svg.setAttribute("width", w);
+    svg.setAttribute("height", h);
+    svg.innerHTML = `<defs><radialGradient id="tinyFur" cx="45%" cy="35%" r="70%"><stop offset="0%" stop-color="#fffef7"/><stop offset="60%" stop-color="#fef0e0"/><stop offset="100%" stop-color="#f7dfc0"/></radialGradient><radialGradient id="tinyEar" cx="35%" cy="40%" r="75%"><stop offset="0%" stop-color="#7a5c3a"/><stop offset="100%" stop-color="#2b1a0c"/></radialGradient></defs><g class="tiny-tail"><path d="M70 45 C85 35, 88 20, 78 10 C72 22, 68 38, 65 48Z" fill="url(#tinyFur)" stroke="#dbbc9b"/></g><g class="tiny-leg"><ellipse cx="40" cy="68" rx="8" ry="14" fill="url(#tinyFur)"/><ellipse cx="40" cy="78" rx="7" ry="5" fill="#f3e7d4"/></g><g class="tiny-leg" style="animation-delay:0.1s"><ellipse cx="55" cy="68" rx="8" ry="14" fill="url(#tinyFur)"/><ellipse cx="55" cy="78" rx="7" ry="5" fill="#f3e7d4"/></g><ellipse cx="45" cy="52" rx="28" ry="22" fill="url(#tinyFur)"/><g class="tiny-leg"><ellipse cx="25" cy="65" rx="8" ry="14" fill="url(#tinyFur)"/><ellipse cx="25" cy="75" rx="7" ry="5" fill="#f3e7d4"/></g><g class="tiny-leg" style="animation-delay:0.1s"><ellipse cx="70" cy="65" rx="8" ry="14" fill="url(#tinyFur)"/><ellipse cx="70" cy="75" rx="7" ry="5" fill="#f3e7d4"/></g><g><path d="M30 30 C22 32, 18 48, 28 60 C38 53, 44 42, 46 32Z" fill="url(#tinyEar)"/><path d="M62 30 C70 32, 74 48, 64 60 C54 53, 48 42, 46 32Z" fill="url(#tinyEar)"/><ellipse cx="46" cy="36" rx="26" ry="24" fill="url(#tinyFur)"/><ellipse cx="46" cy="48" rx="16" ry="12" fill="#fffef5"/><ellipse cx="46" cy="43" rx="5" ry="3.5" fill="#1f1610"/><ellipse cx="43" cy="42" rx="1.5" ry="1" fill="white" opacity="0.8"/><circle cx="36" cy="34" r="4" fill="#2f241b"/><circle cx="33" cy="31" r="1.5" fill="white" opacity="0.9"/><circle cx="56" cy="34" r="4" fill="#2f241b"/><circle cx="53" cy="31" r="1.5" fill="white" opacity="0.9"/><path d="M40 51 Q46 56 52 51" stroke="#b2805a" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M43 54 Q46 66 49 54" fill="#ff8caa" opacity="0.8"/></g>`;
+    // add style for animations inside SVG
+    const style = document.createElementNS(svgNS, "style");
+    style.textContent = `.tiny-leg { animation: tinyRunLeg 0.2s infinite; transform-origin: top; } .tiny-tail { animation: tinyTailWag 0.2s infinite; transform-origin: bottom right; } @keyframes tinyRunLeg { 0%,100% { transform: rotate(-12deg); } 50% { transform: rotate(12deg); } } @keyframes tinyTailWag { 0%,100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }`;
+    svg.appendChild(style);
+    return svg;
+  }
+
+  let lastX = 0, lastY = 0;
+  let lastSpawn = 0;
+  document.addEventListener('mousemove', (e) => {
+    if (!document.body.classList.contains('unlocked')) return; // only after unlock
+    const now = Date.now();
+    if (now - lastSpawn < 50) return; // throttle for performance
+    lastSpawn = now;
+    const x = e.clientX;
+    const y = e.clientY;
+    // random size between 0.35 and 0.65
+    const scale = 0.35 + Math.random() * 0.35;
+    const dogDiv = document.createElement('div');
+    dogDiv.className = 'cursor-dog';
+    dogDiv.style.left = (x - 30 * scale) + 'px';
+    dogDiv.style.top = (y - 35 * scale) + 'px';
+    dogDiv.style.width = (80 * scale) + 'px';
+    dogDiv.style.height = (70 * scale) + 'px';
+    const svg = createTinyDogSVG(scale);
+    dogDiv.appendChild(svg);
+    document.body.appendChild(dogDiv);
+    // random slight offset movement outward
+    const angle = Math.random() * Math.PI * 2;
+    const distance = 40 + Math.random() * 70;
+    const dx = Math.cos(angle) * distance;
+    const dy = Math.sin(angle) * distance;
+    dogDiv.style.transition = 'transform 0.4s ease-out, opacity 0.4s ease-out';
+    dogDiv.style.transform = `translate(${dx}px, ${dy}px)`;
+    dogDiv.style.opacity = '0';
+    setTimeout(() => dogDiv.remove(), 450);
+  });
+
+  // Also add a few persistent floating tiny dogs that randomly wander around the page
+  function addWanderingDog() {
+    if (!document.body.classList.contains('unlocked')) return;
+    const dogDiv = document.createElement('div');
+    dogDiv.className = 'cursor-dog';
+    const scale = 0.45 + Math.random() * 0.25;
+    dogDiv.style.position = 'fixed';
+    dogDiv.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+    dogDiv.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+    dogDiv.style.width = (80 * scale) + 'px';
+    dogDiv.style.height = (70 * scale) + 'px';
+    const svg = createTinyDogSVG(scale);
+    dogDiv.appendChild(svg);
+    document.body.appendChild(dogDiv);
+    let posX = parseFloat(dogDiv.style.left);
+    let posY = parseFloat(dogDiv.style.top);
+    let velX = (Math.random() - 0.5) * 1.2;
+    let velY = (Math.random() - 0.5) * 1.2;
+    function animateWander() {
+      if (!dogDiv.parentNode) return;
+      posX += velX;
+      posY += velY;
+      if (posX < 0 || posX > window.innerWidth - 70) velX *= -1;
+      if (posY < 0 || posY > window.innerHeight - 60) velY *= -1;
+      dogDiv.style.left = posX + 'px';
+      dogDiv.style.top = posY + 'px';
+      requestAnimationFrame(animateWander);
+    }
+    requestAnimationFrame(animateWander);
+    // remove after 30 seconds to keep number manageable
+    setTimeout(() => { if(dogDiv.parentNode) dogDiv.remove(); }, 30000);
+  }
+  // spawn wandering dogs periodically after unlock
+  let wanderInterval = null;
+  function startWanderingDogs() {
+    if (wanderInterval) clearInterval(wanderInterval);
+    wanderInterval = setInterval(() => {
+      if (document.body.classList.contains('unlocked')) {
+        addWanderingDog();
+      }
+    }, 8000);
+    // initial 3 dogs
+    setTimeout(() => { addWanderingDog(); addWanderingDog(); addWanderingDog(); }, 1000);
+  }
+  // override unlock to start wandering dogs
+  const originalUnlock = tryUnlock;
+  window.tryUnlock = function() {
+    if(pwInput.value === CORRECT_PASSWORD) {
+      originalUnlock();
+      setTimeout(startWanderingDogs, 1200);
+    } else {
+      originalUnlock();
+    }
+  };
+  tryUnlock = window.tryUnlock;
+  document.getElementById('pw-btn').onclick = tryUnlock;
+  pwInput.onkeypress = (e) => { if(e.key === 'Enter') tryUnlock(); };
+
+  // photo & video slots (unchanged)
+  let photoSlotCount=0, currentPhotoSlot=null;
+  function createPhotoSlot() { photoSlotCount++; const slot=document.createElement('div'); slot.className='photo-slot'; slot.innerHTML=`<div class="slot-icon">📷</div><div class="slot-label">Click to add photo</div><img src=""/><div class="photo-caption">Photo ${photoSlotCount}</div>`; slot.addEventListener('click',()=>{ currentPhotoSlot=slot; document.getElementById('photo-file-input').click(); }); return slot; }
+  function addPhotoSlot(){ document.getElementById('photos-grid').appendChild(createPhotoSlot()); }
+  for(let i=0;i<6;i++) addPhotoSlot();
+  document.getElementById('photo-file-input').addEventListener('change',function(){ const files=Array.from(this.files); if(!files.length)return; const slots=document.querySelectorAll('#photos-grid .photo-slot'); let idx=currentPhotoSlot?Array.from(slots).indexOf(currentPhotoSlot):0; files.forEach((f,i)=>{ let target=slots[idx+i]; if(!target){ target=createPhotoSlot(); document.getElementById('photos-grid').appendChild(target); } const url=URL.createObjectURL(f); const img=target.querySelector('img'); img.src=url; img.classList.add('loaded'); target.querySelector('.slot-icon').style.display='none'; target.querySelector('.slot-label').style.display='none'; target.querySelector('.photo-caption').textContent=f.name.replace(/\.[^.]+$/,''); }); this.value=''; currentPhotoSlot=null; });
+  let videoSlotCount=0, currentVideoSlot=null;
+  function createVideoSlot(){ videoSlotCount++; const slot=document.createElement('div'); slot.className='video-slot'; slot.innerHTML=`<div class="slot-icon">🎬</div><div class="slot-label">Click to add video</div><video controls></video>`; slot.addEventListener('click',e=>{ if(e.target.tagName!=='VIDEO'){ currentVideoSlot=slot; document.getElementById('video-file-input').click(); } }); return slot; }
+  function addVideoSlot(){ document.getElementById('videos-grid').appendChild(createVideoSlot()); }
+  for(let i=0;i<2;i++) addVideoSlot();
+  document.getElementById('video-file-input').addEventListener('change',function(){ const files=Array.from(this.files); if(!files.length)return; const slots=document.querySelectorAll('#videos-grid .video-slot'); let idx=currentVideoSlot?Array.from(slots).indexOf(currentVideoSlot):0; files.forEach((f,i)=>{ let target=slots[idx+i]; if(!target){ target=createVideoSlot(); document.getElementById('videos-grid').appendChild(target); } const url=URL.createObjectURL(f); const vid=target.querySelector('video'); vid.src=url; vid.classList.add('loaded'); target.querySelector('.slot-icon').style.display='none'; target.querySelector('.slot-label').style.display='none'; }); this.value=''; currentVideoSlot=null; });
 </script>
 </body>
 </html>
