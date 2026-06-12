@@ -10,52 +10,146 @@
   /* ── Password Screen ── */
   #lock-screen {
     position: fixed; inset: 0;
-    background: #fdf8f4;
     display: flex; align-items: center; justify-content: center;
     z-index: 9999;
     font-family: 'Georgia', serif;
+    overflow: hidden;
+    background: #1a0533;
   }
+
+  /* Animated gradient background */
+  #lock-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #ff6b9d, #ff9a5c, #ffd93d, #6bcb77, #4d96ff, #c77dff);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    opacity: 0.85;
+  }
+  @keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Floating confetti circles */
+  .confetti-piece {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: floatUp linear infinite;
+    pointer-events: none;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(110vh) rotate(0deg); opacity: 0.6; }
+    100% { transform: translateY(-20vh) rotate(720deg); opacity: 0; }
+  }
+
   #lock-box {
-    background: #fff;
-    border: 1px solid #e8ddd4;
-    border-radius: 16px;
+    position: relative; z-index: 2;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1.5px solid rgba(255,255,255,0.45);
+    border-radius: 24px;
     padding: 3rem 2.5rem;
     text-align: center;
-    max-width: 380px;
+    max-width: 400px;
     width: 90%;
-    box-shadow: 0 4px 32px rgba(0,0,0,0.06);
+    box-shadow: 0 8px 48px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.1);
   }
-  #lock-box .lock-icon { font-size: 2.5rem; margin-bottom: 1rem; }
-  #lock-box h2 { font-size: 1.3rem; color: #3a2e27; margin-bottom: 0.4rem; font-weight: normal; letter-spacing: 0.04em; }
-  #lock-box p { font-size: 0.85rem; color: #9a8a7e; margin-bottom: 1.5rem; font-family: sans-serif; }
+
+  .lock-emoji-ring {
+    width: 72px; height: 72px;
+    background: linear-gradient(135deg, #ff6b9d, #ffd93d, #4d96ff);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 1.2rem;
+    box-shadow: 0 4px 20px rgba(255,107,157,0.5);
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 4px 20px rgba(255,107,157,0.5); transform: scale(1); }
+    50%      { box-shadow: 0 4px 36px rgba(77,150,255,0.7); transform: scale(1.06); }
+  }
+
+  #lock-box h2 {
+    font-size: 1.4rem; color: #fff;
+    margin-bottom: 0.35rem; font-weight: normal;
+    letter-spacing: 0.03em;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  }
+  #lock-box p {
+    font-size: 0.85rem; color: rgba(255,255,255,0.82);
+    margin-bottom: 1.8rem; font-family: sans-serif;
+  }
+
   #pw-input {
-    width: 100%; padding: 0.75rem 1rem;
-    border: 1px solid #ddd; border-radius: 8px;
+    width: 100%; padding: 0.8rem 1rem;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    border-radius: 12px;
     font-size: 1rem; font-family: sans-serif;
     outline: none; margin-bottom: 0.75rem;
-    color: #3a2e27;
-    transition: border 0.2s;
+    color: #fff;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(4px);
+    transition: border 0.2s, background 0.2s;
+    letter-spacing: 0.08em;
   }
-  #pw-input:focus { border-color: #c4a882; }
+  #pw-input::placeholder { color: rgba(255,255,255,0.55); }
+  #pw-input:focus {
+    border-color: #ffd93d;
+    background: rgba(255,255,255,0.22);
+  }
+
   #pw-btn {
-    width: 100%; padding: 0.75rem;
-    background: #3a2e27; color: #fff;
-    border: none; border-radius: 8px;
+    width: 100%; padding: 0.8rem;
+    background: linear-gradient(90deg, #ff6b9d, #ff9a5c);
+    color: #fff;
+    border: none; border-radius: 12px;
     font-size: 0.95rem; font-family: sans-serif;
-    cursor: pointer; letter-spacing: 0.05em;
-    transition: background 0.2s;
+    cursor: pointer; letter-spacing: 0.08em;
+    font-weight: 600;
+    transition: opacity 0.2s, transform 0.15s;
+    box-shadow: 0 4px 18px rgba(255,107,157,0.45);
   }
-  #pw-btn:hover { background: #5a4a3a; }
-  #pw-error { color: #c0614e; font-size: 0.82rem; margin-top: 0.6rem; font-family: sans-serif; min-height: 1.1em; }
+  #pw-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  #pw-btn:active { transform: translateY(0); }
+
+  #pw-error {
+    color: #ffd93d; font-size: 0.82rem;
+    margin-top: 0.7rem; font-family: sans-serif;
+    min-height: 1.1em;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+
+  .lock-tagline {
+    margin-top: 1.5rem;
+    font-family: sans-serif; font-size: 0.75rem;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.1em;
+  }
 
   /* ── Main Site ── */
   body {
     font-family: 'Georgia', serif;
     background: #fdf8f4;
     color: #3a2e27;
+  }
+  /* Hide main content until unlocked */
+  #hero, #photos-section, #videos-section, #wish-section, footer,
+  section:not(#photos-section):not(#wish-section) {
     display: none;
   }
-  body.unlocked { display: block; }
+  body.unlocked #hero,
+  body.unlocked #photos-section,
+  body.unlocked #videos-section,
+  body.unlocked #wish-section,
+  body.unlocked footer,
+  body.unlocked section {
+    display: block;
+  }
+  body.unlocked #hero { display: flex; }
 
   /* Hero */
   #hero {
@@ -159,7 +253,6 @@
   .add-photo-btn:hover { background: #b08060; color: #fff; }
   #photo-file-input { display: none; }
 
-  /* Caption on hover */
   .photo-caption {
     position: absolute; bottom: 0; left: 0; right: 0;
     background: rgba(46,33,26,0.7);
@@ -291,7 +384,6 @@
     color: #c4b4a4; letter-spacing: 0.08em;
   }
 
-  /* Password change hint */
   .pw-hint {
     background: #fdf0e8; border: 1px solid #e8d4c0;
     border-radius: 10px; padding: 1rem 1.2rem;
@@ -306,13 +398,18 @@
 
 <!-- ═══════════════ LOCK SCREEN ═══════════════ -->
 <div id="lock-screen">
+  <div id="lock-bg"></div>
+
+  <!-- Confetti dots injected by JS -->
+
   <div id="lock-box">
-    <div class="lock-icon">🔒</div>
-    <h2>This page is private</h2>
-    <p>Enter the password to view this birthday surprise</p>
-    <input type="password" id="pw-input" placeholder="Password" autocomplete="off" />
-    <button id="pw-btn">Enter →</button>
+    <div class="lock-emoji-ring">🎂</div>
+    <h2>Something special awaits…</h2>
+    <p>Enter the password to unwrap your birthday surprise 🎁</p>
+    <input type="password" id="pw-input" placeholder="✦  password  ✦" autocomplete="off" />
+    <button id="pw-btn">Open →</button>
     <div id="pw-error"></div>
+    <div class="lock-tagline">made with love 🎈</div>
   </div>
 </div>
 
@@ -335,10 +432,7 @@
   <p style="color:#7a6455; font-family:sans-serif; font-size:0.9rem; line-height:1.7;">
     Click any slot to add a photo. Changes are saved in your browser while the page is open.
   </p>
-
-  <div id="photos-grid">
-    <!-- slots created by JS -->
-  </div>
+  <div id="photos-grid"></div>
   <input type="file" id="photo-file-input" accept="image/*" multiple />
   <button class="add-photo-btn" onclick="addPhotoSlot()">+ Add more slots</button>
 </section>
@@ -350,9 +444,7 @@
   <p style="color:#7a6455; font-family:sans-serif; font-size:0.9rem; line-height:1.7;">
     Click a slot to add a video clip. Best kept under 50 MB each.
   </p>
-  <div class="video-grid" id="videos-grid">
-    <!-- slots by JS -->
-  </div>
+  <div class="video-grid" id="videos-grid"></div>
   <input type="file" id="video-file-input" accept="video/*" multiple />
   <button class="add-video-btn" onclick="addVideoSlot()">+ Add more slots</button>
 </div>
@@ -383,7 +475,6 @@
   </div>
 </div>
 
-<!-- Password hint -->
 <section style="text-align:center; padding: 2rem 2rem 4rem;">
   <div class="pw-hint">
     💡 <strong>To change the password:</strong> open this HTML file in a text editor and find <code>const CORRECT_PASSWORD</code> near the top of the &lt;script&gt; — change it to whatever you like, then save.
@@ -393,29 +484,47 @@
 <footer>Made with love &nbsp;·&nbsp; © 2025</footer>
 
 <script>
-  /* ──────────────────────────────────────────
-     CHANGE THE PASSWORD HERE ↓
-  ────────────────────────────────────────── */
+  /* ── CHANGE THE PASSWORD HERE ↓ ── */
   const CORRECT_PASSWORD = "bella";
-  /* ──────────────────────────────────────── */
 
-  // Lock screen
+  // Spawn floating confetti dots
+  const colors = ['#ff6b9d','#ff9a5c','#ffd93d','#6bcb77','#4d96ff','#c77dff','#fff'];
   const lockScreen = document.getElementById('lock-screen');
-  const pwInput    = document.getElementById('pw-input');
-  const pwError    = document.getElementById('pw-error');
+  for (let i = 0; i < 22; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'confetti-piece';
+    const size = 8 + Math.random() * 18;
+    dot.style.cssText = `
+      width:${size}px; height:${size}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      left:${Math.random()*100}%;
+      animation-duration:${4 + Math.random()*6}s;
+      animation-delay:${Math.random()*5}s;
+    `;
+    lockScreen.appendChild(dot);
+  }
+
+  // Lock screen logic
+  const pwInput = document.getElementById('pw-input');
+  const pwError = document.getElementById('pw-error');
 
   function tryUnlock() {
     if (pwInput.value === CORRECT_PASSWORD) {
       lockScreen.style.opacity = '0';
-      lockScreen.style.transition = 'opacity 0.5s';
+      lockScreen.style.transition = 'opacity 0.6s';
       setTimeout(() => {
         lockScreen.style.display = 'none';
         document.body.classList.add('unlocked');
-      }, 500);
+      }, 600);
     } else {
-      pwError.textContent = 'Wrong password — try again.';
+      pwError.textContent = '✦ Wrong password — try again ✦';
       pwInput.value = '';
       pwInput.focus();
+      // Shake animation
+      const box = document.getElementById('lock-box');
+      box.style.animation = 'none';
+      box.style.transform = 'translateX(-10px)';
+      setTimeout(() => { box.style.transition = 'transform 0.3s ease'; box.style.transform = ''; }, 50);
     }
   }
 
@@ -448,34 +557,24 @@
     document.getElementById('photos-grid').appendChild(createPhotoSlot());
   }
 
-  // Pre-create 6 slots
   for (let i = 0; i < 6; i++) addPhotoSlot();
 
   document.getElementById('photo-file-input').addEventListener('change', function() {
     const files = Array.from(this.files);
     if (!files.length) return;
-
     const slots = document.querySelectorAll('#photos-grid .photo-slot');
-    let slotIdx = currentPhotoSlot
-      ? Array.from(slots).indexOf(currentPhotoSlot)
-      : 0;
-
+    let slotIdx = currentPhotoSlot ? Array.from(slots).indexOf(currentPhotoSlot) : 0;
     files.forEach((file, i) => {
       let target = slots[slotIdx + i];
-      if (!target) {
-        target = createPhotoSlot();
-        document.getElementById('photos-grid').appendChild(target);
-      }
+      if (!target) { target = createPhotoSlot(); document.getElementById('photos-grid').appendChild(target); }
       const url = URL.createObjectURL(file);
       const img = target.querySelector('img');
-      img.src = url;
-      img.classList.add('loaded');
+      img.src = url; img.classList.add('loaded');
       target.querySelector('.slot-icon').style.display = 'none';
       target.querySelector('.slot-label').style.display = 'none';
       target.querySelector('.photo-caption').textContent = file.name.replace(/\.[^.]+$/, '');
     });
-    this.value = '';
-    currentPhotoSlot = null;
+    this.value = ''; currentPhotoSlot = null;
   });
 
   // ── Video slots ──
@@ -510,22 +609,16 @@
     if (!files.length) return;
     const slots = document.querySelectorAll('#videos-grid .video-slot');
     let slotIdx = currentVideoSlot ? Array.from(slots).indexOf(currentVideoSlot) : 0;
-
     files.forEach((file, i) => {
       let target = slots[slotIdx + i];
-      if (!target) {
-        target = createVideoSlot();
-        document.getElementById('videos-grid').appendChild(target);
-      }
+      if (!target) { target = createVideoSlot(); document.getElementById('videos-grid').appendChild(target); }
       const url = URL.createObjectURL(file);
       const vid = target.querySelector('video');
-      vid.src = url;
-      vid.classList.add('loaded');
+      vid.src = url; vid.classList.add('loaded');
       target.querySelector('.slot-icon').style.display = 'none';
       target.querySelector('.slot-label').style.display = 'none';
     });
-    this.value = '';
-    currentVideoSlot = null;
+    this.value = ''; currentVideoSlot = null;
   });
 
   // ── Wish editor ──
@@ -534,9 +627,7 @@
     document.getElementById('from-editor').value = document.getElementById('wish-from').innerText;
     document.getElementById('wish-modal').classList.add('open');
   }
-  function closeWishModal() {
-    document.getElementById('wish-modal').classList.remove('open');
-  }
+  function closeWishModal() { document.getElementById('wish-modal').classList.remove('open'); }
   function saveWish() {
     document.getElementById('wish-text').innerText = document.getElementById('wish-editor').value;
     document.getElementById('wish-from').innerText = document.getElementById('from-editor').value;
