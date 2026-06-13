@@ -6,7 +6,7 @@
 <title>Happy Birthday, Sash Maria 🎀🐾</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=EB+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
-/* ===== DESIGN TOKEN SYSTEM ===== */
+/* ===== DESIGN TOKEN SYSTEM (unchanged, same as previous) ===== */
 :root {
   --ink:        #0E0203;
   --deep:       #1C0407;
@@ -32,7 +32,7 @@
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
 
-/* ===== LOCK SCREEN ===== */
+/* ===== LOCK SCREEN (same as before) ===== */
 #lock-screen {
   position: fixed; inset: 0;
   display: flex; align-items: center; justify-content: center;
@@ -42,7 +42,6 @@ html { scroll-behavior: smooth; }
   transition: opacity 0.8s cubic-bezier(.4,0,.2,1);
 }
 
-/* Rich gradient orbs behind everything */
 .lock-orb {
   position: absolute; border-radius: 50%; pointer-events: none;
   filter: blur(80px); opacity: 0;
@@ -61,7 +60,6 @@ html { scroll-behavior: smooth; }
   50% { opacity:.28; transform: translate(-50%,-50%) scale(1.15); }
 }
 
-/* Floating particle field */
 .particle-field { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
 .particle {
   position:absolute; border-radius:50%;
@@ -74,7 +72,6 @@ html { scroll-behavior: smooth; }
   100% { transform: translateY(-20vh) rotate(540deg) scale(0.3); opacity:0; }
 }
 
-/* Glass card */
 .glass-card {
   position: relative; z-index: 10;
   background: var(--glass-bg);
@@ -92,7 +89,6 @@ html { scroll-behavior: smooth; }
   text-align: center;
 }
 
-/* Thin top accent bar */
 .card-accent-bar {
   width: 48px; height: 2px;
   background: linear-gradient(90deg, transparent, var(--ember), transparent);
@@ -100,7 +96,6 @@ html { scroll-behavior: smooth; }
   border-radius: 2px;
 }
 
-/* Dog portrait */
 .dog-portrait {
   width: 100%; max-width: 360px;
   margin: 2.8rem auto 0.8rem;
@@ -109,14 +104,12 @@ html { scroll-behavior: smooth; }
 }
 .dog-portrait svg { width:100%; height:auto; display:block; }
 
-/* Mood glows */
 .mood-typing  .dog-portrait { filter: drop-shadow(0 20px 36px rgba(0,0,0,0.6)) drop-shadow(0 0 12px rgba(125,18,1,0.4)); }
 .mood-partial .dog-portrait { filter: drop-shadow(0 20px 36px rgba(0,0,0,0.5)) drop-shadow(0 0 22px rgba(163,25,10,0.6)); }
 .mood-close   .dog-portrait { filter: drop-shadow(0 20px 36px rgba(0,0,0,0.4)) drop-shadow(0 0 34px rgba(201,50,24,0.75)); }
 .mood-correct .dog-portrait { filter: drop-shadow(0 20px 36px rgba(0,0,0,0.3)) drop-shadow(0 0 54px rgba(225,85,42,0.9)) brightness(1.08); }
 .mood-wrong   .dog-portrait { filter: drop-shadow(0 20px 36px rgba(0,0,0,0.8)) brightness(0.72) saturate(0.5); }
 
-/* Lock text */
 .lock-eyebrow {
   font-family: var(--font-display);
   font-size: 0.72rem; letter-spacing: 0.26em; text-transform: uppercase;
@@ -137,7 +130,6 @@ html { scroll-behavior: smooth; }
   transition: all 0.25s;
 }
 
-/* Password input */
 .input-wrap { position: relative; margin-bottom: 0.75rem; }
 .input-wrap::before {
   content: '✦';
@@ -163,7 +155,6 @@ html { scroll-behavior: smooth; }
   background: rgba(18,6,8,0.9);
 }
 
-/* Unlock button */
 #unlock-btn {
   width: 100%;
   background: linear-gradient(135deg, var(--core) 0%, var(--bloom) 50%, var(--ember) 100%);
@@ -193,7 +184,6 @@ html { scroll-behavior: smooth; }
   transition: opacity 0.2s;
 }
 
-/* Progress indicator dots */
 .progress-dots { display: flex; gap: 6px; justify-content: center; margin: 0.6rem 0 0; }
 .progress-dot {
   width: 5px; height: 5px; border-radius: 50%;
@@ -210,7 +200,6 @@ html { scroll-behavior: smooth; }
   letter-spacing: 0.12em;
 }
 
-/* Confetti burst */
 .burst-piece {
   position: fixed; width: 10px; height: 10px; border-radius: 3px;
   pointer-events: none; z-index: 10000;
@@ -221,7 +210,6 @@ html { scroll-behavior: smooth; }
   100% { transform: translate(var(--tx),var(--ty)) rotate(var(--tr)) scale(0); opacity: 0; }
 }
 
-/* ===== DOG ANIMATIONS ===== */
 @keyframes dogIdleSway  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
 @keyframes headTilt     { 0%,100%{transform:rotate(0deg)} 50%{transform:rotate(-5deg)} }
 @keyframes excitedBounce{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
@@ -247,7 +235,6 @@ html { scroll-behavior: smooth; }
 .ears-droop-l     { transform: rotate(14deg) translateY(10px); transform-origin: 170px 130px; transition: transform 0.3s; }
 .ears-droop-r     { transform: rotate(-14deg) translateY(10px); transform-origin: 310px 130px; transition: transform 0.3s; }
 
-/* ===== MAIN SITE ===== */
 body {
   font-family: var(--font-body);
   background: var(--ink);
@@ -256,7 +243,6 @@ body {
   min-height: 100vh;
 }
 
-/* Background atmosphere */
 body.unlocked::after {
   content: '';
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
@@ -266,7 +252,6 @@ body.unlocked::after {
     radial-gradient(ellipse 70% 60% at 50% 50%, rgba(30,4,2,0.3), transparent);
 }
 
-/* Sections hidden until unlocked */
 #hero, #photos-section, #videos-section, #wish-section, footer { display: none; }
 body.unlocked #hero { display: flex; }
 body.unlocked #photos-section,
@@ -274,7 +259,6 @@ body.unlocked #videos-section,
 body.unlocked #wish-section,
 body.unlocked footer { display: block; }
 
-/* Shared section wrapper */
 #hero, #photos-section, #videos-section, #wish-section, footer {
   position: relative; z-index: 2;
   background: rgba(14,2,3,0.72);
@@ -290,7 +274,6 @@ body.unlocked footer { display: block; }
     0 0 0 1px rgba(125,18,1,0.1);
 }
 
-/* ===== HERO ===== */
 #hero {
   flex-direction: column; align-items: center; justify-content: center;
   text-align: center; min-height: 92vh; padding: 5rem 2.5rem 4rem;
@@ -298,7 +281,6 @@ body.unlocked footer { display: block; }
   overflow: hidden;
 }
 
-/* Decorative rose emblem top */
 .hero-rose {
   font-size: 2.5rem; margin-bottom: 1.2rem; display: block;
   animation: roseRotate 20s linear infinite;
@@ -354,7 +336,6 @@ body.unlocked footer { display: block; }
   opacity: 0.9;
 }
 
-/* Puppy toggle */
 #puppy-toggle {
   display: inline-flex; align-items: center; gap: 0.7rem;
   padding: 0.65rem 1.5rem;
@@ -391,7 +372,6 @@ body.unlocked footer { display: block; }
 }
 @keyframes scrollBob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
 
-/* ===== SECTION HEADERS ===== */
 #photos-section, #videos-section, #wish-section { padding: 3.5rem 2.5rem; }
 
 .section-eyebrow {
@@ -412,7 +392,6 @@ h2 {
   font-style: italic; font-family: var(--font-body); font-weight: 300;
 }
 
-/* ===== PHOTO GALLERY ===== */
 #photos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px,1fr));
@@ -444,7 +423,6 @@ h2 {
   color: rgba(200,140,110,0.7); letter-spacing: 0.05em;
 }
 
-/* Action buttons */
 .action-btn {
   display: inline-flex; align-items: center; gap: 0.5rem;
   padding: 0.65rem 1.6rem;
@@ -457,7 +435,6 @@ h2 {
 }
 .action-btn:hover { background: rgba(125,18,1,0.3); border-color: var(--ember); transform: translateY(-1px); }
 
-/* ===== VIDEO GALLERY ===== */
 .video-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
@@ -478,8 +455,14 @@ h2 {
 .video-slot video.loaded { display:block; }
 .video-slot .slot-icon { font-size: 2rem; opacity: 0.7; }
 .video-slot .slot-label { font-size: 0.72rem; color: rgba(200,140,110,0.6); margin-top: 0.3rem; font-family: var(--font-body); }
+.video-error {
+  font-size: 0.7rem; color: var(--blush); margin-top: 0.5rem;
+  text-align: center; display: none;
+}
+.video-slot.error .video-error { display: block; }
+.video-slot.error video { display: none; }
+.video-slot.error .slot-icon { display: none; }
 
-/* ===== WISH CARD ===== */
 #wish-section { text-align: center; max-width: 700px; }
 
 .wish-card {
@@ -490,7 +473,6 @@ h2 {
   position: relative; overflow: hidden;
   box-shadow: 0 20px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,180,140,0.06);
 }
-/* Decorative corner blooms */
 .wish-card::before {
   content: '\201C';
   font-family: Georgia, serif;
@@ -524,7 +506,6 @@ h2 {
   font-style: normal;
 }
 
-/* ===== FOOTER ===== */
 footer {
   background: rgba(8,2,2,0.9);
   border-radius: 36px; width: 70%; max-width: 500px;
@@ -534,7 +515,6 @@ footer {
 .footer-rose { color: var(--core); font-size: 1.2rem; }
 .footer-text { font-size: 0.68rem; color: rgba(180,110,90,0.65); letter-spacing: 0.1em; font-family: var(--font-body); }
 
-/* ===== BIG DIAGONAL PUPPY ===== */
 #main-dog {
   position: fixed; z-index: 500; pointer-events: none;
   width: 180px; height: 160px;
@@ -557,17 +537,14 @@ footer {
 .run-bob       { animation: runBob 0.27s infinite; }
 @keyframes runBob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
 
-/* ===== CURSOR DOGS ===== */
 .cursor-dog { position:fixed; pointer-events:none; z-index:900; filter:drop-shadow(0 4px 10px rgba(0,0,0,0.4)); }
 
-/* ===== REVEAL ANIMATIONS ===== */
 .reveal {
   opacity: 0; transform: translateY(28px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
-/* ===== LIGHTBOX STYLES ===== */
 .lightbox {
   position: fixed;
   top: 0;
@@ -626,27 +603,27 @@ footer {
   <div class="particle-field" id="particleField"></div>
 
   <div class="glass-card" id="glassCard">
-    <!-- Dog Portrait SVG -->
     <div class="dog-portrait" id="dogWrap">
       <svg viewBox="0 0 480 500" xmlns="http://www.w3.org/2000/svg">
+        <!-- Same dog SVG as before -->
         <defs>
           <radialGradient id="wBase" cx="45%" cy="35%" r="70%">
-            <stop offset="0%"   stop-color="#F9F9F7"/>
-            <stop offset="60%"  stop-color="#F4EFE6"/>
+            <stop offset="0%" stop-color="#F9F9F7"/>
+            <stop offset="60%" stop-color="#F4EFE6"/>
             <stop offset="100%" stop-color="#EBE5DC"/>
           </radialGradient>
           <radialGradient id="earL" cx="35%" cy="40%" r="75%">
-            <stop offset="0%"   stop-color="#C89A6B"/>
-            <stop offset="60%"  stop-color="#A8744C"/>
+            <stop offset="0%" stop-color="#C89A6B"/>
+            <stop offset="60%" stop-color="#A8744C"/>
             <stop offset="100%" stop-color="#5A4337"/>
           </radialGradient>
           <radialGradient id="earR" cx="35%" cy="40%" r="75%">
-            <stop offset="0%"   stop-color="#7B5A47"/>
-            <stop offset="60%"  stop-color="#4D372D"/>
+            <stop offset="0%" stop-color="#7B5A47"/>
+            <stop offset="60%" stop-color="#4D372D"/>
             <stop offset="100%" stop-color="#2F2522"/>
           </radialGradient>
           <radialGradient id="noseG" cx="40%" cy="30%" r="60%">
-            <stop offset="0%"   stop-color="#2A1E1B"/>
+            <stop offset="0%" stop-color="#2A1E1B"/>
             <stop offset="100%" stop-color="#111111"/>
           </radialGradient>
           <filter id="fur" x="-10%" y="-10%" width="120%" height="120%">
@@ -657,16 +634,12 @@ footer {
             <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0E0203" flood-opacity="0.6"/>
           </filter>
         </defs>
-
-        <!-- Ears -->
         <g id="ear-left">
           <path d="M155 120 C85 100,50 175,90 245 C125 220,148 170,170 130Z" fill="url(#earL)" filter="url(#fur)"/>
         </g>
         <g id="ear-right">
           <path d="M325 120 C395 100,430 175,390 245 C355 220,332 170,310 130Z" fill="url(#earR)" filter="url(#fur)"/>
         </g>
-
-        <!-- Head & face -->
         <g id="dog-head" filter="url(#fur)">
           <ellipse cx="240" cy="192" rx="128" ry="118" fill="url(#wBase)"/>
           <ellipse cx="240" cy="222" rx="72" ry="62" fill="#D7BEA4" opacity="0.45"/>
@@ -698,9 +671,7 @@ footer {
             <path d="M245 272 L245 288" stroke="#A0404F" stroke-width="2.5"/>
           </g>
         </g>
-
         <path d="M210 292 Q240 305 270 292" stroke="#7D1201" stroke-width="2.5" fill="none" stroke-dasharray="4 3" opacity="0.8"/>
-
         <g id="sign-board" filter="url(#signShadow)">
           <rect x="155" y="308" width="170" height="74" rx="14" fill="#B87A3A"/>
           <rect x="163" y="315" width="154" height="60" rx="10" fill="#FFF7EE" stroke="#7D1201" stroke-width="1.5"/>
@@ -806,7 +777,7 @@ footer {
 <div id="videos-section">
   <div class="section-eyebrow">moving memories</div>
   <h2>Videos</h2>
-  <p class="section-tagline">Add videos to bring our moments to life.</p>
+  <p class="section-tagline">Click play on any video — sound is enabled.</p>
   <div class="video-grid" id="videos-grid"></div>
   <input type="file" id="video-file-input" accept="video/*" multiple style="display:none"/>
   <button class="action-btn" onclick="addVideoSlot()">+ Add more slots</button>
@@ -1245,19 +1216,43 @@ function createPhotoSlot(src=null){
 }
 function addPhotoSlot(){ document.getElementById('photos-grid').appendChild(createPhotoSlot()); }
 
-// ===== VIDEO GALLERY =====
+// ===== VIDEO GALLERY (FIXED) =====
 let currentVideoSlot=null;
 function createVideoSlot(src=null){
   const s=document.createElement('div'); s.className='video-slot';
-  s.innerHTML=`<div class="slot-icon">🎬</div><div class="slot-label">add video</div><video controls></video>`;
+  // Add error message container
+  s.innerHTML=`
+    <div class="slot-icon">🎬</div>
+    <div class="slot-label">add video</div>
+    <video controls preload="metadata" style="display:none;">
+      <source src="" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="video-error">⚠️ Video could not be loaded</div>
+  `;
   if(src){
     const vid=s.querySelector('video');
-    vid.src=src; vid.classList.add('loaded');
+    const source = vid.querySelector('source');
+    source.src = src;
+    vid.load(); // force load to trigger error/ready
+    vid.classList.add('loaded');
+    vid.style.display = 'block';
     s.querySelector('.slot-icon').style.display='none';
-    const sl=s.querySelector('.slot-label'); if(sl)sl.style.display='none';
+    s.querySelector('.slot-label').style.display='none';
+    // Error handling
+    vid.addEventListener('error', () => {
+      s.classList.add('error');
+      console.error(`Failed to load video: ${src}`);
+    });
+    vid.addEventListener('canplay', () => {
+      s.classList.remove('error');
+    });
   }
   s.addEventListener('click',e=>{
-    if(e.target.tagName!=='VIDEO'){currentVideoSlot=s;document.getElementById('video-file-input').click();}
+    if(e.target.tagName!=='VIDEO'){
+      currentVideoSlot=s;
+      document.getElementById('video-file-input').click();
+    }
   });
   return s;
 }
@@ -1314,9 +1309,17 @@ document.getElementById('video-file-input').addEventListener('change',function()
     let t=slots[idx+i];
     if(!t){t=createVideoSlot();document.getElementById('videos-grid').appendChild(t);}
     const vid=t.querySelector('video');
-    vid.src=URL.createObjectURL(f); vid.classList.add('loaded');
+    const source = vid.querySelector('source');
+    source.src = URL.createObjectURL(f);
+    vid.load();
+    vid.classList.add('loaded');
+    vid.style.display = 'block';
     t.querySelector('.slot-icon').style.display='none';
     const sl=t.querySelector('.slot-label'); if(sl)sl.style.display='none';
+    // attach error handler
+    vid.addEventListener('error', () => {
+      t.classList.add('error');
+    });
   });
   this.value=''; currentVideoSlot=null;
 });
