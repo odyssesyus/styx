@@ -835,15 +835,20 @@ footer {
 </footer>
 
 <script>
-// ===== CONFIGURATION: PHOTO PATHS =====
+// ===== CONFIGURATION: PHOTOS (1 to 11) AND VIDEOS (1 to 5) =====
 const photoPaths = [];
-for (let i = 1; i <= 9; i++) {
+for (let i = 1; i <= 11; i++) {
   photoPaths.push(`images/photo${i}.jpg`);
+}
+
+const videoPaths = [];
+for (let i = 1; i <= 5; i++) {
+  videoPaths.push(`videos/video${i}.mp4`);
 }
 
 const MEDIA_FILES = {
   photos: photoPaths,
-  videos: []           // add video paths if needed, e.g., ['videos/hello.mp4']
+  videos: videoPaths
 };
 
 // ===== CONSTANTS =====
@@ -1224,16 +1229,12 @@ function createPhotoSlot(src=null){
     img.src=src; img.classList.add('loaded');
     s.querySelector('.slot-icon').style.display='none';
     s.querySelector('.slot-label').style.display='none';
-    // Add click handler for lightbox on the image
     img.addEventListener('click', (e) => {
       e.stopPropagation();
       openLightbox(img.src);
     });
   }
   s.addEventListener('click', (e) => {
-    // if clicking on the slot itself (not the img element) and image is loaded, don't trigger file picker? Actually we want click on slot to add photos only if no image OR if user clicks the empty area.
-    // But for loaded images, clicking the image already opens lightbox; clicking the slot background should still allow adding? Better: clicking on slot without image triggers file picker.
-    // We'll check if the slot has an image loaded. If yes, do nothing extra (image click handled separately). If no, open file picker.
     const imgEl = s.querySelector('img');
     if(!imgEl.classList.contains('loaded')){
       currentPhotoSlot=s;
@@ -1262,7 +1263,7 @@ function createVideoSlot(src=null){
 }
 function addVideoSlot(){ document.getElementById('videos-grid').appendChild(createVideoSlot()); }
 
-// Initialize galleries with pre-configured media from repository
+// Initialize galleries
 const photoGrid = document.getElementById('photos-grid');
 const videoGrid = document.getElementById('videos-grid');
 
@@ -1285,7 +1286,7 @@ if(MEDIA_FILES.videos && MEDIA_FILES.videos.length){
   for(let i=0;i<2;i++) addVideoSlot();
 }
 
-// File input handlers (updated to attach lightbox click to newly added images)
+// File input handlers
 document.getElementById('photo-file-input').addEventListener('change',function(){
   const files=Array.from(this.files); if(!files.length) return;
   const slots=document.querySelectorAll('#photos-grid .photo-slot');
@@ -1297,7 +1298,6 @@ document.getElementById('photo-file-input').addEventListener('change',function()
     img.src=URL.createObjectURL(f); img.classList.add('loaded');
     t.querySelector('.slot-icon').style.display='none';
     t.querySelector('.slot-label').style.display='none';
-    // attach lightbox click
     img.addEventListener('click', (e) => {
       e.stopPropagation();
       openLightbox(img.src);
