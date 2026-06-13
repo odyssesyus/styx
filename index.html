@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <title>Happy Birthday, Ariadne 🎀🐾</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=EB+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
 /* ===== DESIGN TOKEN SYSTEM ===== */
 :root {
@@ -24,9 +24,9 @@
   --glass-bd:   rgba(125,18,1,0.40);
   --radius-card: 52px;
   --radius-sm:   24px;
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  --font-script:  'Pinyon Script', cursive;
-  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-script:  'Great Vibes', cursive;
+  --font-body:    'EB Garamond', Georgia, serif;
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
@@ -118,20 +118,22 @@ html { scroll-behavior: smooth; }
 
 /* Lock text */
 .lock-eyebrow {
-  font-family: var(--font-body);
-  font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+  font-family: var(--font-display);
+  font-size: 0.72rem; letter-spacing: 0.26em; text-transform: uppercase;
+  font-style: italic; font-weight: 400;
   color: var(--gold); margin-bottom: 0.3rem;
 }
 .lock-title {
   font-family: var(--font-display);
-  font-size: 1.6rem; font-weight: 400; font-style: italic;
+  font-size: 1.65rem; font-weight: 500; font-style: italic;
   color: var(--petal); line-height: 1.3;
   text-shadow: 0 2px 12px rgba(0,0,0,0.5);
   transition: all 0.25s;
 }
 .lock-subtitle {
   font-family: var(--font-body);
-  font-size: 0.78rem; color: var(--blush); margin: 0.3rem 0 1.2rem;
+  font-size: 0.95rem; font-style: italic; font-weight: 300;
+  color: var(--blush); margin: 0.3rem 0 1.2rem;
   transition: all 0.25s;
 }
 
@@ -154,7 +156,7 @@ html { scroll-behavior: smooth; }
   color: var(--cream); text-align: center;
   transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
 }
-#password-input::placeholder { letter-spacing: 1px; font-size: 0.85rem; color: rgba(200,130,100,0.5); font-family: var(--font-body); }
+#password-input::placeholder { letter-spacing: 1px; font-size: 0.95rem; color: rgba(200,130,100,0.45); font-family: var(--font-body); font-style: italic; }
 #password-input:focus {
   border-color: var(--ember);
   box-shadow: 0 0 0 3px rgba(125,18,1,0.25), 0 0 20px rgba(201,50,24,0.15);
@@ -167,8 +169,8 @@ html { scroll-behavior: smooth; }
   background: linear-gradient(135deg, var(--core) 0%, var(--bloom) 50%, var(--ember) 100%);
   border: none; border-radius: 60px;
   padding: 14px 20px;
-  font-family: var(--font-body); font-weight: 500; font-size: 0.92rem;
-  letter-spacing: 0.04em;
+  font-family: var(--font-display); font-weight: 500; font-size: 1rem;
+  font-style: italic; letter-spacing: 0.06em;
   color: var(--cream); cursor: pointer;
   box-shadow: 0 8px 24px rgba(125,18,1,0.5), inset 0 1px 0 rgba(255,200,170,0.12);
   transition: all 0.2s cubic-bezier(.4,0,.2,1);
@@ -330,9 +332,9 @@ body.unlocked footer { display: block; }
 }
 .hero-name {
   font-family: var(--font-script);
-  font-size: clamp(3.5rem, 10vw, 6.5rem);
+  font-size: clamp(4.5rem, 13vw, 8.5rem);
   color: var(--gold-lt);
-  display: block; line-height: 1;
+  display: block; line-height: 1.05;
   text-shadow: 0 0 40px rgba(196,137,74,0.4), 0 4px 20px rgba(0,0,0,0.5);
   margin-bottom: 0.5rem;
 }
@@ -406,8 +408,8 @@ h2 {
   color: var(--petal); margin-bottom: 0.4rem;
 }
 .section-tagline {
-  font-size: 0.82rem; color: var(--blush); margin-bottom: 1.8rem;
-  font-style: normal; font-family: var(--font-body); font-weight: 300;
+  font-size: 1rem; color: var(--blush); margin-bottom: 1.8rem;
+  font-style: italic; font-family: var(--font-body); font-weight: 300;
 }
 
 /* ===== PHOTO GALLERY ===== */
@@ -504,14 +506,14 @@ h2 {
   pointer-events: none;
 }
 .wish-text {
-  font-family: var(--font-display);
-  font-size: 1.2rem; line-height: 1.95;
-  color: var(--cream); font-style: italic; font-weight: 300;
+  font-family: var(--font-body);
+  font-size: 1.25rem; line-height: 2;
+  color: var(--cream); font-style: italic; font-weight: 400;
   margin-bottom: 2rem; position: relative; z-index: 1;
 }
 .wish-from {
   font-family: var(--font-script);
-  font-size: 1.6rem; color: var(--gold-lt);
+  font-size: 2.2rem; color: var(--gold-lt);
   text-shadow: 0 0 20px rgba(196,137,74,0.3);
   position: relative; z-index: 1;
 }
