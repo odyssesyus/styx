@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Happy Birthday, Ariadne 🎀🐾</title>
+<title>Happy Birthday, Sash Maria 🎀🐾</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=EB+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
 /* ===== DESIGN TOKEN SYSTEM ===== */
@@ -675,11 +675,11 @@ footer {
 
     <!-- Card content -->
     <div class="card-accent-bar"></div>
-    <div class="lock-eyebrow">a birthday surprise awaits</div>
-    <div class="lock-title" id="lock-title">Crimson Whispers</div>
-    <div class="lock-subtitle" id="lock-subtitle">What's my name? 🐾</div>
+    <div class="lock-eyebrow">Who's your favourite pet?</div>
+    <div class="lock-title" id="lock-title">Mwone</div>
+    <div class="lock-subtitle" id="lock-subtitle">Your Clue is 🐾</div>
 
-    <!-- Progress dots (5 = length of "bella") -->
+    <!-- Progress dots (5 = length of "BELLA") -->
     <div class="progress-dots" id="progressDots">
       <div class="progress-dot"></div>
       <div class="progress-dot"></div>
@@ -690,9 +690,9 @@ footer {
 
     <div style="margin-top:1rem;">
       <div class="input-wrap">
-        <input type="text" id="password-input" placeholder="enter the secret name" autocomplete="off" maxlength="20"/>
+        <input type="text" id="password-input" placeholder="Enter in uppercase letters." autocomplete="off" maxlength="20"/>
       </div>
-      <button id="unlock-btn">Unlock the celebration →</button>
+      <button id="unlock-btn">Let's go for a walk →</button>
       <div id="pw-error"></div>
     </div>
 
@@ -738,13 +738,13 @@ footer {
 <div id="hero">
   <div class="hero-eyebrow">a little something just for you</div>
   <h1>Happy <em>Birthday,</em></h1>
-  <div class="hero-name">Ariadne</div>
+  <div class="hero-name">Mwone</div>
   <div class="hero-divider">
     <div class="divider-line"></div>
     <div class="divider-gem">✦</div>
     <div class="divider-line r"></div>
   </div>
-  <p class="hero-sub">You only turn this age once — here's to celebrating you, your story, and everything that makes you wonderful.</p>
+  <p class="hero-sub">"To the one person: even though we don't share any common interests, we still find ways to keep the connection alive."</p>
 
   <button id="puppy-toggle" class="on" onclick="togglePuppies()">
     <span class="toggle-pip"></span>
@@ -795,7 +795,7 @@ footer {
 
 <script>
 // ===== CONSTANTS =====
-const PASSWORD = "bella";
+const PASSWORD = "BELLA";
 const COLORS   = ['#7D1201','#A3190A','#C93218','#E0552A','#4A0A06','#E8B870','#C4894A','#FBDFC5'];
 
 // ===== REFS =====
@@ -891,8 +891,8 @@ function setDogState(state){
   const states = {
     empty: ()=>{
       dogWrap.classList.add('dog-idle-anim');
-      lockTitle.textContent='Crimson Whispers';
-      lockSub.textContent="What's my name? 🐾";
+      lockTitle.textContent='Sash Maria';
+      lockSub.textContent="Your Clue is 🐾";
     },
     typing: ()=>{
       dogWrap.classList.add('mood-typing');
@@ -900,7 +900,7 @@ function setDogState(state){
       browL.setAttribute('d','M165 150 Q192 136 217 150');
       browR.setAttribute('d','M263 150 Q290 136 315 150');
       lockTitle.textContent='Hmm, let me think…';
-      lockSub.textContent="I'm watching the board 👀";
+      lockSub.textContent="Aahno urappano? 👀";
     },
     partial: ()=>{
       dogWrap.classList.add('excited-bounce','mood-partial');
@@ -910,7 +910,7 @@ function setDogState(state){
       browL.setAttribute('d','M168 144 Q194 132 218 144');
       browR.setAttribute('d','M262 144 Q288 132 312 144');
       lockTitle.textContent='Ooh, getting warmer!';
-      lockSub.textContent='My ears just perked up! 🐶';
+      lockSub.textContent='Sherikkum njan aahno 🐶';
     },
     close: ()=>{
       dogWrap.classList.add('happy-bounce','mood-close');
@@ -920,7 +920,7 @@ function setDogState(state){
       browL.setAttribute('d','M165 138 Q194 126 220 140');
       browR.setAttribute('d','M260 140 Q288 126 315 138');
       lockTitle.textContent='So close! One more letter…';
-      lockSub.textContent="I can almost taste it! 🍖";
+      lockSub.textContent="Okay njan thanne!! 🍖";
     },
     correct: ()=>{
       dogWrap.classList.add('big-jump','mood-correct');
@@ -930,8 +930,8 @@ function setDogState(state){
       tongue.style.opacity='1';
       browL.setAttribute('d','M162 132 Q194 118 222 134');
       browR.setAttribute('d','M258 134 Q290 118 318 132');
-      lockTitle.textContent='YAAAY! That\'s me! 🎉';
-      lockSub.textContent='Unwrapping your surprise…';
+      lockTitle.textContent='YAAAY! 🎉🎉🎉🎉';
+      lockSub.textContent='Okayy set !!!';
       burstConfetti();
     },
     wrong: ()=>{
@@ -942,7 +942,7 @@ function setDogState(state){
       browL.setAttribute('d','M172 160 Q194 157 214 163');
       browR.setAttribute('d','M266 163 Q288 157 308 160');
       lockTitle.textContent='Aww, not quite…';
-      lockSub.textContent="Let's try that again 🐾";
+      lockSub.textContent= "NUNNACHAN!! 🐾";
       errorDiv.textContent='✦ Wrong answer — try again ✦';
       setTimeout(()=>{
         errorDiv.textContent='';
