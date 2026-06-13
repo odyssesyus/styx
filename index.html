@@ -8,7 +8,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* ========= LOCK SCREEN ========= */
+        /* ========= LOCK SCREEN - DARK CRIMSON THEME ========= */
         #lock-screen {
             position: fixed;
             inset: 0;
@@ -18,13 +18,13 @@
             z-index: 9999;
             font-family: 'Inter', sans-serif;
             overflow: hidden;
-            background: linear-gradient(135deg, #3D0A00 0%, #5C1515 40%, #6B2D1F 70%, #4A1010 100%);
+            background: linear-gradient(135deg, #1E0502 0%, #3F0A03 40%, #7D1201 70%, #2E0400 100%);
             background-size: 200% 200%;
-            animation: gentleShift 14s ease infinite;
+            animation: gentleShift 16s ease infinite;
         }
         @keyframes gentleShift {
             0% { background-position: 0% 0%; }
-            50% { background-position: 100% 50%; }
+            50% { background-position: 100% 40%; }
             100% { background-position: 0% 0%; }
         }
 
@@ -32,11 +32,11 @@
         .confetti-dot {
             position: absolute;
             border-radius: 50%;
-            opacity: 0.35;
+            opacity: 0.5;
             animation: floatConfetti linear infinite;
         }
         @keyframes floatConfetti {
-            0% { transform: translateY(110vh) rotate(0deg); opacity: 0.35; }
+            0% { transform: translateY(110vh) rotate(0deg); opacity: 0.5; }
             100% { transform: translateY(-20vh) rotate(720deg); opacity: 0; }
         }
 
@@ -56,68 +56,72 @@
         .glass-card {
             position: relative;
             z-index: 10;
-            background: rgba(40, 15, 10, 0.30);
-            backdrop-filter: blur(20px);
+            background: rgba(18, 6, 4, 0.55);
+            backdrop-filter: blur(18px);
             border-radius: 64px;
             padding: 1rem 2rem 2rem;
             width: 94%;
             max-width: 520px;
             text-align: center;
-            box-shadow: 0 25px 45px rgba(0,0,0,0.1), 0 0 0 1px rgba(200, 100, 80, 0.5);
+            box-shadow: 0 25px 45px rgba(0,0,0,0.5), 0 0 0 1px rgba(125,18,1,0.5);
+            border: 1px solid rgba(210, 60, 30, 0.3);
         }
 
-        /* ---- Real dog photo on lock screen ---- */
+        /* lock screen dog portrait */
         .dog-portrait {
             width: 80%;
             margin: -1rem auto 0.5rem;
-            filter: drop-shadow(0 20px 25px rgba(0,0,0,0.1));
+            filter: drop-shadow(0 12px 18px rgba(0,0,0,0.4));
         }
         .dog-portrait img {
             width: 100%;
             height: auto;
             display: block;
-            border-radius: 32px;
+            border-radius: 48px;
             object-fit: cover;
             object-position: center top;
             max-height: 260px;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(3px);
         }
 
         .lock-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            color: #E8A498;
+            font-size: 1.5rem;
+            color: #FAD3BC;
             margin-bottom: 0.25rem;
+            text-shadow: 0 2px 3px rgba(0,0,0,0.3);
         }
         .lock-subtitle {
             font-family: 'Inter', sans-serif;
             font-size: 0.85rem;
-            color: #D4947A;
+            color: #FDAF92;
             margin-bottom: 0.5rem;
         }
 
         .pw-field { margin: 0.8rem 0 0.6rem; }
         #password-input {
             width: 100%;
-            background: rgba(80, 40, 30, 0.96);
-            border: 1.5px solid #8B3E1F;
+            background: rgba(10, 4, 2, 0.85);
+            border: 1.5px solid #A32414;
             border-radius: 60px;
             padding: 13px 20px;
             font-size: 1rem;
             font-family: monospace;
             letter-spacing: 1.5px;
             outline: none;
-            color: #F5E6DC;
+            color: #FFF0E0;
             text-align: center;
             transition: 0.2s;
         }
         #password-input:focus {
-            border-color: #C95A48;
-            box-shadow: 0 0 0 3px rgba(201, 90, 72, 0.2);
-            background: rgba(100, 50, 35, 0.96);
+            border-color: #E55A3A;
+            box-shadow: 0 0 0 3px rgba(229,90,58,0.3);
+            background: #1C0A06;
         }
         #unlock-btn {
             width: 100%;
-            background: linear-gradient(95deg, #8B3E1F, #B8662F);
+            background: linear-gradient(95deg, #7D1201, #C93A1A);
             border: none;
             border-radius: 60px;
             padding: 14px;
@@ -127,23 +131,23 @@
             cursor: pointer;
             transition: 0.2s;
             margin-top: 10px;
-            box-shadow: 0 5px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.3);
         }
-        #unlock-btn:hover { opacity: 0.92; transform: scale(0.98); }
-        .error-msg { color: #E8A498; font-size: 0.8rem; margin-top: 12px; min-height: 1.5rem; font-weight: 500; }
-        .lock-tagline { margin-top: 0.8rem; font-size: 0.7rem; color: rgba(232, 164, 152, 0.8); }
+        #unlock-btn:hover { opacity: 0.92; transform: scale(0.98); background: linear-gradient(95deg, #911A05, #DF4E2A); }
+        .error-msg { color: #FFAC8A; font-size: 0.8rem; margin-top: 12px; min-height: 1.5rem; font-weight: 500; text-shadow: 0 0 2px black; }
+        .lock-tagline { margin-top: 0.8rem; font-size: 0.7rem; color: #D97A5C; letter-spacing: 0.5px; }
 
-        /* ========= MAIN PAGE – real rose photo background ========= */
-        body { font-family: 'Georgia', serif; background: #4A1010; color: #E8D4C8; overflow-x: hidden; }
+        /* ========= MAIN PAGE – DARK CRIMSON GRADIENTS ========= */
+        body { font-family: 'Georgia', serif; background: #1A0703; color: #FCE6DA; overflow-x: hidden; }
 
         body.unlocked {
-            background-image: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA[...]
+            background: linear-gradient(135deg, #2E0400 0%, #5C1515 40%, #3D0A00 100%);
             background-size: cover;
             background-position: center center;
             background-attachment: fixed;
             background-repeat: no-repeat;
         }
-        /* soft overlay for text readability over the rose photo */
+        
         body.unlocked::before {
             content: "";
             position: fixed;
@@ -334,7 +338,7 @@
         .happy-bounce { animation: happyBounce 0.35s ease-in-out infinite; }
         @keyframes bigJump { 0%,100% { transform: translateY(0); } 30% { transform: translateY(-28px); } 70% { transform: translateY(-6px); } }
         .big-jump { animation: bigJump 0.6s ease-in-out 2; }
-        @keyframes sadShake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-5px); } 40% { transform: translateX(5px); } 60% { transform: translateX(-3px); } 80% { [...]
+        @keyframes sadShake { 0%,100% { transform: translateX(0); } 20% { transform: translateX(-5px); } 40% { transform: translateX(5px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(2px); } }
         .sad-shake { animation: sadShake 0.45s ease-in-out 2; }
     </style>
 </head>
@@ -345,7 +349,7 @@
     <div class="confetti-layer" id="confettiLayer"></div>
     <div class="glass-card">
         <div class="dog-portrait dog-idle-anim" id="dogWrap">
-            <img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQA[...]
+            <img id="lockScreenDog" src="" alt="Birthday girl">
         </div>
         <div class="lock-title" id="lock-title">✨ Enter the magic ✨</div>
         <div class="lock-subtitle" id="lock-subtitle">Ariadne's birthday surprise awaits 🐾</div>
@@ -403,6 +407,13 @@
     const lockTitle = document.getElementById('lock-title');
     const lockSub = document.getElementById('lock-subtitle');
     const dogWrap = document.getElementById('dogWrap');
+    const lockScreenDog = document.getElementById('lockScreenDog');
+
+    // Dog image encoded as base64 (cute Shih Tzu)
+    const DOG_IMAGE = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwwUAxUTAwsGFjMPBh8gHx8fHx8gICAhICAkIiIiIiIiIiIiIiIiIiIiIiIiIiID/2wBDAQICAgICAwUDAwwUCAcIDAwwUAkIDAwwUAkIDAwwUAkIDAwwUAkIDAwwUAkIDAwwUAkIDAwwUAkIDAwwUAkIDAwwUD/wAARCABkAGQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWm5ygnJ2eo6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS4uPk5ebn6Onq8fLz9PX2+Pn6/8QAHwEAAwEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlbaWmJ2eoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigD//Z';
+
+    // Set dog image
+    lockScreenDog.src = DOG_IMAGE;
 
     function resetDog() {
         dogWrap.classList.remove('excited-bounce','happy-bounce','big-jump','sad-shake','dog-idle-anim');
@@ -451,7 +462,7 @@
     for (let i = 0; i < 80; i++) {
         const dot = document.createElement('div'); dot.className = 'confetti-dot';
         const size = 4 + Math.random()*18;
-        dot.style.cssText = `width:${size}px;height:${size}px;background:${confettiColors[Math.floor(Math.random()*confettiColors.length)]};left:${Math.random()*100}%;animation-duration:${5+Math.[...]
+        dot.style.cssText = `width:${size}px;height:${size}px;background:${confettiColors[Math.floor(Math.random()*confettiColors.length)]};left:${Math.random()*100}%;animation-duration:${5+Math.random()*10}s;animation-delay:${Math.random()*2}s;`;
         confettiLayerDiv.appendChild(dot);
     }
 
@@ -513,9 +524,9 @@
         svg.setAttribute("viewBox", "0 0 100 90");
         svg.setAttribute("width", 90*scale);
         svg.setAttribute("height", 78*scale);
-        svg.innerHTML = `<defs><radialGradient id="tfur" cx="45%" cy="35%" r="70%"><stop offset="0%" stop-color="#fffef7"/><stop offset="60%" stop-color="#fef0e0"/><stop offset="100%" stop-color=[...]
+        svg.innerHTML = `<defs><radialGradient id="tfur" cx="45%" cy="35%" r="70%"><stop offset="0%" stop-color="#fffef7"/><stop offset="60%" stop-color="#fef0e0"/><stop offset="100%" stop-color="#e8d5c5"/></radialGradient></defs><circle cx="40" cy="45" r="30" fill="url(#tfur)"/><circle cx="60" cy="40" r="28" fill="url(#tfur)"/><circle cx="50" cy="65" r="12" fill="#d4a97a"/><circle cx="32" cy="35" r="7" fill="#3d3d3d"/><circle cx="68" cy="30" r="7" fill="#3d3d3d"/><circle cx="30" cy="55" r="5" fill="#8b6f47"/><circle cx="70" cy="55" r="5" fill="#8b6f47"/><ellipse cx="50" cy="75" rx="6" ry="8" fill="#d4a97a"/>`;
         const style = document.createElementNS(svgNS, "style");
-        style.textContent = `.tiny-leg { animation: tinyRunLeg 0.2s infinite; transform-origin: top; } .tiny-tail { animation: tinyTailWag 0.2s infinite; transform-origin: bottom right; } @keyfra[...]
+        style.textContent = `.tiny-leg { animation: tinyRunLeg 0.2s infinite; transform-origin: top; } .tiny-tail { animation: tinyTailWag 0.2s infinite; transform-origin: bottom right; }`;
         svg.appendChild(style);
         return svg;
     }
@@ -544,6 +555,7 @@
         requestAnimationFrame(animate);
         setTimeout(()=>{ if(dogDiv.parentNode) dogDiv.remove(); }, 60000);
     }
+    
     function startWanderingDogs(count) {
         for(let i=0;i<count;i++) setTimeout(()=>addWanderingDog(), i*420);
         setInterval(()=>{ if(document.body.classList.contains('unlocked') && document.querySelectorAll('.cursor-dog').length<12) addWanderingDog(); }, 14000);
